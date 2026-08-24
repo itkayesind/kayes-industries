@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Award } from 'lucide-react';
+import { Check, Award, Sparkles } from 'lucide-react';
 
 export const GritParticleMatrix: React.FC = () => {
   const [selectedStage, setSelectedStage] = useState(0);
@@ -114,13 +114,13 @@ export const GritParticleMatrix: React.FC = () => {
               <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
                 Active Progression Stage 0{selectedStage + 1} of 05
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 font-brand">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-950 font-brand">
                 {gritStages[selectedStage].title}
               </h3>
             </div>
 
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold bg-slate-950 text-white shadow-2xs">
+              <span className="px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold bg-slate-100 text-slate-900 border border-slate-200 shadow-2xs">
                 {gritStages[selectedStage].meshRange}
               </span>
               <span className="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-cyan-50 text-cyan-900 border border-cyan-200">
@@ -129,33 +129,36 @@ export const GritParticleMatrix: React.FC = () => {
             </div>
           </div>
 
-          {/* Stepper Buttons */}
+          {/* Stepper Buttons (Clean Light Theme) */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
-            {gritStages.map((st, idx) => (
-              <button
-                key={st.title}
-                onClick={() => setSelectedStage(idx)}
-                className={`p-4 rounded-2xl text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer ${
-                  selectedStage === idx
-                    ? 'bg-slate-950 border-slate-950 text-white shadow-md'
-                    : 'bg-[#FAF9F6] border-slate-200 text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`text-[11px] font-mono font-bold ${selectedStage === idx ? 'text-cyan-300' : 'text-slate-400'}`}>
-                    STAGE 0{idx + 1}
-                  </span>
-                  <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
-                    selectedStage === idx ? 'bg-slate-800 text-cyan-200' : 'bg-slate-200 text-slate-600'
-                  }`}>
-                    {st.meshRange.split(' ')[1]}
-                  </span>
-                </div>
-                <div className="text-xs font-semibold leading-snug">
-                  {st.title.split(' ')[0]} {st.title.split(' ')[1]}
-                </div>
-              </button>
-            ))}
+            {gritStages.map((st, idx) => {
+              const isActive = selectedStage === idx;
+              return (
+                <button
+                  key={st.title}
+                  onClick={() => setSelectedStage(idx)}
+                  className={`p-4 rounded-2xl text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer ${
+                    isActive
+                      ? 'bg-white border-2 border-slate-900 text-slate-950 shadow-md ring-2 ring-slate-900/5'
+                      : 'bg-[#FAF9F6] border-slate-200 text-slate-700 hover:bg-white hover:border-slate-300'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={`text-[11px] font-mono font-bold ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                      STAGE 0{idx + 1}
+                    </span>
+                    <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
+                      isActive ? 'bg-slate-900 text-white' : 'bg-slate-200/80 text-slate-700'
+                    }`}>
+                      {st.meshRange.split(' ')[1]}
+                    </span>
+                  </div>
+                  <div className={`text-xs leading-snug ${isActive ? 'font-bold text-slate-950' : 'font-semibold text-slate-700'}`}>
+                    {st.title.split(' ')[0]} {st.title.split(' ')[1]}
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
           {/* Active Stage Technical Details */}
@@ -194,7 +197,7 @@ export const GritParticleMatrix: React.FC = () => {
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-slate-500">MRR Rate:</span>
-                  <span className="font-bold text-cyan-800">{gritStages[selectedStage].materialRemovalRate}</span>
+                  <span className="font-bold text-cyan-900">{gritStages[selectedStage].materialRemovalRate}</span>
                 </div>
               </div>
             </div>
@@ -222,7 +225,7 @@ export const GritParticleMatrix: React.FC = () => {
                 </div>
                 <div className="py-1 border-b border-slate-100 flex justify-between">
                   <span className="text-slate-500">Thermal:</span>
-                  <span className="font-semibold text-cyan-800 text-right">{mat.thermalConductivity}</span>
+                  <span className="font-semibold text-cyan-900 text-right">{mat.thermalConductivity}</span>
                 </div>
               </div>
 
