@@ -326,46 +326,46 @@ export const InteractiveRFQ: React.FC = () => {
 
           </div>
 
-          {/* Live Summary Blueprint Ticket (4 Columns) */}
-          <div className="lg:col-span-4 bg-[#080D1A] text-slate-100 rounded-3xl p-6 sm:p-8 border border-cyan-950 shadow-2xl space-y-6">
-            <div className="flex items-center justify-between border-b border-cyan-950 pb-4">
-              <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-wider font-bold">
+          {/* Live Summary Ticket (4 Columns - Light Theme) */}
+          <div className="lg:col-span-4 bg-white text-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl space-y-6">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+              <span className="text-[11px] font-mono text-slate-900 uppercase tracking-wider font-bold">
                 Live Requisition Ticket
               </span>
-              <span className="text-[10px] font-mono text-slate-500">
+              <span className="text-[10px] font-mono text-slate-400">
                 Direct Dispatch
               </span>
             </div>
 
             <div className="space-y-3.5 text-xs font-mono">
-              <div className="space-y-1">
-                <span className="text-slate-500 uppercase text-[10px]">Workpiece Material:</span>
-                <div className="text-slate-100 font-semibold">{selectedMaterial}</div>
+              <div className="space-y-1 p-2.5 rounded-xl bg-[#FAF9F6] border border-slate-100">
+                <span className="text-slate-400 uppercase text-[10px] block">Workpiece Material:</span>
+                <div className="text-slate-900 font-semibold">{selectedMaterial}</div>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-slate-500 uppercase text-[10px]">Profile Geometry:</span>
-                <div className="text-cyan-300 font-semibold">{selectedProfile}</div>
+              <div className="space-y-1 p-2.5 rounded-xl bg-[#FAF9F6] border border-slate-100">
+                <span className="text-slate-400 uppercase text-[10px] block">Profile Geometry:</span>
+                <div className="text-cyan-900 font-semibold">{selectedProfile}</div>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-slate-500 uppercase text-[10px]">Machinery:</span>
-                <div className="text-slate-300">{machinery}</div>
+              <div className="space-y-1 p-2.5 rounded-xl bg-[#FAF9F6] border border-slate-100">
+                <span className="text-slate-400 uppercase text-[10px] block">Machinery:</span>
+                <div className="text-slate-700">{machinery}</div>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-slate-500 uppercase text-[10px]">Dimensions:</span>
-                <div className="text-slate-300">{dimensions}</div>
+              <div className="space-y-1 p-2.5 rounded-xl bg-[#FAF9F6] border border-slate-100">
+                <span className="text-slate-400 uppercase text-[10px] block">Dimensions:</span>
+                <div className="text-slate-700">{dimensions}</div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-cyan-950 space-y-2 text-[11px] text-slate-400 font-sans">
-              <div className="flex items-center gap-2 text-cyan-300">
-                <ShieldCheck className="w-4 h-4" />
+            <div className="pt-4 border-t border-slate-100 space-y-2 text-[11px] text-slate-600 font-sans">
+              <div className="flex items-center gap-2 text-slate-900">
+                <ShieldCheck className="w-4 h-4 text-cyan-700" />
                 <span className="font-semibold">ISO 9001:2000 Certified Plant</span>
               </div>
-              <p>
-                Registered Plant: Chennai, India. Direct factory support with custom bonding matrix engineering.
+              <p className="leading-relaxed text-slate-500">
+                Registered Plant: Chennai, India. Direct factory dispatch with custom bonding matrix engineering.
               </p>
             </div>
           </div>

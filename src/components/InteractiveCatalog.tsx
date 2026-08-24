@@ -39,7 +39,7 @@ export const InteractiveCatalog: React.FC = () => {
   return (
     <section id="catalog" className="py-24 bg-white border-b border-slate-200 relative overflow-hidden">
       
-      {/* Subtle blueprint grid overlay */}
+      {/* Subtle clean dot grid overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -56,7 +56,7 @@ export const InteractiveCatalog: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight font-brand">
               Interactive Product Catalogue
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-3.5 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 mt-3.5 leading-relaxed font-sans">
               Explore our precision diamond grinding wheels, core drills, router profile tools, and polishers manufactured under rigorous ISO standards for extreme durability.
             </p>
           </div>
@@ -89,7 +89,7 @@ export const InteractiveCatalog: React.FC = () => {
                     : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:text-slate-950'
                 }`}
               >
-                {cat.id === 'semiconductor' && <Sparkles className="w-3 h-3 text-amber-400 mr-1" />}
+                {cat.id === 'semiconductor' && <Sparkles className="w-3 h-3 text-amber-500 mr-1" />}
                 <span>{cat.name}</span>
               </LiquidButton>
             ))}
@@ -108,38 +108,35 @@ export const InteractiveCatalog: React.FC = () => {
           </div>
         </div>
 
-        {/* Bento Engineering Grid */}
+        {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-on-scroll">
           
-          {/* Flagship Hero Bento Tile */}
+          {/* Flagship Hero Bento Tile (Light Theme) */}
           {selectedCategory === 'all' && !searchQuery && (
-            <div className="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl relative overflow-hidden flex flex-col justify-between group">
-              {/* Ambient lighting glow */}
-              <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-
+            <div className="md:col-span-2 lg:col-span-2 bg-[#FAF9F6] text-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-300/80 shadow-md relative overflow-hidden flex flex-col justify-between group">
               <div className="relative z-10">
                 <div className="flex items-center justify-between gap-4 mb-4">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-950/80 border border-cyan-400/30 text-cyan-300 text-[11px] font-mono font-bold uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-50 border border-cyan-200 text-cyan-900 text-[11px] font-mono font-bold uppercase tracking-wider">
+                    <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
                     <span>Flagship Tooling &bull; Continuous Sintered</span>
                   </div>
-                  <span className="font-mono text-xs text-slate-400">
+                  <span className="font-mono text-xs text-slate-500">
                     {flagshipProduct.pageRef}
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center my-4">
                   <div className="sm:col-span-7 space-y-3">
-                    <h3 className="text-2xl sm:text-3xl font-bold font-brand tracking-wide text-white">
+                    <h3 className="text-2xl sm:text-3xl font-bold font-brand tracking-wide text-slate-950">
                       {flagshipProduct.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
                       {flagshipProduct.summary}
                     </p>
 
                     <div className="flex flex-wrap gap-2 pt-2">
                       {flagshipProduct.shapes?.map((shape, i) => (
-                        <span key={i} className="px-2.5 py-1 rounded-md bg-white/10 text-white text-[11px] font-mono border border-white/10">
+                        <span key={i} className="px-2.5 py-1 rounded-md bg-white text-slate-800 text-[11px] font-mono border border-slate-200 shadow-2xs">
                           {shape}
                         </span>
                       ))}
@@ -147,7 +144,7 @@ export const InteractiveCatalog: React.FC = () => {
                   </div>
 
                   <div className="sm:col-span-5 relative">
-                    <div className="w-full aspect-square rounded-2xl overflow-hidden bg-white/5 border border-white/10 p-3 flex items-center justify-center">
+                    <div className="w-full aspect-square rounded-2xl overflow-hidden bg-white border border-slate-200 p-3 flex items-center justify-center shadow-2xs">
                       <img
                         src={flagshipProduct.image}
                         alt={flagshipProduct.name}
@@ -158,8 +155,8 @@ export const InteractiveCatalog: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
-                <div className="text-xs text-slate-400 font-mono">
+              <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+                <div className="text-xs text-slate-500 font-mono">
                   Machine Compatibility: Bavelloni, Bottero, Intermac, Bovone
                 </div>
                 <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -167,7 +164,7 @@ export const InteractiveCatalog: React.FC = () => {
                     onClick={() => setActiveModalProduct(flagshipProduct)}
                     variant="outline"
                     size="sm"
-                    className="text-white border-white/20 hover:bg-white/10 cursor-pointer"
+                    className="text-slate-800 border-slate-300 hover:bg-white cursor-pointer"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>View Specifications</span>
@@ -175,7 +172,7 @@ export const InteractiveCatalog: React.FC = () => {
                   <LiquidButton
                     onClick={() => handleInquire(flagshipProduct)}
                     size="sm"
-                    className="bg-white/90 text-slate-950 font-bold hover:bg-white cursor-pointer"
+                    className="text-slate-950 font-bold cursor-pointer"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
                     <span>Inquire Tool</span>
