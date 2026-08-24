@@ -13,12 +13,12 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 }) => {
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      {/* Brand Icon Emblem */}
-      <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-200">
+      {/* Pure Diamond Icon Emblem (No Text) */}
+      <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-200 p-1.5">
         <img
-          src="/images/brand/kays-emblem-isolated.png"
+          src="/images/brand/kays-diamond-icon.png"
           alt="KAYS Diamond Tools"
-          className="w-8 h-8 object-contain"
+          className="w-full h-full object-contain"
         />
       </div>
 

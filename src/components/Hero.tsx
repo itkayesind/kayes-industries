@@ -29,19 +29,19 @@ export const Hero: React.FC = () => {
       {/* Middle Brand Entity - Pure Centered Brand Presentation */}
       <div className="my-auto text-center max-w-3xl px-4 py-6 flex flex-col items-center">
         
-        {/* Brand Emblem & Name with Long Staggered Entrance */}
+        {/* Pure Diamond Logo Emblem & Brand Title with Long Staggered Entrance */}
         <div className="animate-brand-reveal flex flex-col items-center">
-          {/* Circular Diamond Tool Luxury Emblem */}
-          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-white p-2.5 flex items-center justify-center mb-6 shadow-xl border border-slate-200/90 relative group">
-            <div className="w-full h-full rounded-2xl overflow-hidden bg-[#FAF9F6] flex items-center justify-center p-2 border border-slate-100">
+          {/* Pure Faceted Diamond Emblem (No Text) */}
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-white p-3 flex items-center justify-center mb-6 shadow-xl border border-slate-200/90 relative group">
+            <div className="w-full h-full rounded-2xl overflow-hidden bg-[#FAF9F6] flex items-center justify-center p-2.5 border border-slate-100/80">
               <img
-                src="/images/brand/kays-emblem-isolated.png"
-                alt="KAYS Diamond Tools Emblem"
+                src="/images/brand/kays-diamond-icon.png"
+                alt="KAYS Diamond Emblem"
                 className="w-full h-full object-contain"
               />
             </div>
-            {/* Subtle luxury glow ring */}
-            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-slate-200 via-amber-100 to-slate-200 opacity-40 blur-sm -z-10 group-hover:opacity-70 transition-opacity" />
+            {/* Subtle luxury ambient glow ring */}
+            <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-slate-200 via-amber-100/50 to-slate-200 opacity-40 blur-md -z-10 group-hover:opacity-75 transition-opacity" />
           </div>
 
           {/* Fancy Brand Name (Cinzel Roman Luxury Typography) */}
