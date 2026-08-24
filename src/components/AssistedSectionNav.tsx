@@ -10,6 +10,7 @@ export const AssistedSectionNav: React.FC = () => {
     { id: 'industries-overview', label: 'Industries' },
     { id: 'catalog', label: 'Catalog' },
     { id: 'wheel-types', label: 'Wheel Types' },
+    { id: 'grit-matrix', label: 'Grit Matrix' },
     { id: 'about', label: 'About' },
     { id: 'inquiry', label: 'RFQ' },
   ];

@@ -4,6 +4,7 @@ import { Hero } from '../components/Hero';
 import { IndustriesOverview } from '../components/IndustriesOverview';
 import { InteractiveCatalog } from '../components/InteractiveCatalog';
 import { WheelProfilesBlueprint } from '../components/WheelProfilesBlueprint';
+import { GritParticleMatrix } from '../components/GritParticleMatrix';
 import { CorporateProfile } from '../components/CorporateProfile';
 import { InteractiveRFQ } from '../components/InteractiveRFQ';
 import { Footer } from '../components/Footer';
@@ -19,19 +20,22 @@ import { AssistedSectionNav } from '../components/AssistedSectionNav';
     <!-- Brand Entrance Screen (Full Viewport Centered on Visit/Refresh) -->
     <Hero client:load />
 
-    <!-- Glass Sectors & Semiconductor/Ceramic R&D Overview -->
+    <!-- Glass Sectors & Semiconductor/Ceramic R&D Overview (Split Showcase) -->
     <IndustriesOverview client:visible />
 
-    <!-- Technical Product Catalog Grid -->
+    <!-- Technical Product Catalog Grid (Bento Grid) -->
     <InteractiveCatalog client:visible />
 
-    <!-- ISO Wheel Types Guide (Page 5) -->
+    <!-- ISO Wheel Types Guide (CAD Technical Blueprint Workbench) -->
     <WheelProfilesBlueprint client:visible />
 
-    <!-- Corporate Profile & Executive Heritage (Page 2) -->
+    <!-- Surface Metallurgy & Particle Progression Matrix -->
+    <GritParticleMatrix client:visible />
+
+    <!-- Corporate Profile & Executive Heritage (Editorial Layout) -->
     <CorporateProfile client:visible />
 
-    <!-- RFQ Requisition & Plant Contacts -->
+    <!-- RFQ Requisition Configurator & Plant Contacts -->
     <InteractiveRFQ client:visible />
   </main>
 

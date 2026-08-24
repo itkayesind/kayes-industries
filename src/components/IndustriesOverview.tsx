@@ -1,23 +1,26 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { COMPANY_INFO, type GlassSector } from '../data/company';
-import { Sparkles, MessageSquare, ArrowRight, Layers } from 'lucide-react';
+import { MessageSquare, ArrowRight, ShieldCheck, CheckCircle2, ChevronRight, Sparkles } from 'lucide-react';
 import { LiquidButton } from './ui/liquid-glass-button';
 
 export const IndustriesOverview: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const [selectedSectorId, setSelectedSectorId] = useState<string>(COMPANY_INFO.glassSectors[0].id);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const filterTabs = [
+  const categories = [
     { id: 'all', label: 'All Sectors' },
     { id: 'flat', label: 'Flat & Automotive' },
     { id: 'precision', label: 'Precision & Watch Glass' },
     { id: 'industrial', label: 'Solar & Containers' },
-    { id: 'advanced', label: 'Semiconductors & Ceramics (R&D)' }
+    { id: 'advanced', label: 'Semiconductor & Ceramics (R&D)' },
   ];
 
-  const filteredSectors = useMemo(() => {
-    if (selectedFilter === 'all') return COMPANY_INFO.glassSectors;
-    return COMPANY_INFO.glassSectors.filter(s => s.category === selectedFilter);
-  }, [selectedFilter]);
+  const filteredSectors = COMPANY_INFO.glassSectors.filter((s) => {
+    if (selectedCategory === 'all') return true;
+    return s.category === selectedCategory;
+  });
+
+  const activeSector = COMPANY_INFO.glassSectors.find((s) => s.id === selectedSectorId) || COMPANY_INFO.glassSectors[0];
 
   const handleInquireSector = (sector: GlassSector) => {
     const text = encodeURIComponent(
@@ -37,7 +40,7 @@ export const IndustriesOverview: React.FC = () => {
     <section id="industries-overview" className="py-24 bg-[#FAF9F6] border-b border-slate-200/80 relative overflow-hidden">
       
       {/* Ambient background soft glow */}
-      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
       <div className="absolute bottom-10 -left-20 w-80 h-80 bg-slate-200/50 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -55,125 +58,186 @@ export const IndustriesOverview: React.FC = () => {
               Industries We Serve
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-3.5 leading-relaxed">
-              Custom-calibrated diamond formulations and bond matrices engineered for high-volume automated lines and precision craft across every glass and advanced material sector.
+              Precision-calibrated diamond formulations and bond matrices engineered for high-volume automated processing lines and custom craft across all glass and technical material sectors.
             </p>
           </div>
 
           <div className="mt-4 md:mt-0 flex-shrink-0">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-[11px] font-mono text-slate-600 shadow-2xs">
-              <Layers className="w-3.5 h-3.5 text-slate-400" />
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-[11px] font-mono text-slate-700 shadow-2xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-700" />
               <span>ISO 9001:2000 Certified Quality</span>
             </span>
           </div>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-10 scrollbar-none reveal-on-scroll">
-          {filterTabs.map((tab) => (
+        {/* Filter Category Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-8 scrollbar-none reveal-on-scroll">
+          {categories.map((cat) => (
             <LiquidButton
-              key={tab.id}
-              onClick={() => setSelectedFilter(tab.id)}
+              key={cat.id}
+              onClick={() => {
+                setSelectedCategory(cat.id);
+                const firstMatch = COMPANY_INFO.glassSectors.find(
+                  (s) => cat.id === 'all' || s.category === cat.id
+                );
+                if (firstMatch) setSelectedSectorId(firstMatch.id);
+              }}
               size="sm"
               className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
-                selectedFilter === tab.id
+                selectedCategory === cat.id
                   ? 'bg-slate-950 text-white shadow-xs'
-                  : 'bg-white/80 text-slate-700 border border-slate-200/90 hover:border-slate-300 hover:text-slate-900'
+                  : 'bg-white/80 text-slate-700 border border-slate-200/90 hover:border-slate-300 hover:text-slate-950'
               }`}
             >
-              {tab.id === 'advanced' && <Sparkles className="w-3 h-3 text-amber-400 mr-1" />}
-              <span>{tab.label}</span>
+              {cat.id === 'advanced' && <Sparkles className="w-3 h-3 text-amber-400 mr-1" />}
+              <span>{cat.label}</span>
             </LiquidButton>
           ))}
         </div>
 
-        {/* Photographic Visual Sector Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredSectors.map((sector, idx) => {
-            const isAdvanced = sector.category === 'advanced';
-            return (
-              <div
-                key={sector.id}
-                className={`corporate-card rounded-2xl overflow-hidden flex flex-col justify-between bg-white shadow-2xs group reveal-on-scroll reveal-delay-${(idx % 4) + 1} ${
-                  isAdvanced ? 'border-amber-300/80 ring-1 ring-amber-200/60' : 'border-slate-200/90'
-                }`}
-              >
-                <div>
-                  {/* Photo Container */}
-                  <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden border-b border-slate-100">
-                    <img
-                      src={sector.image}
-                      alt={sector.name}
-                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        {/* Distinctive Split-Screen Interactive Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch reveal-on-scroll">
+          
+          {/* Main Visual Stage (Active Sector Preview) */}
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden flex flex-col justify-between group">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-slate-950 overflow-hidden">
+              <img
+                src={activeSector.image}
+                alt={activeSector.name}
+                key={activeSector.id}
+                className="w-full h-full object-cover transition-all duration-700 ease-out transform group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
 
-                    {/* Sector Tag Badge */}
-                    <span className={`absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-md shadow-xs ${
-                      isAdvanced 
-                        ? 'bg-amber-900/90 text-amber-100 border border-amber-500/40'
-                        : 'bg-slate-900/85 text-white border border-white/20'
-                    }`}>
-                      {isAdvanced && <Sparkles className="w-2.5 h-2.5 inline mr-1 text-amber-300" />}
-                      {sector.tag}
-                    </span>
-                  </div>
+              {/* Badges on Visual Stage */}
+              <div className="absolute top-4 left-4 flex items-center gap-2">
+                <span className={`px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-md ${
+                  activeSector.category === 'advanced'
+                    ? 'bg-amber-900/90 text-amber-200 border border-amber-500/40'
+                    : 'bg-slate-950/80 text-white border border-white/20'
+                }`}>
+                  {activeSector.category === 'advanced' && <Sparkles className="w-3 h-3 inline mr-1 text-amber-300" />}
+                  {activeSector.tag}
+                </span>
+              </div>
 
-                  {/* Content */}
-                  <div className="p-5">
-                    <h3 className="text-base font-bold text-slate-900 mb-1.5 font-brand tracking-wide group-hover:text-slate-800">
-                      {sector.name}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                      {sector.desc}
-                    </p>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <span className="text-[11px] font-mono text-cyan-300 uppercase tracking-widest block mb-1">
+                  Active Focus Sector
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold font-brand tracking-wide">
+                  {activeSector.name}
+                </h3>
+              </div>
+            </div>
 
-                    {/* Recommended Tooling Tag */}
-                    <div className="p-2.5 rounded-lg bg-[#FAF9F6] border border-slate-200/70 mb-2">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-brand">
-                        Recommended Tooling
-                      </span>
-                      <span className="text-[11px] font-mono font-semibold text-slate-800 block mt-0.5">
-                        {sector.tooling}
-                      </span>
-                    </div>
-                  </div>
+            {/* Active Sector Details & Specs Bar */}
+            <div className="p-6 sm:p-8 flex flex-col justify-between flex-grow space-y-6">
+              <p className="text-sm text-slate-700 leading-relaxed font-sans">
+                {activeSector.desc}
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-slate-200/80 space-y-1">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-brand block">
+                    Recommended Tooling
+                  </span>
+                  <span className="text-xs font-mono font-bold text-slate-900 block">
+                    {activeSector.tooling}
+                  </span>
                 </div>
 
-                {/* Card Action */}
-                <div className="p-5 pt-0">
-                  <LiquidButton
-                    onClick={() => handleInquireSector(sector)}
-                    size="sm"
-                    className="w-full py-2.5 px-3 rounded-xl text-xs font-semibold bg-white/80 hover:bg-slate-950 hover:text-white text-slate-800 border border-slate-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                  >
-                    <MessageSquare className="w-3 h-3" />
-                    <span>Inquire for {sector.name.split(' ')[0]}</span>
-                    <ArrowRight className="w-3 h-3 ml-0.5 opacity-60" />
-                  </LiquidButton>
+                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-slate-200/80 space-y-1">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-brand block">
+                    Manufacturing Quality
+                  </span>
+                  <span className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                    High-Feed Diamond Matrix
+                  </span>
                 </div>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Custom Application Concierge Banner */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-6 reveal-on-scroll">
-          <div className="space-y-1">
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-brand">
-              Require Custom Diamond Formulations for Special Materials?
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Our engineering team formulates bespoke metal, resin, and electroplated bonds to match your machinery RPMs, feed rates, and tolerance requirements.
-            </p>
+              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                <LiquidButton
+                  onClick={() => handleInquireSector(activeSector)}
+                  size="lg"
+                  className="w-full sm:flex-1 text-slate-950 font-semibold cursor-pointer"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Inquire for {activeSector.name.split(' ')[0]}</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </LiquidButton>
+
+                <LiquidButton
+                  onClick={handleScrollToInquiry}
+                  size="lg"
+                  className="w-full sm:w-auto text-slate-700 hover:text-slate-950 border border-slate-200 cursor-pointer"
+                >
+                  <span>Custom Requisition</span>
+                </LiquidButton>
+              </div>
+            </div>
           </div>
-          <LiquidButton
-            onClick={handleScrollToInquiry}
-            size="lg"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold bg-slate-950 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wide whitespace-nowrap cursor-pointer"
-          >
-            <span>Request Custom Requisition</span>
-            <ArrowRight className="w-3.5 h-3.5 text-slate-300" />
-          </LiquidButton>
+
+          {/* Interactive Sector Selector List */}
+          <div className="lg:col-span-5 flex flex-col gap-3">
+            <div className="px-2 pb-1 flex items-center justify-between text-xs text-slate-500 font-brand uppercase tracking-wider">
+              <span>Select Application Sector</span>
+              <span>{filteredSectors.length} Sectors</span>
+            </div>
+
+            <div className="space-y-2.5 flex-grow overflow-y-auto max-h-[680px] pr-1">
+              {filteredSectors.map((sector) => {
+                const isActive = sector.id === activeSector.id;
+                const isAdvanced = sector.category === 'advanced';
+
+                return (
+                  <button
+                    key={sector.id}
+                    onClick={() => setSelectedSectorId(sector.id)}
+                    className={`w-full p-4 rounded-2xl text-left transition-all duration-300 border flex items-center justify-between group cursor-pointer ${
+                      isActive
+                        ? 'bg-white border-slate-900 shadow-md ring-1 ring-slate-900/10'
+                        : 'bg-white/60 hover:bg-white border-slate-200/80 hover:border-slate-300 shadow-2xs'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 border border-slate-200">
+                        <img
+                          src={sector.image}
+                          alt={sector.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                            isAdvanced ? 'bg-amber-100 text-amber-900' : 'bg-slate-100 text-slate-600'
+                          }`}>
+                            {sector.tag}
+                          </span>
+                        </div>
+                        <h4 className="text-sm font-bold text-slate-900 font-brand group-hover:text-slate-950">
+                          {sector.name}
+                        </h4>
+                        <span className="text-[11px] font-mono text-slate-500 line-clamp-1">
+                          {sector.tooling}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className={`p-1.5 rounded-lg transition-transform ${
+                      isActive ? 'bg-slate-900 text-white translate-x-1' : 'text-slate-400 group-hover:text-slate-700'
+                    }`}>
+                      <ChevronRight className="w-4 h-4" />
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
 
       </div>
