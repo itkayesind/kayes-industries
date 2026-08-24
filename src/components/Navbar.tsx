@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrandLogo } from './BrandLogo';
 import { COMPANY_INFO } from '../data/company';
 import { Phone, Mail, Download, Menu, X, ArrowUpRight } from 'lucide-react';
+import { LiquidButton } from './ui/liquid-glass-button';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,6 +14,20 @@ export const Navbar: React.FC = () => {
     { label: 'Heritage', href: '#about' },
     { label: 'Inquiry & RFQ', href: '#inquiry' },
   ];
+
+  const handleScrollToInquiry = () => {
+    const rfq = document.getElementById('inquiry');
+    if (rfq) {
+      rfq.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleDownloadPdf = () => {
+    const link = document.createElement('a');
+    link.href = COMPANY_INFO.contacts.catalogPdf;
+    link.download = 'Kayes-Diamond-Tools-Catalogue.pdf';
+    link.click();
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all">
@@ -70,33 +85,35 @@ export const Navbar: React.FC = () => {
 
         {/* CTA Actions */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href={COMPANY_INFO.contacts.catalogPdf}
-            download="Kayes-Diamond-Tools-Catalogue.pdf"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg text-slate-700 bg-slate-100 hover:bg-slate-200/80 border border-slate-200 transition-colors"
+          <LiquidButton
+            onClick={handleDownloadPdf}
+            size="sm"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-slate-500" />
             <span>PDF (4.2 MB)</span>
-          </a>
+          </LiquidButton>
 
-          <a
-            href="#inquiry"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wider uppercase"
+          <LiquidButton
+            onClick={handleScrollToInquiry}
+            size="sm"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-slate-950 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wider uppercase cursor-pointer"
           >
             <span>Request Quote</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-slate-300" />
-          </a>
+          </LiquidButton>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-2">
-          <button
+          <LiquidButton
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 border border-slate-200"
+            size="icon"
+            className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 border border-slate-200 cursor-pointer"
             aria-label="Toggle navigation"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          </LiquidButton>
         </div>
       </nav>
 
@@ -114,21 +131,27 @@ export const Navbar: React.FC = () => {
             </a>
           ))}
           <div className="pt-2 flex flex-col gap-2.5">
-            <a
-              href={COMPANY_INFO.contacts.catalogPdf}
-              download="Kayes-Diamond-Tools-Catalogue.pdf"
-              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-100 text-xs font-medium text-slate-800 border border-slate-200"
+            <LiquidButton
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleDownloadPdf();
+              }}
+              size="sm"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-100 text-xs font-medium text-slate-800 border border-slate-200 cursor-pointer w-full"
             >
               <Download className="w-4 h-4" />
               <span>Download PDF Catalogue</span>
-            </a>
-            <a
-              href="#inquiry"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-900 text-xs font-semibold text-white uppercase tracking-wider"
+            </LiquidButton>
+            <LiquidButton
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleScrollToInquiry();
+              }}
+              size="sm"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-950 text-xs font-semibold text-white uppercase tracking-wider cursor-pointer w-full"
             >
               <span>Request Quote</span>
-            </a>
+            </LiquidButton>
           </div>
         </div>
       )}

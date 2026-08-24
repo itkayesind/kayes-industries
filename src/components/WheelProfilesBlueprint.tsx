@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { WHEEL_PROFILES } from '../data/wheelProfiles';
-import { Search, BookOpen } from 'lucide-react';
+import { Search, BookOpen, MessageSquare } from 'lucide-react';
+import { LiquidButton } from './ui/liquid-glass-button';
 
 export const WheelProfilesBlueprint: React.FC = () => {
   const [search, setSearch] = useState('');
@@ -11,6 +12,17 @@ export const WheelProfilesBlueprint: React.FC = () => {
       p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.description.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleOpenPage5 = () => {
+    window.open('/images/catalog/page_5.jpg', '_blank');
+  };
+
+  const handleScrollToInquiry = () => {
+    const rfqSection = document.getElementById('inquiry');
+    if (rfqSection) {
+      rfqSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="wheel-types" className="py-24 bg-[#FAF9F6] border-b border-slate-200/80 relative overflow-hidden">
@@ -33,15 +45,14 @@ export const WheelProfilesBlueprint: React.FC = () => {
             </p>
           </div>
 
-          <a
-            href="/images/catalog/page_5.jpg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold rounded-xl bg-white text-slate-800 hover:bg-slate-50 border border-slate-200 shadow-2xs mt-4 md:mt-0 transition-all btn-luxury"
+          <LiquidButton
+            onClick={handleOpenPage5}
+            size="sm"
+            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold rounded-xl bg-white/80 text-slate-800 hover:bg-slate-100 border border-slate-200 shadow-2xs mt-4 md:mt-0 transition-all cursor-pointer"
           >
             <BookOpen className="w-4 h-4 text-slate-500" />
             <span>Original Catalogue Page 5 Scan</span>
-          </a>
+          </LiquidButton>
         </div>
 
         {/* Search with Scroll Reveal */}
@@ -108,10 +119,14 @@ export const WheelProfilesBlueprint: React.FC = () => {
           <span>
             <strong className="text-slate-900 font-semibold font-brand uppercase tracking-wider">Custom Engineering:</strong> We engineer bespoke toolings matched precisely to your spindle speeds and workpiece drawings.
           </span>
-          <a href="#inquiry" className="text-slate-900 font-semibold hover:underline inline-flex items-center gap-1 flex-shrink-0 btn-luxury">
+          <LiquidButton
+            onClick={handleScrollToInquiry}
+            size="sm"
+            className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-950 text-white hover:bg-slate-800 transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer"
+          >
             <span>Submit Custom Requisition</span>
             <span>&rarr;</span>
-          </a>
+          </LiquidButton>
         </div>
 
       </div>

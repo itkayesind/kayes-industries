@@ -29,25 +29,25 @@ export function ElegantPatternBg({
           style={{
             background: isDark
               ? "radial-gradient(100% 100% at 0% 0%, rgb(46, 46, 46) 0%, rgb(0, 0, 0) 100%)"
-              : "radial-gradient(100% 100% at 0% 0%, rgba(248, 250, 252, 0.9) 0%, rgba(255, 255, 255, 1) 100%)",
+              : "radial-gradient(100% 100% at 0% 0%, rgb(255, 255, 255) 0%, rgb(250, 250, 252) 100%)",
             mask: isDark
               ? "radial-gradient(125% 100% at 0% 0%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.224) 88.2883%, rgba(0, 0, 0, 0) 100%)"
-              : "radial-gradient(125% 100% at 0% 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 85%, rgba(0, 0, 0, 0.4) 100%)",
+              : "radial-gradient(125% 100% at 0% 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 85%, rgba(0, 0, 0, 0.5) 100%)",
             WebkitMask: isDark
               ? "radial-gradient(125% 100% at 0% 0%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.224) 88.2883%, rgba(0, 0, 0, 0) 100%)"
-              : "radial-gradient(125% 100% at 0% 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 85%, rgba(0, 0, 0, 0.4) 100%)",
+              : "radial-gradient(125% 100% at 0% 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 85%, rgba(0, 0, 0, 0.5) 100%)",
           }}
         >
-          {/* Skewed fading subtle streaks */}
+          {/* Skewed fading subtle streaks / rays */}
           <div
             className={cn(
               "absolute inset-0",
-              isDark ? "opacity-20" : "opacity-[0.06]"
+              isDark ? "opacity-20" : "opacity-[0.18]"
             )}
             style={{
               background: isDark
                 ? "linear-gradient(rgb(0, 207, 255) 0%, rgba(0, 207, 255, 0) 100%)"
-                : "linear-gradient(rgb(148, 163, 184) 0%, rgba(203, 213, 225, 0) 100%)",
+                : "linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)",
               mask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0) 36%, rgb(0, 0, 0) 55%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%)",
               WebkitMask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0) 36%, rgb(0, 0, 0) 55%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%)",
               transform: "skewX(45deg)",
@@ -56,12 +56,12 @@ export function ElegantPatternBg({
           <div
             className={cn(
               "absolute inset-0",
-              isDark ? "opacity-20" : "opacity-[0.05]"
+              isDark ? "opacity-20" : "opacity-[0.15]"
             )}
             style={{
               background: isDark
                 ? "linear-gradient(rgb(0, 207, 255) 0%, rgba(0, 207, 255, 0) 100%)"
-                : "linear-gradient(rgb(100, 116, 139) 0%, rgba(203, 213, 225, 0) 100%)",
+                : "linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)",
               mask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 11%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.55) 41%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%)",
               WebkitMask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 11%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.55) 41%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 78%, rgba(0, 0, 0, 0) 97%)",
               transform: "skewX(45deg)",
@@ -70,12 +70,12 @@ export function ElegantPatternBg({
           <div
             className={cn(
               "absolute inset-0",
-              isDark ? "opacity-20" : "opacity-[0.06]"
+              isDark ? "opacity-20" : "opacity-[0.18]"
             )}
             style={{
               background: isDark
                 ? "linear-gradient(rgb(0, 207, 255) 0%, rgba(0, 207, 255, 0) 100%)"
-                : "linear-gradient(rgb(148, 163, 184) 0%, rgba(203, 213, 225, 0) 100%)",
+                : "linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)",
               mask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 9%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 28%, rgba(0, 0, 0, 0.424) 40%, rgb(0, 0, 0) 48%, rgba(0, 0, 0, 0.267) 54%, rgba(0, 0, 0, 0.13) 78%, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0) 97%)",
               WebkitMask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 9%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 28%, rgba(0, 0, 0, 0.424) 40%, rgb(0, 0, 0) 48%, rgba(0, 0, 0, 0.267) 54%, rgba(0, 0, 0, 0.13) 78%, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0) 97%)",
               transform: "skewX(45deg)",
@@ -84,12 +84,12 @@ export function ElegantPatternBg({
           <div
             className={cn(
               "absolute inset-0",
-              isDark ? "opacity-20" : "opacity-[0.05]"
+              isDark ? "opacity-20" : "opacity-[0.15]"
             )}
             style={{
               background: isDark
                 ? "linear-gradient(rgb(0, 207, 255) 0%, rgba(0, 207, 255, 0) 100%)"
-                : "linear-gradient(rgb(100, 116, 139) 0%, rgba(203, 213, 225, 0) 100%)",
+                : "linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)",
               mask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 17%, rgba(0, 0, 0, 0.55) 26%, rgb(0, 0, 0) 35%, rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.13) 69%, rgb(0, 0, 0) 79%, rgba(0, 0, 0, 0) 97%)",
               WebkitMask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 17%, rgba(0, 0, 0, 0.55) 26%, rgb(0, 0, 0) 35%, rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.13) 69%, rgb(0, 0, 0) 79%, rgba(0, 0, 0, 0) 97%)",
               transform: "skewX(45deg)",
@@ -98,12 +98,12 @@ export function ElegantPatternBg({
           <div
             className={cn(
               "absolute inset-0",
-              isDark ? "opacity-20" : "opacity-[0.06]"
+              isDark ? "opacity-20" : "opacity-[0.18]"
             )}
             style={{
               background: isDark
                 ? "linear-gradient(rgb(0, 207, 255) 0%, rgba(0, 207, 255, 0) 100%)"
-                : "linear-gradient(rgb(148, 163, 184) 0%, rgba(203, 213, 225, 0) 100%)",
+                : "linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)",
               mask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 27%, rgb(0, 0, 0) 42%, rgba(0, 0, 0, 0.48) 48%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 74%, rgb(0, 0, 0) 82%, rgba(0, 0, 0, 0.47) 88%, rgba(0, 0, 0, 0) 97%)",
               WebkitMask: "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 27%, rgb(0, 0, 0) 42%, rgba(0, 0, 0, 0.48) 48%, rgba(0, 0, 0, 0.13) 67%, rgb(0, 0, 0) 74%, rgb(0, 0, 0) 82%, rgba(0, 0, 0, 0.47) 88%, rgba(0, 0, 0, 0) 97%)",
               transform: "skewX(45deg)",
@@ -116,12 +116,12 @@ export function ElegantPatternBg({
       <div
         className={cn(
           "absolute inset-0 pointer-events-none",
-          isDark ? "opacity-20" : "opacity-[0.18]"
+          isDark ? "opacity-20" : "opacity-[0.28]"
         )}
         style={{
           backgroundImage: isDark
             ? "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)"
-            : "radial-gradient(circle at 1px 1px, rgba(100,116,139,0.35) 1px, transparent 0)",
+            : "radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.22) 1px, transparent 0)",
           backgroundSize: "24px 24px",
         }}
       />
@@ -132,7 +132,7 @@ export function ElegantPatternBg({
           "absolute inset-0 pointer-events-none",
           isDark 
             ? "bg-gradient-radial from-slate-800/20 via-transparent to-transparent" 
-            : "bg-gradient-to-b from-slate-100/50 via-transparent to-slate-50/30"
+            : "bg-radial-[ellipse_80%_80%_at_50%_-20%] from-slate-200/30 via-transparent to-transparent"
         )} 
       />
 

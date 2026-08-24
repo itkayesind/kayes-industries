@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO } from '../data/company';
 import { MessageSquare, Mail, MapPin } from 'lucide-react';
+import { LiquidButton } from './ui/liquid-glass-button';
 
 export const InteractiveRFQ: React.FC = () => {
   const [productType, setProductType] = useState('Pencil Edging Wheels (Glass)');
@@ -217,22 +218,24 @@ export const InteractiveRFQ: React.FC = () => {
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                <button
+                <LiquidButton
                   type="submit"
-                  className="flex-1 py-3.5 px-4 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-all flex items-center justify-center gap-2 tracking-wide shadow-xs btn-luxury"
+                  size="lg"
+                  className="flex-1 py-3.5 px-4 rounded-xl text-xs font-semibold bg-slate-950 hover:bg-slate-800 text-white transition-all flex items-center justify-center gap-2 tracking-wide shadow-xs cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Send via WhatsApp (+91 9841279658)</span>
-                </button>
+                </LiquidButton>
 
-                <button
+                <LiquidButton
                   type="button"
                   onClick={handleEmail}
-                  className="flex-1 py-3.5 px-4 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors flex items-center justify-center gap-2"
+                  size="lg"
+                  className="flex-1 py-3.5 px-4 rounded-xl text-xs font-semibold bg-white/80 hover:bg-slate-100 text-slate-800 border border-slate-200 transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Mail className="w-4 h-4 text-slate-600" />
                   <span>Send via Email</span>
-                </button>
+                </LiquidButton>
               </div>
 
             </form>

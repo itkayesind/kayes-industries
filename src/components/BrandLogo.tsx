@@ -14,9 +14,9 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
       {/* Pure Diamond Icon Emblem (No Text) */}
-      <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-200 p-1.5">
+      <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-200 p-1">
         <img
-          src="/images/brand/kays-diamond-icon.png"
+          src="/images/brand/kays-logo-1x1.svg"
           alt="KAYS Diamond Tools"
           className="w-full h-full object-contain"
         />

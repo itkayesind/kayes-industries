@@ -1,8 +1,13 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/company';
 import { MapPin, Phone, Mail, MessageSquare, Sparkles } from 'lucide-react';
+import { LiquidButton } from './ui/liquid-glass-button';
 
 export const CorporateProfile: React.FC = () => {
+  const handleContactExecutive = () => {
+    window.open(COMPANY_INFO.contacts.whatsappLink, '_blank');
+  };
+
   return (
     <section id="about" className="py-24 bg-white border-b border-slate-200/80 relative overflow-hidden">
       
@@ -88,15 +93,14 @@ export const CorporateProfile: React.FC = () => {
                 <span className="text-xs text-slate-500 font-brand">Chief Executive &bull; KAYES INDUSTRIES PVT LTD</span>
               </div>
 
-              <a
-                href={COMPANY_INFO.contacts.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wide btn-luxury"
+              <LiquidButton
+                onClick={handleContactExecutive}
+                size="sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-slate-950 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wide cursor-pointer"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>Contact Executive Desk</span>
-              </a>
+              </LiquidButton>
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { COMPANY_INFO, type GlassSector } from '../data/company';
 import { Sparkles, MessageSquare, ArrowRight, Layers } from 'lucide-react';
+import { LiquidButton } from './ui/liquid-glass-button';
 
 export const IndustriesOverview: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
@@ -23,6 +24,13 @@ export const IndustriesOverview: React.FC = () => {
       `Hello KAYES INDUSTRIES PVT LTD, I would like to inquire about tooling specifications and supply for: ${sector.name} (${sector.tooling}).`
     );
     window.open(`https://wa.me/919841279658?text=${text}`, '_blank');
+  };
+
+  const handleScrollToInquiry = () => {
+    const rfqSection = document.getElementById('inquiry');
+    if (rfqSection) {
+      rfqSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -62,18 +70,19 @@ export const IndustriesOverview: React.FC = () => {
         {/* Category Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-10 scrollbar-none reveal-on-scroll">
           {filterTabs.map((tab) => (
-            <button
+            <LiquidButton
               key={tab.id}
               onClick={() => setSelectedFilter(tab.id)}
+              size="sm"
               className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
                 selectedFilter === tab.id
-                  ? 'bg-slate-900 text-white shadow-xs scale-102'
-                  : 'bg-white text-slate-600 border border-slate-200/90 hover:border-slate-300 hover:text-slate-900'
+                  ? 'bg-slate-950 text-white shadow-xs'
+                  : 'bg-white/80 text-slate-700 border border-slate-200/90 hover:border-slate-300 hover:text-slate-900'
               }`}
             >
-              {tab.id === 'advanced' && <Sparkles className="w-3 h-3 text-amber-400" />}
+              {tab.id === 'advanced' && <Sparkles className="w-3 h-3 text-amber-400 mr-1" />}
               <span>{tab.label}</span>
-            </button>
+            </LiquidButton>
           ))}
         </div>
 
@@ -132,14 +141,15 @@ export const IndustriesOverview: React.FC = () => {
 
                 {/* Card Action */}
                 <div className="p-5 pt-0">
-                  <button
+                  <LiquidButton
                     onClick={() => handleInquireSector(sector)}
-                    className="w-full py-2.5 px-3 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 transition-all flex items-center justify-center gap-1.5 btn-luxury cursor-pointer"
+                    size="sm"
+                    className="w-full py-2.5 px-3 rounded-xl text-xs font-semibold bg-white/80 hover:bg-slate-950 hover:text-white text-slate-800 border border-slate-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <MessageSquare className="w-3 h-3" />
                     <span>Inquire for {sector.name.split(' ')[0]}</span>
                     <ArrowRight className="w-3 h-3 ml-0.5 opacity-60" />
-                  </button>
+                  </LiquidButton>
                 </div>
               </div>
             );
@@ -156,13 +166,14 @@ export const IndustriesOverview: React.FC = () => {
               Our engineering team formulates bespoke metal, resin, and electroplated bonds to match your machinery RPMs, feed rates, and tolerance requirements.
             </p>
           </div>
-          <a
-            href="#inquiry"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wide btn-luxury whitespace-nowrap"
+          <LiquidButton
+            onClick={handleScrollToInquiry}
+            size="lg"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold bg-slate-950 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wide whitespace-nowrap cursor-pointer"
           >
             <span>Request Custom Requisition</span>
             <ArrowRight className="w-3.5 h-3.5 text-slate-300" />
-          </a>
+          </LiquidButton>
         </div>
 
       </div>
