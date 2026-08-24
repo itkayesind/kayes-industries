@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Hero } from '../components/Hero';
+import { IndustriesOverview } from '../components/IndustriesOverview';
+import { InteractiveCatalog } from '../components/InteractiveCatalog';
+import { WheelProfilesBlueprint } from '../components/WheelProfilesBlueprint';
+import { CorporateProfile } from '../components/CorporateProfile';
+import { InteractiveRFQ } from '../components/InteractiveRFQ';
+import { Footer } from '../components/Footer';
+import { AssistedSectionNav } from '../components/AssistedSectionNav';
+---
+
+<Layout>
+  <!-- Floating Assisted Section Navigator -->
+  <AssistedSectionNav client:load />
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    <!-- Brand Entrance Screen (Full Viewport Centered on Visit/Refresh) -->
+    <Hero client:load />
+
+    <!-- Glass Sectors & Semiconductor/Ceramic R&D Overview -->
+    <IndustriesOverview client:visible />
+
+    <!-- Technical Product Catalog Grid -->
+    <InteractiveCatalog client:visible />
+
+    <!-- ISO Wheel Types Guide (Page 5) -->
+    <WheelProfilesBlueprint client:visible />
+
+    <!-- Corporate Profile & Executive Heritage (Page 2) -->
+    <CorporateProfile client:visible />
+
+    <!-- RFQ Requisition & Plant Contacts -->
+    <InteractiveRFQ client:visible />
+  </main>
+
+  <!-- Corporate Footer -->
+  <Footer client:visible />
+</Layout>

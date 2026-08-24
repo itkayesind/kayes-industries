@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "KAYES INDUSTRIES PVT LTD | Precision Diamond Tools & Superabrasives | ISO 9001:2000",
+  description = "Official Website & Catalogue for KAYES INDUSTRIES PVT LTD (KAYS), Chennai, India. Manufacturers of precision diamond cutting and grinding tools for the glass industry, technical ceramics, and semiconductor processing."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='10,6 22,6 28,14 4,14' fill='%231e293b'/><polygon points='4,14 16,28 28,14' fill='%23475569'/></svg>" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="KAYES Industries Pvt Ltd, KAYS, Diamond Tools, Superabrasives, Glass Pre-Processing, 1FF6Y, 11V9, Core Drills, Semiconductor Dicing, Chennai Diamond Tools, ISO 9001:2000" />
+    <meta name="author" content="KAYES INDUSTRIES PVT LTD" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-white text-slate-900 min-h-screen flex flex-col font-sans antialiased">
+    <slot />
+
+    {/* Performant Intersection Observer for Luxury Scroll Reveals */}
+    <script is:inline>
+      const initScrollObserver = () => {
+        const elements = document.querySelectorAll('.reveal-on-scroll');
+        if (!('IntersectionObserver' in window)) {
+          elements.forEach(el => el.classList.add('revealed'));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        elements.forEach(el => observer.observe(el));
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollObserver);
+      } else {
+        initScrollObserver();
+      }
+    </script>
+  </body>
+</html>
