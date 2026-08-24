@@ -53,12 +53,9 @@ export const CorporateProfile: React.FC = () => {
               <div className="flex items-center gap-5">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-slate-200 border-2 border-white shadow-md flex-shrink-0">
                   <img
-                    src="/images/brand/executive-portrait.jpg"
+                    src={COMPANY_INFO.executive.image}
                     alt={COMPANY_INFO.executive.name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
-                    }}
                   />
                 </div>
                 
