@@ -50,24 +50,22 @@ export const CorporateProfile: React.FC = () => {
             {/* Executive Portrait Card */}
             <div className="bg-[#FAF9F6] rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl space-y-6 relative overflow-hidden group">
               
-              <div className="flex items-center gap-5">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-slate-200 border-2 border-white shadow-md flex-shrink-0">
+              {/* Full Executive Portrait Card */}
+              <div className="space-y-4">
+                <div className="w-full aspect-[3/4] sm:aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 shadow-md relative group">
                   <img
                     src={COMPANY_INFO.executive.image}
                     alt={COMPANY_INFO.executive.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
-                
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 font-brand">
-                    {COMPANY_INFO.executive.name}
-                  </h3>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-600 font-brand">
-                    {COMPANY_INFO.executive.title}
-                  </div>
-                  <div className="text-[11px] font-mono text-cyan-800 mt-1">
-                    Direct Procurement Authority
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold font-brand">
+                      {COMPANY_INFO.executive.name}
+                    </h3>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-slate-300 font-brand mt-0.5">
+                      {COMPANY_INFO.executive.title} &bull; Direct Procurement Desk
+                    </div>
                   </div>
                 </div>
               </div>
