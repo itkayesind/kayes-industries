@@ -1,0 +1,290 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "KAYS Industries" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]:
+          - generic [ref=e10]: KAYS
+          - generic [ref=e11]: Industries
+      - button "Open menu" [ref=e12] [cursor=pointer]
+  - generic:
+    - link "Products":
+      - /url: "#products"
+    - link "About":
+      - /url: "#about"
+    - link "Why KAYS":
+      - /url: "#why-kays"
+    - link "Contact":
+      - /url: "#contact"
+    - link "Get a Quote":
+      - /url: "#contact"
+  - generic [ref=e16]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: ISO 9001 Certified · Chennai, India
+        - heading [level=1] [ref=e23]:
+          - text: Precision Tools for
+          - emphasis [ref=e24]: Diamond
+          - text: "&Glass Cutting"
+        - paragraph [ref=e25]: India's only fully automated manufacturer of diamond wheels, glass grinding tools, and precision abrasives.
+        - generic [ref=e26]:
+          - link "Browse Catalogue" [ref=e27] [cursor=pointer]:
+            - /url: "#products"
+          - link "Contact Us" [ref=e30] [cursor=pointer]:
+            - /url: "#contact"
+      - generic [ref=e31]:
+        - img "KAYES Industries product range" [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: Est.
+          - generic [ref=e37]: 35+
+          - generic [ref=e38]: Years of precision
+        - generic [ref=e39]:
+          - generic [ref=e40]: Products
+          - generic [ref=e41]: 200+
+          - generic [ref=e42]: Tool variants
+    - generic [ref=e44]: Scroll
+  - generic [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]: Est. 1990
+      - generic [ref=e52]: 35+
+      - generic [ref=e53]: Years in Business
+    - generic [ref=e54]:
+      - generic [ref=e55]: Tools
+      - generic [ref=e56]: 200+
+      - generic [ref=e57]: Product Variants
+    - generic [ref=e58]:
+      - generic [ref=e59]: Manufacturing
+      - generic [ref=e60]: Only
+      - generic [ref=e61]: Fully Auto Facility in India
+    - generic [ref=e62]:
+      - generic [ref=e63]: Quality
+      - generic [ref=e64]: ISO
+      - generic [ref=e65]: 9001:2000 Certified
+  - generic [ref=e67]:
+    - generic [ref=e68]: Diamond Grinding Wheels
+    - generic [ref=e70]: Glass Edge Polishing Wheels
+    - generic [ref=e72]: Drill Bits
+    - generic [ref=e74]: CNC Edge Profiling
+    - generic [ref=e76]: Straight Line Edger Wheels
+    - generic [ref=e78]: Beveling Wheels
+    - generic [ref=e80]: Core Drill Bits
+    - generic [ref=e82]: Sintered Diamond Tools
+    - generic [ref=e84]: Resin Bond Wheels
+    - generic [ref=e86]: Metal Bond Abrasives
+    - generic [ref=e88]: Diamond Grinding Wheels
+    - generic [ref=e90]: Glass Edge Polishing Wheels
+    - generic [ref=e92]: Drill Bits
+    - generic [ref=e94]: CNC Edge Profiling
+    - generic [ref=e96]: Straight Line Edger Wheels
+    - generic [ref=e98]: Beveling Wheels
+    - generic [ref=e100]: Core Drill Bits
+    - generic [ref=e102]: Sintered Diamond Tools
+    - generic [ref=e104]: Resin Bond Wheels
+    - generic [ref=e106]: Metal Bond Abrasives
+  - generic [ref=e109]:
+    - generic [ref=e110]:
+      - generic [ref=e111]:
+        - generic [ref=e112]: Product Range
+        - heading "Tools Built for Glass & Stone Perfection" [level=2] [ref=e115]: Tools Built forGlass & Stone Perfection
+      - paragraph [ref=e116]: Every tool is engineered to exact tolerances — built for the glass fabrication and stone cutting industries.
+    - generic [ref=e117]:
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120]: GW
+          - generic [ref=e121]: Glass Processing
+        - heading "Grinding Wheels" [level=3] [ref=e122]
+        - paragraph [ref=e123]: Diamond and resin bond grinding wheels for flat, pencil edge, and OG profiles. Suitable for straight-line edgers.
+        - list [ref=e124]:
+          - listitem [ref=e125]: "Diameter: 100–250mm"
+          - listitem [ref=e127]: "Grit: 46–3000"
+          - listitem [ref=e129]: "Bond: Metal / Resin"
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - generic [ref=e133]: PW
+          - generic [ref=e134]: Surface Finish
+        - heading "Polishing Wheels" [level=3] [ref=e135]
+        - paragraph [ref=e136]: Felt and cerium oxide polishing wheels delivering a mirror finish on glass edges and surfaces.
+        - list [ref=e137]:
+          - listitem [ref=e138]: "Profile: Flat / OG / Pencil"
+          - listitem [ref=e140]: "Speed: 3000–6000 RPM"
+          - listitem [ref=e142]: "Use: Wet polishing"
+      - generic [ref=e144]:
+        - generic [ref=e145]:
+          - generic [ref=e146]: DB
+          - generic [ref=e147]: Drilling
+        - heading "Diamond Drill Bits" [level=3] [ref=e148]
+        - paragraph [ref=e149]: Core drill bits and hole saws for drilling precise holes in glass, ceramic tiles, and stone.
+        - list [ref=e150]:
+          - listitem [ref=e151]: "Dia: 4mm–150mm"
+          - listitem [ref=e153]: "Type: Electroplated / Sintered"
+          - listitem [ref=e155]: "Shank: SDS / Standard"
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - generic [ref=e159]: EP
+          - generic [ref=e160]: CNC / Profiling
+        - heading "Edge Profiling Tools" [level=3] [ref=e161]
+        - paragraph [ref=e162]: CNC router bits and profile wheels for bull-nose, ogee, waterfall, and custom edge profiles.
+        - list [ref=e163]:
+          - listitem [ref=e164]: "Material: PCD / Diamond"
+          - listitem [ref=e166]: CNC compatible
+          - listitem [ref=e168]: Custom profiles available
+      - generic [ref=e170]:
+        - generic [ref=e171]:
+          - generic [ref=e172]: BW
+          - generic [ref=e173]: Beveling
+        - heading "Beveling Wheels" [level=3] [ref=e174]
+        - paragraph [ref=e175]: Cup wheels and beveling discs for precise angled cutting on flat glass and mirrors.
+        - list [ref=e176]:
+          - listitem [ref=e177]: "Angle: 15° to 45°"
+          - listitem [ref=e179]: "Diameter: 100–200mm"
+          - listitem [ref=e181]: "Bond: Metal sintered"
+      - generic [ref=e183]:
+        - generic [ref=e184]:
+          - generic [ref=e185]: SA
+          - generic [ref=e186]: Stone & Marble
+        - heading "Sintered Abrasives" [level=3] [ref=e187]
+        - paragraph [ref=e188]: High-durability sintered diamond abrasives for stone, marble, granite, and engineered surfaces.
+        - list [ref=e189]:
+          - listitem [ref=e190]: "Application: Stone / Marble"
+          - listitem [ref=e192]: "Segments: T-type / L-shape"
+          - listitem [ref=e194]: Wet/Dry variants
+    - generic [ref=e196]:
+      - paragraph [ref=e197]: Need the complete specification sheet?
+      - link "Request Full Catalogue" [ref=e198] [cursor=pointer]:
+        - /url: "#contact"
+  - generic [ref=e204]:
+    - generic [ref=e205]:
+      - img "KAYES Industries manufacturing facility" [ref=e207]
+      - generic [ref=e209]:
+        - generic [ref=e210]: Manufacturer
+        - generic [ref=e211]: Fully Automated
+        - generic [ref=e212]: Only in India
+    - generic [ref=e213]:
+      - generic [ref=e214]: About KAYES
+      - heading [level=2] [ref=e217]:
+        - text: Preferred Partners for
+        - emphasis [ref=e218]: Glass Pre-Processing
+      - paragraph [ref=e219]: Kayes Industries has been at the forefront of diamond tooling and glass abrasive manufacturing for over three decades. Based in T. Nagar, Chennai, we supply precision tools to glass fabricators, stone processors, and industrial facilities across India and beyond.
+      - paragraph [ref=e220]: Our fully automated production line - the only one of its kind in India - ensures consistent quality, exact tolerances, and faster delivery cycles than any competitor.
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - generic [ref=e223]: ISO 9001:2000
+          - generic [ref=e224]: Quality Certified
+        - generic [ref=e225]:
+          - generic [ref=e226]: Chennai, India
+          - generic [ref=e227]: T. Nagar, HQ
+        - generic [ref=e228]:
+          - generic [ref=e229]: Global Supply
+          - generic [ref=e230]: Export capability
+        - generic [ref=e231]:
+          - generic [ref=e232]: D. Kamal Nathan
+          - generic [ref=e233]: Chief Executive
+  - generic [ref=e235]:
+    - generic [ref=e236]: Why KAYS
+    - heading "The Industrial Standard for Precision Tooling" [level=2] [ref=e239]: The Industrial Standardfor Precision Tooling
+    - generic [ref=e240]:
+      - generic [ref=e241]:
+        - generic [ref=e242]:
+          - heading "Only Fully Automated Manufacturer in India" [level=3] [ref=e246]
+          - paragraph [ref=e247]: Our fully automated diamond tool manufacturing process is the first and only of its kind in India - delivering unmatched consistency and zero human error in every batch.
+        - generic [ref=e248]: Automation · Precision
+      - generic [ref=e249]:
+        - heading "ISO 9001:2000 Quality System" [level=3] [ref=e253]
+        - paragraph [ref=e254]: Certified quality management ensures every tool ships to spec.
+      - generic [ref=e255]:
+        - heading "Fast Turnaround" [level=3] [ref=e260]
+        - paragraph [ref=e261]: Automated production means shorter lead times and reliable delivery schedules.
+      - generic [ref=e262]:
+        - heading "Competitive Pricing" [level=3] [ref=e266]
+        - paragraph [ref=e267]: Direct-from-manufacturer pricing with no intermediary markups. More value per tool.
+      - generic [ref=e268]:
+        - heading "Custom Tool Solutions" [level=3] [ref=e275]
+        - paragraph [ref=e276]: Need a non-standard profile or grit? We engineer bespoke diamond tools for your exact process.
+  - generic [ref=e279]:
+    - generic [ref=e280]:
+      - generic [ref=e281]: Get in Touch
+      - heading "Request a Quote or Full Catalogue" [level=2] [ref=e284]: Request a Quote orFull Catalogue
+      - paragraph [ref=e285]: Our team will respond within one business day with pricing, specifications, and availability.
+      - generic [ref=e286]:
+        - generic [ref=e292]:
+          - generic [ref=e293]: Address
+          - generic [ref=e294]: No.7, Raja Street, T. Nagar, Chennai - 600 017, India
+        - generic [ref=e299]:
+          - generic [ref=e300]: Phone
+          - generic [ref=e301]: +91 44 2433 2415 · +91 98412 79658
+        - generic [ref=e307]:
+          - generic [ref=e308]: Email
+          - generic [ref=e309]: kn@kayesind.com · kayesind@gmail.com
+        - generic [ref=e315]:
+          - generic [ref=e316]: Website
+          - generic [ref=e317]: www.kayesind.com
+    - generic [ref=e319]:
+      - generic [ref=e320]:
+        - generic [ref=e321]: Full Name
+        - textbox "Full Name" [ref=e322]:
+          - /placeholder: e.g. Rajesh Kumar
+      - generic [ref=e323]:
+        - generic [ref=e324]: Company
+        - textbox "Company" [ref=e325]:
+          - /placeholder: e.g. ABC Glass Industries
+      - generic [ref=e326]:
+        - generic [ref=e327]: Email Address
+        - textbox "Email Address" [ref=e328]:
+          - /placeholder: you@company.com
+      - generic [ref=e329]:
+        - generic [ref=e330]: Product Category
+        - combobox "Product Category" [ref=e331]:
+          - option "Select a product category" [selected]
+          - option "Grinding Wheels"
+          - option "Polishing Wheels"
+          - option "Diamond Drill Bits"
+          - option "Edge Profiling Tools"
+          - option "Beveling Wheels"
+          - option "Sintered Abrasives"
+          - option "Full Catalogue"
+      - generic [ref=e332]:
+        - generic [ref=e333]: Message
+        - textbox "Message" [ref=e334]:
+          - /placeholder: Describe your requirements — tool size, quantity, application...
+      - button "Send Enquiry" [ref=e335]
+      - paragraph [ref=e336]: We respond within 1 business day.
+  - contentinfo [ref=e337]:
+    - generic [ref=e338]:
+      - generic [ref=e339]:
+        - generic [ref=e340]:
+          - generic [ref=e346]:
+            - generic [ref=e347]: KAYS
+            - generic [ref=e348]: Industries
+          - paragraph [ref=e349]: Preferred Partners for Glass Pre-Processing. ISO 9001:2000 Certified.
+        - generic [ref=e350]:
+          - generic [ref=e351]: Products
+          - list [ref=e352]:
+            - listitem [ref=e353]:
+              - link "Grinding Wheels" [ref=e354] [cursor=pointer]:
+                - /url: "#products"
+            - listitem [ref=e355]:
+              - link "Polishing Wheels" [ref=e356] [cursor=pointer]:
+                - /url: "#products"
+            - listitem [ref=e357]:
+              - link "Diamond Drill Bits" [ref=e358] [cursor=pointer]:
+                - /url: "#products"
+            - listitem [ref=e359]:
+              - link "Edge Profiling" [ref=e360] [cursor=pointer]:
+                - /url: "#products"
+            - listitem [ref=e361]:
+              - link "Beveling Wheels" [ref=e362] [cursor=pointer]:
+                - /url: "#products"
+            - listitem [ref=e363]:
+              - link "Sintered Abrasives" [ref=e364] [cursor=pointer]:
+                - /url: "#products"
+        - generic [ref=e365]:
+          - generic [ref=e366]: Contact
+          - generic [ref=e367]:
+            - generic [ref=e368]: No.7, Raja Street, T. NagarChennai - 600 017, India
+            - generic [ref=e369]: +91 44 2433 2415
+            - generic [ref=e370]: kn@kayesind.com
+            - link "www.kayesind.com" [ref=e371] [cursor=pointer]:
+              - /url: http://www.kayesind.com
+      - generic [ref=e372]:
+        - paragraph [ref=e373]: © 2026 KAYES Industries. All rights reserved.
+        - paragraph [ref=e374]: An ISO 9001:2000 Certified Company
