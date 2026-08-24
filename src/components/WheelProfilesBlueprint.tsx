@@ -31,7 +31,7 @@ export const WheelProfilesBlueprint: React.FC = () => {
     const text = encodeURIComponent(
       `Hello KAYES INDUSTRIES PVT LTD, I need a technical quotation for ISO Wheel Type: ${profile.code} (${profile.name}) with custom dimensions.`
     );
-    window.open(`https://wa.me/919841279658?text=${text}`, '_blank');
+    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
   };
 
   const handleOpenPage5 = () => {

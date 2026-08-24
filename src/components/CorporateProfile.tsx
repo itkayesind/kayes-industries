@@ -8,7 +8,7 @@ export const CorporateProfile: React.FC = () => {
     const text = encodeURIComponent(
       `Hello Mr. D. Kamal Nathan / KAYES INDUSTRIES, I am reaching out to discuss industrial tooling requirements for our manufacturing facility.`
     );
-    window.open(`https://wa.me/919841279658?text=${text}`, '_blank');
+    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
   };
 
   return (
@@ -93,11 +93,15 @@ export const CorporateProfile: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                  <span className="font-mono text-slate-900 font-semibold">{COMPANY_INFO.contacts.mobile}</span>
+                  <span className="font-mono text-slate-900 font-semibold">
+                    {COMPANY_INFO.contacts.mobile} / {COMPANY_INFO.contacts.secondaryMobile}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                  <span className="font-mono text-slate-700">{COMPANY_INFO.contacts.emails[0]}</span>
+                  <span className="font-mono text-slate-700">
+                    {COMPANY_INFO.contacts.emails[0]} &bull; {COMPANY_INFO.contacts.emails[1]}
+                  </span>
                 </div>
               </div>
 

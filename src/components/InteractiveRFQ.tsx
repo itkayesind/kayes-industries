@@ -47,7 +47,7 @@ export const InteractiveRFQ: React.FC = () => {
       `*Required Quantity:* ${quantity}\n\n` +
       `Please provide formal quotation with delivery lead time.`
     );
-    window.open(`https://wa.me/919841279658?text=${text}`, '_blank');
+    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
     setSubmitted(true);
   };
 
@@ -66,7 +66,7 @@ export const InteractiveRFQ: React.FC = () => {
       `Contact Phone: ${contact}\n\n` +
       `Regards,\n${name || 'Procurement Team'}`
     );
-    window.location.href = `mailto:kn@kayesind.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:sales@kayesind.com?cc=kn@kayesind.com&subject=${subject}&body=${body}`;
   };
 
   return (

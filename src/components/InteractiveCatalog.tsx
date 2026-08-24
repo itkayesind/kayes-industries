@@ -33,7 +33,7 @@ export const InteractiveCatalog: React.FC = () => {
     const text = encodeURIComponent(
       `Hello KAYES INDUSTRIES PVT LTD, I would like to inquire about specifications and pricing for: ${product.name} (Category: ${product.categoryName}).`
     );
-    window.open(`https://wa.me/919841279658?text=${text}`, '_blank');
+    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
   };
 
   return (

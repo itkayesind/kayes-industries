@@ -24,7 +24,7 @@ export const IndustriesOverview: React.FC = () => {
     const text = encodeURIComponent(
       `Hello KAYES INDUSTRIES PVT LTD, I would like to inquire about tooling specifications and supply for: ${sector.name} (${sector.tooling}).`
     );
-    window.open(`https://wa.me/919841279658?text=${text}`, '_blank');
+    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
   };
 
   const handleScrollToInquiry = () => {

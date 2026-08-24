@@ -15,6 +15,8 @@ export interface CompanyInfo {
   certification: string;
   facilityHighlight: string;
   motto: string;
+  website: string;
+  domain: string;
   address: {
     street: string;
     city: string;
@@ -25,6 +27,8 @@ export interface CompanyInfo {
   };
   contacts: {
     mobile: string;
+    salesMobile: string;
+    secondaryMobile: string;
     phoneOffice1: string;
     phoneOffice2: string;
     phoneOffice3: string;
@@ -48,6 +52,8 @@ export const COMPANY_INFO: CompanyInfo = {
   certification: "ISO 9001:2000 Certified Manufacturer",
   facilityHighlight: "Only Manufacturer in India with Fully Automatic Facility",
   motto: "Precision Superabrasives for Glass, Ceramics & Semiconductor Processing",
+  website: "https://www.kayesind.com",
+  domain: "www.kayesind.com",
   address: {
     street: "18-B, North Phase, SIDCO Industrial Estate, Ambattur",
     city: "Chennai",
@@ -57,13 +63,15 @@ export const COMPANY_INFO: CompanyInfo = {
     full: "18-B, North Phase, SIDCO Industrial Estate, Ambattur, Chennai - 600 098, India"
   },
   contacts: {
-    mobile: "+91 98412 79658",
+    mobile: "+91-9150025540",
+    salesMobile: "+91-9150025540",
+    secondaryMobile: "+91 98412 79658",
     phoneOffice1: "2625 0005",
     phoneOffice2: "2625 0006",
     phoneOffice3: "2625 0007",
     fax: "+91-44-2624 3302",
-    emails: ["kn@kayesind.com", "sales@kayesind.com", "kayes98@gmail.com"],
-    whatsappLink: "https://wa.me/919841279658?text=Hello%20KAYES%20INDUSTRIES%20PVT%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%20diamond%20tooling%20solutions.",
+    emails: ["sales@kayesind.com", "kn@kayesind.com", "kayes98@gmail.com"],
+    whatsappLink: "https://wa.me/919150025540?text=Hello%20KAYES%20INDUSTRIES%20PVT%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%20diamond%20tooling%20solutions.",
     catalogPdf: "/docs/Kayes-Diamond-Tools-Catalogue.pdf"
   },
   executive: {

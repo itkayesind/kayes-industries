@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrandLogo } from './BrandLogo';
 import { COMPANY_INFO } from '../data/company';
-import { Download } from 'lucide-react';
+import { Download, Phone, Mail, Globe, MapPin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -11,11 +11,11 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-slate-800">
           
           {/* Brand Info */}
-          <div className="md:col-span-5 space-y-3.5">
+          <div className="md:col-span-4 space-y-3.5">
             <div className="inline-block">
               <BrandLogo variant="full" theme="dark" />
             </div>
-            <p className="text-slate-400 text-xs max-w-sm leading-relaxed">
+            <p className="text-slate-400 text-xs max-w-sm leading-relaxed font-sans">
               {COMPANY_INFO.motto}
             </p>
             <p className="text-slate-500 text-[11px] font-brand tracking-wider uppercase">
@@ -28,10 +28,11 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs font-bold text-white uppercase tracking-[0.15em] font-brand">
               Navigation
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <ul className="space-y-2 text-xs text-slate-400 font-sans">
               <li><a href="#industries-overview" className="hover:text-white transition-colors">Industries &amp; R&amp;D</a></li>
               <li><a href="#catalog" className="hover:text-white transition-colors">Product Catalogue</a></li>
               <li><a href="#wheel-types" className="hover:text-white transition-colors">ISO Wheel Types (Page 5)</a></li>
+              <li><a href="#grit-matrix" className="hover:text-white transition-colors">Grit &amp; Micron Matrix</a></li>
               <li><a href="#about" className="hover:text-white transition-colors">Corporate Heritage</a></li>
               <li><a href="#inquiry" className="hover:text-white transition-colors">Request a Quote</a></li>
               <li>
@@ -48,15 +49,37 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Contact Details */}
-          <div className="md:col-span-4 space-y-2.5">
+          <div className="md:col-span-5 space-y-2.5">
             <h4 className="text-xs font-bold text-white uppercase tracking-[0.15em] font-brand">
-              Registered Plant &amp; Office
+              Registered Plant &amp; Sales Desk
             </h4>
-            <div className="space-y-2 text-slate-400 text-xs">
-              <div className="leading-relaxed">{COMPANY_INFO.address.full}</div>
-              <div>Tel: {COMPANY_INFO.contacts.phoneOffice1} / {COMPANY_INFO.contacts.phoneOffice2}</div>
-              <div>HP / WhatsApp: <a href={`tel:${COMPANY_INFO.contacts.mobile}`} className="text-white hover:underline font-mono">{COMPANY_INFO.contacts.mobile}</a></div>
-              <div>Email: <a href={`mailto:${COMPANY_INFO.contacts.emails[0]}`} className="text-white hover:underline font-mono">{COMPANY_INFO.contacts.emails[0]}</a></div>
+            <div className="space-y-2.5 text-slate-400 text-xs font-sans">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{COMPANY_INFO.address.full}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                <span>
+                  Sales / WhatsApp: <a href={`tel:${COMPANY_INFO.contacts.mobile.replace(/[^0-9+]/g, '')}`} className="text-white hover:underline font-mono font-semibold">{COMPANY_INFO.contacts.mobile}</a>
+                  {' / '}
+                  <a href={`tel:${COMPANY_INFO.contacts.secondaryMobile.replace(/[^0-9+]/g, '')}`} className="text-slate-300 hover:underline font-mono">{COMPANY_INFO.contacts.secondaryMobile}</a>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                <span>
+                  <a href={`mailto:${COMPANY_INFO.contacts.emails[0]}`} className="text-white hover:underline font-mono">{COMPANY_INFO.contacts.emails[0]}</a>
+                  {' / '}
+                  <a href={`mailto:${COMPANY_INFO.contacts.emails[1]}`} className="text-slate-300 hover:underline font-mono">{COMPANY_INFO.contacts.emails[1]}</a>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                <a href={COMPANY_INFO.website} target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-mono">
+                  {COMPANY_INFO.domain}
+                </a>
+              </div>
             </div>
           </div>
 
@@ -68,7 +91,7 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} KAYES INDUSTRIES PVT LTD. All rights reserved.
           </div>
           <div className="font-mono">
-            Chennai, India &bull; www.kayesind.com
+            Chennai, India &bull; <a href={COMPANY_INFO.website} className="hover:text-slate-300">{COMPANY_INFO.domain}</a>
           </div>
         </div>
 
