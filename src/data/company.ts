@@ -1,44 +1,148 @@
-export const COMPANY_INFO = {
-  name: "KAYES INDUSTRIES PVT LTD",
-  brandName: "KAYS",
-  tagline: "Pioneering Diamond Tools & Superabrasives",
-  motto: "Nothing is too tough for us... Production of special diamond tools",
-  subTagline: "Preferred Partners for Glass Pre-Processing, Ceramic & Semiconductor Tooling",
-  certification: "ISO 9001:2000 Certified Company",
-  facilityHighlight: "India's Only Fully Automatic Facility with Dedicated R&D",
+export interface GlassSector {
+  id: string;
+  name: string;
+  category: 'flat' | 'precision' | 'advanced' | 'industrial';
+  desc: string;
+  tooling: string;
+  image: string;
+  tag: string;
+}
+
+export interface CompanyInfo {
+  name: string;
+  entity: string;
+  tagline: string;
+  certification: string;
+  facilityHighlight: string;
+  motto: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    pincode: string;
+    full: string;
+  };
+  contacts: {
+    mobile: string;
+    phoneOffice1: string;
+    phoneOffice2: string;
+    phoneOffice3: string;
+    fax: string;
+    emails: string[];
+    whatsappLink: string;
+    catalogPdf: string;
+  };
+  executive: {
+    name: string;
+    title: string;
+    image: string;
+  };
+  glassSectors: GlassSector[];
+}
+
+export const COMPANY_INFO: CompanyInfo = {
+  name: "KAYS INDUSTRIES PVT LTD",
+  entity: "KAYES INDUSTRIES PVT LTD (Formerly KAYES ENTERPRISES)",
+  tagline: "Industrial Diamond Cutting & Grinding Tools",
+  certification: "ISO 9001:2000 Certified Manufacturer",
+  facilityHighlight: "Only Manufacturer in India with Fully Automatic Facility",
+  motto: "Precision Superabrasives for Glass, Ceramics & Semiconductor Processing",
+  address: {
+    street: "18-B, North Phase, SIDCO Industrial Estate, Ambattur",
+    city: "Chennai",
+    state: "Tamil Nadu",
+    country: "India",
+    pincode: "600 098",
+    full: "18-B, North Phase, SIDCO Industrial Estate, Ambattur, Chennai - 600 098, India"
+  },
+  contacts: {
+    mobile: "+91 98412 79658",
+    phoneOffice1: "2625 0005",
+    phoneOffice2: "2625 0006",
+    phoneOffice3: "2625 0007",
+    fax: "+91-44-2624 3302",
+    emails: ["kn@kayesind.com", "sales@kayesind.com", "kayes98@gmail.com"],
+    whatsappLink: "https://wa.me/919841279658?text=Hello%20KAYES%20INDUSTRIES%20PVT%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%20diamond%20tooling%20solutions.",
+    catalogPdf: "/docs/Kayes-Diamond-Tools-Catalogue.pdf"
+  },
   executive: {
     name: "D. Kamal Nathan",
     title: "Chief Executive",
     image: "/images/products/kamal-nathan-chief-executive.jpg"
   },
-  address: {
-    line: "No.7, Raja Street, T. Nagar",
-    city: "Chennai - 600 017",
-    country: "India",
-    full: "No.7, Raja Street, T. Nagar, Chennai - 600 017, India."
-  },
-  contacts: {
-    phoneOffice1: "+91 44 24332415",
-    phoneOffice2: "+91 44 24342019",
-    phoneOffice3: "044-24328089",
-    mobile: "+91 9841279658",
-    fax: "+91-44-24328089",
-    emails: ["kn@kayesind.com", "sales@kayesind.com", "kayesind@gmail.com"],
-    website: "www.kayesind.com",
-    whatsappLink: "https://wa.me/919841279658?text=Hello%20KAYES%20Industries,%20I%20would%20like%20to%20inquire%20about%20your%20diamond%20tooling%20products.",
-    catalogPdf: "/docs/Kayes-Diamond-Tools-Catalogue.pdf"
-  },
   glassSectors: [
-    { name: "Architectural Glass", desc: "Monolithic, laminated, and double-glazed façade glass edging & coring" },
-    { name: "Automotive Glass", desc: "Windshield, side-lite, and back-lite contour CNC pencil edging" },
-    { name: "Watch Glass & Sapphire", desc: "Precision miniature beveling, facet edging & surface lapping" },
-    { name: "Scientific Glass", desc: "Laboratory test-ware, quartz tubing, and borosilicate drilling" },
-    { name: "Glass Bottles & Containers", desc: "High-volume container neck profiling, mold maintenance & trimming" },
-    { name: "Appliance Glass", desc: "Oven doors, cooktop ceramic-glass, and refrigerator shelves" },
-    { name: "Solar Glass", desc: "High-speed continuous slitting & seaming for photovoltaic panels" }
-  ],
-  advancedMaterials: [
-    { name: "Advanced Ceramics", desc: "Alumina, zirconia, silicon nitride grinding and ultrasonic machining" },
-    { name: "Semiconductor Processing", desc: "Silicon wafer back-grinding, edge profiling, and micro-dicing (Dedicated R&D)" }
+    {
+      id: "architectural",
+      name: "Architectural Glass",
+      category: "flat",
+      desc: "Monolithic, laminated, and double-glazed façade glass edge processing, arrissing, and water-jet coring.",
+      tooling: "1FF6Y / 1EE6Y Pencil Edgers & Core Drills",
+      image: "/images/industries/architectural-glass.jpg",
+      tag: "Façade & Double Glazing"
+    },
+    {
+      id: "automotive",
+      name: "Automotive Glass",
+      category: "flat",
+      desc: "Windshield, side-lite, and back-lite contour CNC pencil edging for high-speed robotic automotive float lines.",
+      tooling: "Position 1 & 2 Segmented Diamond Wheels",
+      image: "/images/industries/automotive-glass.jpg",
+      tag: "Robotic Float Lines"
+    },
+    {
+      id: "watch-glass",
+      name: "Watch Glass & Sapphire",
+      category: "precision",
+      desc: "High-precision chamfering, miniature beveling, facet edging, and surface lapping for luxury watch crystals.",
+      tooling: "Sub-Micron Diamond Wheels & Polishing Slurries",
+      image: "/images/industries/watch-sapphire-glass.jpg",
+      tag: "Sapphire & Quartz"
+    },
+    {
+      id: "solar",
+      name: "Solar Photovoltaic Glass",
+      category: "industrial",
+      desc: "High-speed continuous slitting, seaming, and corner rounding for anti-reflective solar PV glass panels.",
+      tooling: "Slotted Diamond Cut-Off Discs & Edge Grinders",
+      image: "/images/industries/solar-photovoltaic-glass.jpg",
+      tag: "PV Module Manufacturing"
+    },
+    {
+      id: "scientific",
+      name: "Scientific & Lab Glass",
+      category: "precision",
+      desc: "Precision machining of borosilicate test-ware, quartz tubing, ground glass joint taper grinding, and coring.",
+      tooling: "Sintered Thin-Wall Core Drills & Profile Wheels",
+      image: "/images/industries/scientific-laboratory-glass.jpg",
+      tag: "Borosilicate & Quartz"
+    },
+    {
+      id: "semiconductor",
+      name: "Semiconductors & Ceramics",
+      category: "advanced",
+      desc: "Dedicated R&D team developing sub-micron diamond dicing blades and grinding matrices for silicon wafers & alumina ceramics.",
+      tooling: "Cleanroom Dicing Blades & Wafer Thinning Wheels",
+      image: "/images/industries/semiconductor-ceramics.jpg",
+      tag: "Dedicated R&D Division"
+    },
+    {
+      id: "appliance",
+      name: "Appliance Glass",
+      category: "flat",
+      desc: "Induction cooktop ceramic-glass, oven doors, and refrigerator shelving requiring clean edge arrissing.",
+      tooling: "Continuous Rim CNC Profile Wheels & Drills",
+      image: "/images/products/glass-cutoff-wheels.jpg",
+      tag: "Ceramic-Glass Cooktops"
+    },
+    {
+      id: "bottles",
+      name: "Glass Bottles & Containers",
+      category: "industrial",
+      desc: "High-volume container neck profiling, mold maintenance trimming, and bottom facet edging.",
+      tooling: "Electroplated & Metal Bonded Profile Tools",
+      image: "/images/products/flyer-glass-wheels-array.jpg",
+      tag: "High-Volume Packaging"
+    }
   ]
 };

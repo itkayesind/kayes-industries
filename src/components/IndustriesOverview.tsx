@@ -1,196 +1,168 @@
-import React from 'react';
-import { COMPANY_INFO } from '../data/company';
-import { Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { COMPANY_INFO, type GlassSector } from '../data/company';
+import { Sparkles, MessageSquare, ArrowRight, Layers } from 'lucide-react';
 
 export const IndustriesOverview: React.FC = () => {
+  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+
+  const filterTabs = [
+    { id: 'all', label: 'All Sectors' },
+    { id: 'flat', label: 'Flat & Automotive' },
+    { id: 'precision', label: 'Precision & Watch Glass' },
+    { id: 'industrial', label: 'Solar & Containers' },
+    { id: 'advanced', label: 'Semiconductors & Ceramics (R&D)' }
+  ];
+
+  const filteredSectors = useMemo(() => {
+    if (selectedFilter === 'all') return COMPANY_INFO.glassSectors;
+    return COMPANY_INFO.glassSectors.filter(s => s.category === selectedFilter);
+  }, [selectedFilter]);
+
+  const handleInquireSector = (sector: GlassSector) => {
+    const text = encodeURIComponent(
+      `Hello KAYES INDUSTRIES PVT LTD, I would like to inquire about tooling specifications and supply for: ${sector.name} (${sector.tooling}).`
+    );
+    window.open(`https://wa.me/919841279658?text=${text}`, '_blank');
+  };
+
   return (
     <section id="industries-overview" className="py-24 bg-[#FAF9F6] border-b border-slate-200/80 relative overflow-hidden">
       
-      {/* Ambient background soft light */}
-      <div className="absolute top-1/3 -right-32 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      {/* Ambient background soft glow */}
+      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-10 -left-20 w-80 h-80 bg-slate-200/50 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Scroll Reveal */}
-        <div className="max-w-3xl mb-16 reveal-on-scroll">
-          <div className="flex items-center gap-2 mb-2.5">
-            <span className="w-6 h-px bg-slate-400"></span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 font-brand">
-              Sector Directory &bull; Glass &amp; Advanced Materials
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-on-scroll">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-2.5">
+              <span className="w-6 h-px bg-slate-400"></span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 font-brand">
+                Sector Applications &bull; Glass &amp; Advanced Materials
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight font-brand">
+              Industries We Serve
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 mt-3.5 leading-relaxed">
+              Custom-calibrated diamond formulations and bond matrices engineered for high-volume automated lines and precision craft across every glass and advanced material sector.
+            </p>
+          </div>
+
+          <div className="mt-4 md:mt-0 flex-shrink-0">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-[11px] font-mono text-slate-600 shadow-2xs">
+              <Layers className="w-3.5 h-3.5 text-slate-400" />
+              <span>ISO 9001:2000 Certified Quality</span>
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight font-brand">
-            Industrial Diamond Tooling
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 mt-3.5 leading-relaxed">
-            Engineered for high-volume automated processing lines and custom fabrication across every glass sector, with a dedicated R&amp;D team developing custom tools for advanced ceramics and semiconductor processing.
-          </p>
         </div>
 
-        {/* 4 High-Res Visual Product Highlights with Staggered Scroll Reveal */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          
-          <div className="corporate-card rounded-2xl p-4 bg-white flex flex-col justify-between shadow-2xs border-slate-200 group reveal-on-scroll reveal-delay-1">
-            <div>
-              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 mb-4 border border-slate-100 relative">
-                <img
-                  src="/images/products/glass-edging-wheels-studio.jpg"
-                  alt="Glass Edging Wheels"
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] block mb-1 font-brand">
-                Glass Pre-Processing
-              </span>
-              <h3 className="text-base font-bold text-slate-900 mb-1 leading-snug font-sans group-hover:text-slate-800">
-                Pencil Edging &amp; Beveling Wheels
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Segmented (POS 1) and continuous (POS 2) wheels for automotive, architectural, and appliance glass.
-              </p>
-            </div>
-            <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-mono text-slate-500 text-[11px]">1FF6Y / 1EE6Y</span>
-              <a href="#catalog" className="text-slate-900 font-semibold hover:underline inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                <span>Catalogue</span>
-                <ArrowRight className="w-3 h-3 text-slate-400" />
-              </a>
-            </div>
-          </div>
-
-          <div className="corporate-card rounded-2xl p-4 bg-white flex flex-col justify-between shadow-2xs border-slate-200 group reveal-on-scroll reveal-delay-2">
-            <div>
-              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 mb-4 border border-slate-100 relative">
-                <img
-                  src="/images/products/glass-core-drills-studio.jpg"
-                  alt="Diamond Core Drills"
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] block mb-1 font-brand">
-                Precision Drilling
-              </span>
-              <h3 className="text-base font-bold text-slate-900 mb-1 leading-snug font-sans group-hover:text-slate-800">
-                Sintered Core Drills &amp; Routers
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Internal water coolant flow for clean, chip-free drilling from 3mm to 150mm and CNC router bits.
-              </p>
-            </div>
-            <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-mono text-slate-500 text-[11px]">3A2 / 1/2&quot; Shank</span>
-              <a href="#catalog" className="text-slate-900 font-semibold hover:underline inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                <span>Catalogue</span>
-                <ArrowRight className="w-3 h-3 text-slate-400" />
-              </a>
-            </div>
-          </div>
-
-          <div className="corporate-card rounded-2xl p-4 bg-white flex flex-col justify-between shadow-2xs border-slate-200 group reveal-on-scroll reveal-delay-3">
-            <div>
-              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 mb-4 border border-slate-100 relative">
-                <img
-                  src="/images/products/polishing-wheels-studio.jpg"
-                  alt="Glass Polishing Wheels"
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] block mb-1 font-brand">
-                Edge Polishing
-              </span>
-              <h3 className="text-base font-bold text-slate-900 mb-1 leading-snug font-sans group-hover:text-slate-800">
-                BD-8 &amp; 10S40 Polishing Wheels
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Terracotta rubber and resin composite discs delivering mirror-like optical clarity on glass edges.
-              </p>
-            </div>
-            <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-mono text-slate-500 text-[11px]">BD-8 / 10S40</span>
-              <a href="#catalog" className="text-slate-900 font-semibold hover:underline inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                <span>Catalogue</span>
-                <ArrowRight className="w-3 h-3 text-slate-400" />
-              </a>
-            </div>
-          </div>
-
-          <div className="corporate-card rounded-2xl p-4 bg-white flex flex-col justify-between shadow-2xs border-amber-200/80 group reveal-on-scroll reveal-delay-4">
-            <div>
-              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 mb-4 border border-slate-100 relative">
-                <img
-                  src="/images/products/semiconductor-ceramic-tools.jpg"
-                  alt="Semiconductor & Ceramic Tooling"
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </div>
-              <span className="text-[10px] font-bold text-amber-700 uppercase tracking-[0.15em] block mb-1 font-brand flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-amber-600 animate-spin" style={{ animationDuration: '8s' }} />
-                <span>Dedicated R&amp;D Division</span>
-              </span>
-              <h3 className="text-base font-bold text-slate-900 mb-1 leading-snug font-sans group-hover:text-slate-800">
-                Semiconductor &amp; Ceramic Dicing
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Ultra-fine micron diamond blades and grinding wheels for silicon wafers and advanced ceramics.
-              </p>
-            </div>
-            <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-mono text-amber-800 font-semibold text-[11px]">Sub-0.03mm Kerf</span>
-              <a href="#catalog" className="text-slate-900 font-semibold hover:underline inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                <span>Catalogue</span>
-                <ArrowRight className="w-3 h-3 text-slate-400" />
-              </a>
-            </div>
-          </div>
-
+        {/* Category Filter Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-10 scrollbar-none reveal-on-scroll">
+          {filterTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setSelectedFilter(tab.id)}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+                selectedFilter === tab.id
+                  ? 'bg-slate-900 text-white shadow-xs scale-102'
+                  : 'bg-white text-slate-600 border border-slate-200/90 hover:border-slate-300 hover:text-slate-900'
+              }`}
+            >
+              {tab.id === 'advanced' && <Sparkles className="w-3 h-3 text-amber-400" />}
+              <span>{tab.label}</span>
+            </button>
+          ))}
         </div>
 
-        {/* Complete Glass & Materials Scope Grid with Scroll Reveal */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-10 shadow-xs reveal-on-scroll">
-          <div className="mb-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-slate-100 pb-4">
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 font-brand">
-                Glass Applications We Serve
-              </h3>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Calibrated diamond formulations and bond matrices for every glass composition:
-              </p>
-            </div>
-            <span className="text-[11px] font-mono text-slate-400">
-              ISO 9001:2000 Quality Assurance
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {COMPANY_INFO.glassSectors.map((sector) => (
-              <div 
-                key={sector.name} 
-                className="p-4 rounded-xl bg-[#FAF9F6] border border-slate-200/80 hover:border-slate-300 hover:bg-white transition-all duration-300 hover:shadow-2xs"
+        {/* Photographic Visual Sector Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {filteredSectors.map((sector, idx) => {
+            const isAdvanced = sector.category === 'advanced';
+            return (
+              <div
+                key={sector.id}
+                className={`corporate-card rounded-2xl overflow-hidden flex flex-col justify-between bg-white shadow-2xs group reveal-on-scroll reveal-delay-${(idx % 4) + 1} ${
+                  isAdvanced ? 'border-amber-300/80 ring-1 ring-amber-200/60' : 'border-slate-200/90'
+                }`}
               >
-                <div className="flex items-center gap-2 mb-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-slate-700 flex-shrink-0" />
-                  <h4 className="text-xs font-bold text-slate-900 font-sans">{sector.name}</h4>
-                </div>
-                <p className="text-[11px] text-slate-600 pl-5 leading-relaxed">
-                  {sector.desc}
-                </p>
-              </div>
-            ))}
+                <div>
+                  {/* Photo Container */}
+                  <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden border-b border-slate-100">
+                    <img
+                      src={sector.image}
+                      alt={sector.name}
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
 
-            <div className="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 hover:bg-amber-50 transition-colors">
-              <div className="flex items-center gap-2 mb-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-700 flex-shrink-0" />
-                <h4 className="text-xs font-bold text-amber-950 font-sans">Technical Ceramics &amp; Silicon Wafers</h4>
+                    {/* Sector Tag Badge */}
+                    <span className={`absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-md shadow-xs ${
+                      isAdvanced 
+                        ? 'bg-amber-900/90 text-amber-100 border border-amber-500/40'
+                        : 'bg-slate-900/85 text-white border border-white/20'
+                    }`}>
+                      {isAdvanced && <Sparkles className="w-2.5 h-2.5 inline mr-1 text-amber-300" />}
+                      {sector.tag}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5">
+                    <h3 className="text-base font-bold text-slate-900 mb-1.5 font-brand tracking-wide group-hover:text-slate-800">
+                      {sector.name}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                      {sector.desc}
+                    </p>
+
+                    {/* Recommended Tooling Tag */}
+                    <div className="p-2.5 rounded-lg bg-[#FAF9F6] border border-slate-200/70 mb-2">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-brand">
+                        Recommended Tooling
+                      </span>
+                      <span className="text-[11px] font-mono font-semibold text-slate-800 block mt-0.5">
+                        {sector.tooling}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Action */}
+                <div className="p-5 pt-0">
+                  <button
+                    onClick={() => handleInquireSector(sector)}
+                    className="w-full py-2.5 px-3 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 transition-all flex items-center justify-center gap-1.5 btn-luxury cursor-pointer"
+                  >
+                    <MessageSquare className="w-3 h-3" />
+                    <span>Inquire for {sector.name.split(' ')[0]}</span>
+                    <ArrowRight className="w-3 h-3 ml-0.5 opacity-60" />
+                  </button>
+                </div>
               </div>
-              <p className="text-[11px] text-amber-900/90 pl-5 leading-relaxed">
-                Dedicated R&amp;D team engineering custom formulations for dicing, lapping, and wafer thinning.
-              </p>
-            </div>
+            );
+          })}
+        </div>
+
+        {/* Custom Application Concierge Banner */}
+        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-6 reveal-on-scroll">
+          <div className="space-y-1">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-brand">
+              Require Custom Diamond Formulations for Special Materials?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Our engineering team formulates bespoke metal, resin, and electroplated bonds to match your machinery RPMs, feed rates, and tolerance requirements.
+            </p>
           </div>
+          <a
+            href="#inquiry"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-xs tracking-wide btn-luxury whitespace-nowrap"
+          >
+            <span>Request Custom Requisition</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-300" />
+          </a>
         </div>
 
       </div>
