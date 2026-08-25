@@ -93,7 +93,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-slate-500 flex-shrink-0" />
-                <a href={COMPANY_INFO.website} target="_blank" rel="noopener noreferrer" aria-label="Visit KAYS Industries website" className="text-white hover:underline font-mono">
+                <a href={COMPANY_INFO.website} target="_blank" rel="noopener noreferrer" aria-label="Visit KAYES Industries website" className="text-white hover:underline font-mono">
                   {COMPANY_INFO.domain}
                 </a>
               </div>

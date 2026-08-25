@@ -10,19 +10,19 @@ const diamondFile = files.find(f => f.startsWith('diamond_logo_icon') && f.endsW
 
 if (diamondFile) {
   const src = path.join(brainDir, diamondFile);
-  fs.copyFileSync(src, path.join(brandDir, 'kays-diamond-raw.jpg'));
+  fs.copyFileSync(src, path.join(brandDir, 'kayes-diamond-raw.jpg'));
   console.log(`Copied ${diamondFile}`);
 
   // Crop tightly around the diamond and create high-res 512x512 PNG
   sharp(src)
     .trim({ background: '#ffffff', threshold: 15 })
     .resize(512, 512, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } })
-    .toFile(path.join(brandDir, 'kays-diamond-icon.png'))
+    .toFile(path.join(brandDir, 'kayes-diamond-icon.png'))
     .then(() => {
-      console.log('Saved kays-diamond-icon.png');
-      // Also overwrite kays-emblem-isolated.png
-      fs.copyFileSync(path.join(brandDir, 'kays-diamond-icon.png'), path.join(brandDir, 'kays-emblem-isolated.png'));
-      console.log('Updated kays-emblem-isolated.png');
+      console.log('Saved kayes-diamond-icon.png');
+      // Also overwrite kayes-emblem-isolated.png
+      fs.copyFileSync(path.join(brandDir, 'kayes-diamond-icon.png'), path.join(brandDir, 'kayes-emblem-isolated.png'));
+      console.log('Updated kayes-emblem-isolated.png');
     })
     .catch(err => console.error(err));
 }

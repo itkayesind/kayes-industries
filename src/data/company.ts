@@ -48,8 +48,8 @@ export interface CompanyInfo {
 }
 
 export const COMPANY_INFO: CompanyInfo = {
-  name: "KAYS INDUSTRIES PVT LTD",
-  entity: "KAYES INDUSTRIES PVT LTD (Formerly KAYES ENTERPRISES)",
+  name: "KAYES INDUSTRIES PVT LTD",
+  entity: "KAYES INDUSTRIES PVT LTD",
   tagline: "Industrial Diamond Cutting & Grinding Tools",
   certification: "ISO 9001:2015 Certified Manufacturer",
   facilityHighlight: "Only Manufacturer in India with Fully Automatic Facility",

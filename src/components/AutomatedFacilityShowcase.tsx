@@ -109,8 +109,8 @@ export const AutomatedFacilityShowcase: React.FC = () => {
         {/* Factory Credential Hero Banner */}
         <div className="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
           <div className="absolute right-0 top-0 w-1/2 h-full opacity-15 pointer-events-none">
-            <img 
-              src="/images/brand/kays-flyer.jpg" 
+            <img
+              src="/images/brand/kayes-flyer.jpg"
               alt="Facility Flyer"
               className="w-full h-full object-cover"
             />

@@ -111,12 +111,12 @@ const crops = [
 
   // Flyer
   {
-    src: 'public/images/brand/kays-flyer.jpg',
+    src: 'public/images/brand/kayes-flyer.jpg',
     dest: 'flyer-glass-core-drills.jpg',
     box: { left: 45, top: 500, width: 520, height: 350 }
   },
   {
-    src: 'public/images/brand/kays-flyer.jpg',
+    src: 'public/images/brand/kayes-flyer.jpg',
     dest: 'flyer-glass-wheels-array.jpg',
     box: { left: 540, top: 100, width: 420, height: 1050 }
   }

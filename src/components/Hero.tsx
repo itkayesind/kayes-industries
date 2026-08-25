@@ -42,8 +42,8 @@ export const Hero: React.FC = () => {
             <div className="animate-emblem-reveal w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-slate-900/5 backdrop-blur-md p-3 flex items-center justify-center mb-6 shadow-xl border border-slate-200/80 relative group will-change-transform">
               <div className="w-full h-full rounded-2xl overflow-hidden bg-white flex items-center justify-center p-2 shadow-xs border border-slate-100">
                 <img
-                  src="/images/brand/kays-logo-1x1.svg"
-                  alt="KAYS Diamond Emblem"
+                  src="/images/brand/kayes-logo-1x1.svg"
+                  alt="KAYES Diamond Emblem"
                   className="w-full h-full object-contain"
                   loading="eager"
                   fetchPriority="high"
@@ -59,7 +59,7 @@ export const Hero: React.FC = () => {
             {/* Fancy Brand Name - titleTrackingReveal (staggered after emblem) */}
             <div className="animate-title-reveal space-y-2 mb-4">
               <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-[0.12em] text-slate-950 font-brand uppercase drop-shadow-xs">
-                KAYS
+                KAYES
               </h1>
               <div className="text-xs sm:text-base lg:text-lg font-semibold tracking-[0.35em] text-slate-600 font-brand uppercase">
                 INDUSTRIES PVT LTD

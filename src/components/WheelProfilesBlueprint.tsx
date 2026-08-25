@@ -35,7 +35,7 @@ export const WheelProfilesBlueprint: React.FC = () => {
   };
 
   const handleOpenPage5 = () => {
-    window.open('/images/brand/kays-flyer.jpg', '_blank');
+    window.open('/images/brand/kayes-flyer.jpg', '_blank');
   };
 
   const handleScrollToInquiry = () => {

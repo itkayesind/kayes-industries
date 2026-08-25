@@ -362,7 +362,7 @@ export const InteractiveCatalog: React.FC = () => {
               <button
                 onClick={() => {
                   try {
-                    localStorage.setItem('kays_prefill_product', JSON.stringify(activeModalProduct));
+                    localStorage.setItem('kayes_prefill_product', JSON.stringify(activeModalProduct));
                   } catch {}
                   setActiveModalProduct(null);
                   setTimeout(() => {

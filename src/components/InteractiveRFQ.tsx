@@ -19,12 +19,12 @@ export const InteractiveRFQ: React.FC = () => {
 
   useEffect(() => {
     try {
-      const prefill = localStorage.getItem("kays_prefill_product");
+      const prefill = localStorage.getItem("kayes_prefill_product");
       if (prefill) {
         setSelectedProfile(prefill);
         setStep(2);
         // keep it for a single use; clear so refresh doesn't re-trigger
-        // localStorage.removeItem("kays_prefill_product");
+        // localStorage.removeItem("kayes_prefill_product");
       }
     } catch {
       // ignore - localStorage unavailable (SSR)

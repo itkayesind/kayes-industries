@@ -6,7 +6,7 @@ import { LiquidButton } from './ui/liquid-glass-button';
 export const CorporateProfile: React.FC = () => {
   const handleContactExecutive = () => {
     const text = encodeURIComponent(
-      `Hello Mr. D. Kamal Nathan / KAYES INDUSTRIES, I am reaching out to discuss industrial tooling requirements for our manufacturing facility.`
+      `Hello Mr. D. Kamal Nathan / KAYES INDUSTRIES PVT LTD, I am reaching out to discuss industrial tooling requirements for our manufacturing facility.`
     );
     const waBase = COMPANY_INFO.contacts.whatsappLink?.split('?')[0] ?? `https://wa.me/${COMPANY_INFO.contacts.mobile.replace(/[^0-9]/g, "")}`;
     const wa = `${waBase}?text=${text}`;
@@ -17,9 +17,8 @@ export const CorporateProfile: React.FC = () => {
     <section id="about" className="py-24 bg-white border-b border-slate-200 relative overflow-hidden">
       <div className="absolute top-1/2 -right-40 -translate-y-1/2 w-[550px] h-[550px] opacity-[0.03] pointer-events-none select-none" aria-hidden="true">
         <img
-          src="/images/brand/kays-logo-1x1.svg"
+          src="/images/brand/kayes-logo-1x1.svg"
           alt=""
-          loading="lazy"
           aria-hidden="true"
           className="w-full h-full object-contain"
         />

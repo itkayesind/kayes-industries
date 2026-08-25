@@ -14,14 +14,14 @@ const logoFile = files.find(f => f.startsWith('brand_logo_emblem') && f.endsWith
 
 if (logoFile) {
   const fullPath = path.join(brainDir, logoFile);
-  fs.copyFileSync(fullPath, path.join(brandDir, 'kays-brand-logo.jpg'));
-  console.log(`Copied logo: ${logoFile} -> kays-brand-logo.jpg`);
+  fs.copyFileSync(fullPath, path.join(brandDir, 'kayes-brand-logo.jpg'));
+  console.log(`Copied logo: ${logoFile} -> kayes-brand-logo.jpg`);
 
   // Extract the circular emblem only (top 70% of the image)
   sharp(fullPath)
     .extract({ left: 180, top: 120, width: 664, height: 664 })
     .resize(512, 512)
-    .toFile(path.join(brandDir, 'kays-emblem-isolated.png'))
+    .toFile(path.join(brandDir, 'kayes-emblem-isolated.png'))
     .then(() => console.log('Created isolated emblem PNG'))
     .catch(err => console.error(err));
 }
