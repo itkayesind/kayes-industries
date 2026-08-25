@@ -130,12 +130,15 @@ export const GritParticleMatrix: React.FC = () => {
           </div>
 
           {/* Stepper Buttons (Clean Light Theme) */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
+          <div role="tablist" className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
             {gritStages.map((st, idx) => {
               const isActive = selectedStage === idx;
               return (
                 <button
                   key={st.title}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-label={`Stage ${idx + 1}: ${st.title}`}
                   onClick={() => setSelectedStage(idx)}
                   className={`p-4 rounded-2xl text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer ${
                     isActive
@@ -147,14 +150,14 @@ export const GritParticleMatrix: React.FC = () => {
                     <span className={`text-[11px] font-mono font-bold ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
                       STAGE 0{idx + 1}
                     </span>
-                    <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
+                    <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold truncate max-w-[45%] ${
                       isActive ? 'bg-slate-900 text-white' : 'bg-slate-200/80 text-slate-700'
                     }`}>
-                      {st.meshRange.split(' ')[1]}
+                      {st.meshRange}
                     </span>
                   </div>
-                  <div className={`text-xs leading-snug ${isActive ? 'font-bold text-slate-950' : 'font-semibold text-slate-700'}`}>
-                    {st.title.split(' ')[0]} {st.title.split(' ')[1]}
+                  <div className={`text-xs leading-snug line-clamp-2 ${isActive ? 'font-bold text-slate-950' : 'font-semibold text-slate-700'}`}>
+                    {st.title}
                   </div>
                 </button>
               );
@@ -162,7 +165,7 @@ export const GritParticleMatrix: React.FC = () => {
           </div>
 
           {/* Active Stage Technical Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-[#FAF9F6] rounded-2xl p-6 border border-slate-200">
+          <div role="tabpanel" className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-[#FAF9F6] rounded-2xl p-6 border border-slate-200">
             <div className="space-y-1.5">
               <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
                 Typical Operation & Scope

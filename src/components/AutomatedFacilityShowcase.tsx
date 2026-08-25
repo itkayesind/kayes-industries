@@ -118,7 +118,7 @@ export const AutomatedFacilityShowcase: React.FC = () => {
 
           <div className="relative z-10 max-w-2xl">
             <span className="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase block mb-2">
-              ISO 9001:2000 CERTIFIED QUALITY GUARANTEE
+              ISO 9001:2015 CERTIFIED QUALITY GUARANTEE
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-4">
               &quot;Nothing is too tough for us... Production of special diamond tools&quot;

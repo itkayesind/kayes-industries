@@ -16,29 +16,29 @@ import { AssistedSectionNav } from '../components/AssistedSectionNav';
   <AssistedSectionNav client:load />
 
   <!-- Main Content -->
-  <main class="flex-grow">
+  <main id="main-content" class="flex-grow">
     <!-- Brand Entrance Screen (Full Viewport Centered on Visit/Refresh) -->
     <Hero client:load />
 
     <!-- Glass Sectors & Semiconductor/Ceramic R&D Overview (Split Showcase) -->
-    <IndustriesOverview client:visible />
+    <IndustriesOverview client:idle />
 
     <!-- Technical Product Catalog Grid (Bento Grid) -->
-    <InteractiveCatalog client:visible />
+    <InteractiveCatalog client:idle />
 
     <!-- ISO Wheel Types Guide (CAD Technical Blueprint Workbench) -->
-    <WheelProfilesBlueprint client:visible />
+    <WheelProfilesBlueprint client:idle />
 
     <!-- Surface Metallurgy & Particle Progression Matrix -->
-    <GritParticleMatrix client:visible />
+    <GritParticleMatrix client:idle />
 
     <!-- Corporate Profile & Executive Heritage (Editorial Layout) -->
-    <CorporateProfile client:visible />
+    <CorporateProfile client:idle />
 
     <!-- RFQ Requisition Configurator & Plant Contacts -->
-    <InteractiveRFQ client:visible />
+    <InteractiveRFQ client:idle />
   </main>
 
   <!-- Corporate Footer -->
-  <Footer client:visible />
+  <Footer client:idle />
 </Layout>

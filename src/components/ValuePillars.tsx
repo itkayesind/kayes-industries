@@ -22,7 +22,7 @@ export const ValuePillars: React.FC = () => {
       number: "03",
       title: "Micron-Grade QA & Dynamic Balancing",
       description: "Every wheel undergoes optical microscope matrix inspection and electronic dynamic balancing to eliminate spindle runout, prevent glass micro-chipping, and protect machine bearings.",
-      highlight: "ISO 9001:2000 Certified"
+      highlight: "ISO 9001:2015 Certified"
     },
     {
       icon: Handshake,

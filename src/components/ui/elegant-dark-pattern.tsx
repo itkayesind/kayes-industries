@@ -21,9 +21,10 @@ export function ElegantPatternBg({
         isDark ? "bg-black text-white" : "bg-white text-slate-900",
         className
       )}
+      style={{ contain: "paint" }}
     >
       {/* Background Masked Layer */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="absolute inset-0"
           style={{
@@ -114,6 +115,7 @@ export function ElegantPatternBg({
 
       {/* Subtle Dot Pattern Overlay */}
       <div
+        aria-hidden="true"
         className={cn(
           "absolute inset-0 pointer-events-none",
           isDark ? "opacity-20" : "opacity-[0.28]"

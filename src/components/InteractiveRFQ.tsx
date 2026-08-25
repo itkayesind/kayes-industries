@@ -13,6 +13,8 @@ export const InteractiveRFQ: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [company, setCompany] = useState<string>('');
   const [contact, setContact] = useState<string>('');
+  const [companyWebsite, setCompanyWebsite] = useState<string>('');
+  const [errors, setErrors] = useState<{ name?: string; company?: string; contact?: string }>({});
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const materials = [
@@ -35,6 +37,19 @@ export const InteractiveRFQ: React.FC = () => {
 
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // honeypot — if filled, treat as spam and abort
+    if (companyWebsite.trim()) return;
+    const newErrors: { name?: string; company?: string; contact?: string } = {};
+    if (!name.trim()) newErrors.name = "Name is required.";
+    if (!company.trim()) newErrors.company = "Company is required.";
+    if (!contact.trim()) newErrors.contact = "Contact is required.";
+    else if (!/^\+?[0-9\s-]{10,}$/.test(contact.trim())) newErrors.contact = "Enter a valid phone number (at least 10 digits).";
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
+    const waNumber = COMPANY_INFO.contacts.mobile.replace(/[^0-9]/g, "");
     const text = encodeURIComponent(
       `*INDUSTRIAL TOOL REQUISITION - KAYES INDUSTRIES*\n\n` +
       `*Client:* ${name || 'Procurement Officer'}\n` +
@@ -47,8 +62,12 @@ export const InteractiveRFQ: React.FC = () => {
       `*Required Quantity:* ${quantity}\n\n` +
       `Please provide formal quotation with delivery lead time.`
     );
-    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
+    window.open(`https://wa.me/${waNumber}?text=${text}`, "_blank", "noopener,noreferrer");
     setSubmitted(true);
+    // scroll submitted banner into view
+    setTimeout(() => {
+      document.getElementById("rfq-submitted-banner")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
   };
 
   const handleEmailSubmit = () => {
@@ -252,8 +271,10 @@ export const InteractiveRFQ: React.FC = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="e.g. Rajesh Kumar"
+                        aria-invalid={!!errors.name}
                         className="w-full p-3 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:bg-white focus:ring-2 focus:ring-slate-900 outline-none"
                       />
+                      {errors.name && <p className="text-xs text-red-600 mt-1" role="alert">{errors.name}</p>}
                     </div>
 
                     <div>
@@ -266,8 +287,10 @@ export const InteractiveRFQ: React.FC = () => {
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
                         placeholder="e.g. Precision Glass Ltd"
+                        aria-invalid={!!errors.company}
                         className="w-full p-3 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:bg-white focus:ring-2 focus:ring-slate-900 outline-none"
                       />
+                      {errors.company && <p className="text-xs text-red-600 mt-1" role="alert">{errors.company}</p>}
                     </div>
 
                     <div>
@@ -276,13 +299,32 @@ export const InteractiveRFQ: React.FC = () => {
                       </label>
                       <input
                         type="tel"
+                        inputMode="tel"
+                        pattern="[0-9+\s-]*"
+                        aria-label="Contact phone or email"
+                        aria-invalid={!!errors.contact}
                         required
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
                         placeholder="+91 98400 00000"
                         className="w-full p-3 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:bg-white focus:ring-2 focus:ring-slate-900 outline-none font-mono"
                       />
+                      {errors.contact && <p className="text-xs text-red-600 mt-1" role="alert">{errors.contact}</p>}
                     </div>
+                  </div>
+
+                  {/* honeypot — hidden from users, visible to bots */}
+                  <div style={{ display: "none" }} aria-hidden="true">
+                    <label htmlFor="companyWebsite">Website</label>
+                    <input
+                      type="text"
+                      id="companyWebsite"
+                      name="companyWebsite"
+                      value={companyWebsite}
+                      onChange={(e) => setCompanyWebsite(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
                   </div>
 
                   <div>
@@ -319,9 +361,14 @@ export const InteractiveRFQ: React.FC = () => {
                       <span>Send via Email</span>
                     </LiquidButton>
                   </div>
+
+                  {submitted && (
+                    <div id="rfq-submitted-banner" role="status" className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-800">
+                      Requisition sent — our Chennai desk will respond shortly via WhatsApp.
+                    </div>
+                  )}
                 </div>
               )}
-
             </form>
 
           </div>
@@ -362,7 +409,7 @@ export const InteractiveRFQ: React.FC = () => {
             <div className="pt-4 border-t border-slate-100 space-y-2 text-[11px] text-slate-600 font-sans">
               <div className="flex items-center gap-2 text-slate-900">
                 <ShieldCheck className="w-4 h-4 text-cyan-700" />
-                <span className="font-semibold">ISO 9001:2000 Certified Plant</span>
+                <span className="font-semibold">{COMPANY_INFO.certification} Plant</span>
               </div>
               <p className="leading-relaxed text-slate-500">
                 Registered Plant: Chennai, India. Direct factory dispatch with custom bonding matrix engineering.

@@ -39,6 +39,7 @@ export const Footer: React.FC = () => {
                 <a
                   href={COMPANY_INFO.contacts.catalogPdf}
                   download="Kayes-Catalogue.pdf"
+                  aria-label="Download PDF Catalogue"
                   className="text-slate-300 hover:text-white transition-colors inline-flex items-center gap-1.5 mt-1"
                 >
                   <Download className="w-3.5 h-3.5" />
@@ -61,22 +62,22 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-slate-500 flex-shrink-0" />
                 <span>
-                  Sales / WhatsApp: <a href={`tel:${COMPANY_INFO.contacts.mobile.replace(/[^0-9+]/g, '')}`} className="text-white hover:underline font-mono font-semibold">{COMPANY_INFO.contacts.mobile}</a>
+                  Sales / WhatsApp: <a href={`tel:${COMPANY_INFO.contacts.mobile.replace(/[^0-9+]/g, '')}`} aria-label={`Call ${COMPANY_INFO.contacts.mobile}`} className="text-white hover:underline font-mono font-semibold">{COMPANY_INFO.contacts.mobile}</a>
                   {' / '}
-                  <a href={`tel:${COMPANY_INFO.contacts.secondaryMobile.replace(/[^0-9+]/g, '')}`} className="text-slate-300 hover:underline font-mono">{COMPANY_INFO.contacts.secondaryMobile}</a>
+                  <a href={`tel:${COMPANY_INFO.contacts.secondaryMobile.replace(/[^0-9+]/g, '')}`} aria-label={`Call ${COMPANY_INFO.contacts.secondaryMobile}`} className="text-slate-300 hover:underline font-mono">{COMPANY_INFO.contacts.secondaryMobile}</a>
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-slate-500 flex-shrink-0" />
                 <span>
-                  <a href={`mailto:${COMPANY_INFO.contacts.emails[0]}`} className="text-white hover:underline font-mono">{COMPANY_INFO.contacts.emails[0]}</a>
+                  <a href={`mailto:${COMPANY_INFO.contacts.emails[0]}`} aria-label={`Email ${COMPANY_INFO.contacts.emails[0]}`} className="text-white hover:underline font-mono">{COMPANY_INFO.contacts.emails[0]}</a>
                   {' / '}
-                  <a href={`mailto:${COMPANY_INFO.contacts.emails[1]}`} className="text-slate-300 hover:underline font-mono">{COMPANY_INFO.contacts.emails[1]}</a>
+                  <a href={`mailto:${COMPANY_INFO.contacts.emails[1]}`} aria-label={`Email ${COMPANY_INFO.contacts.emails[1]}`} className="text-slate-300 hover:underline font-mono">{COMPANY_INFO.contacts.emails[1]}</a>
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-slate-500 flex-shrink-0" />
-                <a href={COMPANY_INFO.website} target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-mono">
+                <a href={COMPANY_INFO.website} target="_blank" rel="noopener noreferrer" aria-label="Visit KAYS Industries website" className="text-white hover:underline font-mono">
                   {COMPANY_INFO.domain}
                 </a>
               </div>

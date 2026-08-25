@@ -65,7 +65,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Main Navbar */}
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <nav role="navigation" aria-label="Primary" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
         <a href="#brand-hero" className="focus:outline-none">
           <BrandLogo />
         </a>
@@ -111,6 +111,8 @@ export const Navbar: React.FC = () => {
             size="icon"
             className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 border border-slate-200 cursor-pointer"
             aria-label="Toggle navigation"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </LiquidButton>
@@ -119,7 +121,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white p-6 space-y-4 shadow-xl">
+        <div id="mobile-menu" className="md:hidden border-t border-slate-200 bg-white p-6 space-y-4 shadow-xl">
           {navLinks.map((link) => (
             <a
               key={link.label}

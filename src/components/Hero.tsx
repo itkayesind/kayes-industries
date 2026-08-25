@@ -36,23 +36,28 @@ export const Hero: React.FC = () => {
         {/* Middle Brand Entity - Pure Centered Brand Presentation */}
         <div className="my-auto text-center max-w-3xl px-4 py-6 flex flex-col items-center">
           
-          {/* Pure Diamond Logo Emblem & Brand Title with Long Staggered Entrance */}
-          <div className="animate-brand-reveal flex flex-col items-center">
-            {/* Pure Faceted Diamond Emblem (No Text) */}
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-slate-900/5 backdrop-blur-md p-3 flex items-center justify-center mb-6 shadow-xl border border-slate-200/80 relative group">
+          {/* Pure Diamond Logo Emblem & Brand Title with Expanded Staggered Entrance */}
+          <div className="flex flex-col items-center">
+            {/* Pure Faceted Diamond Emblem - emblemEntrance (earliest) */}
+            <div className="animate-emblem-reveal w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-slate-900/5 backdrop-blur-md p-3 flex items-center justify-center mb-6 shadow-xl border border-slate-200/80 relative group will-change-transform">
               <div className="w-full h-full rounded-2xl overflow-hidden bg-white flex items-center justify-center p-2 shadow-xs border border-slate-100">
                 <img
                   src="/images/brand/kays-logo-1x1.svg"
                   alt="KAYS Diamond Emblem"
                   className="w-full h-full object-contain"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width="112"
+                  height="112"
                 />
               </div>
-              {/* Luxury ambient glow ring */}
-              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-slate-300/40 via-cyan-500/20 to-slate-300/40 opacity-40 blur-md -z-10 group-hover:opacity-80 transition-opacity" />
+              {/* Luxury ambient glow ring - also expanded with glowPulse */}
+              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-slate-300/40 via-cyan-500/20 to-slate-300/40 opacity-40 blur-md -z-10 group-hover:opacity-80 transition-opacity animate-pulse-glow" style={{ animation: 'glowPulse 3.2s ease-in-out 1.8s infinite' }} />
             </div>
 
-            {/* Fancy Brand Name (Cinzel Roman Luxury Typography) */}
-            <div className="space-y-2 mb-4">
+            {/* Fancy Brand Name - titleTrackingReveal (staggered after emblem) */}
+            <div className="animate-title-reveal space-y-2 mb-4">
               <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-[0.12em] text-slate-950 font-brand uppercase drop-shadow-xs">
                 KAYS
               </h1>
@@ -72,6 +77,7 @@ export const Hero: React.FC = () => {
             <LiquidButton
               onClick={handleScrollToCatalog}
               size="xl"
+              aria-label="View product catalogue"
               className="text-slate-950 font-semibold tracking-wide cursor-pointer"
             >
               <span>View Product Catalogue</span>
@@ -83,16 +89,17 @@ export const Hero: React.FC = () => {
 
         {/* Bottom Scroll Indicator - Pure Elegant Text */}
         <div className="w-full flex flex-col items-center justify-center pb-4 animate-scroll-reveal">
-          <div
+          <button
+            type="button"
             onClick={handleScrollDown}
+            aria-label="Scroll to industries overview"
             className="flex flex-col items-center gap-1.5 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer select-none group"
-            aria-label="Scroll to explore"
           >
             <span className="text-[11px] font-medium tracking-[0.25em] uppercase font-brand">
               Scroll to explore
             </span>
             <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-700 transition-colors animate-bounce-slow" />
-          </div>
+          </button>
         </div>
       </ElegantPatternBg>
     </section>

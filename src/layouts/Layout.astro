@@ -7,9 +7,11 @@ interface Props {
 }
 
 const {
-  title = "KAYES INDUSTRIES PVT LTD | Precision Diamond Tools & Superabrasives | ISO 9001:2000",
+  title = "KAYES INDUSTRIES PVT LTD | Precision Diamond Tools & Superabrasives | ISO 9001:2015",
   description = "Official Website & Catalogue for KAYES INDUSTRIES PVT LTD (KAYS), Chennai, India. Manufacturers of precision diamond cutting and grinding tools for the glass industry, technical ceramics, and semiconductor processing."
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, "https://www.kayesind.com");
 ---
 
 <!doctype html>
@@ -18,18 +20,51 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='10,6 22,6 28,14 4,14' fill='%231e293b'/><polygon points='4,14 16,28 28,14' fill='%23475569'/></svg>" />
+    <link rel="apple-touch-icon" href="/images/brand/kays-logo-1x1.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0F172A" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="KAYES Industries Pvt Ltd, KAYS, Diamond Tools, Superabrasives, Glass Pre-Processing, 1FF6Y, 11V9, Core Drills, Semiconductor Dicing, Chennai Diamond Tools, ISO 9001:2000" />
+    <meta name="keywords" content="KAYES Industries Pvt Ltd, KAYS, Diamond Tools, Superabrasives, Glass Pre-Processing, 1FF6Y, 11V9, Core Drills, Semiconductor Dicing, Chennai Diamond Tools, ISO 9001:2015" />
     <meta name="author" content="KAYES INDUSTRIES PVT LTD" />
+
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.kayesind.com/images/brand/kays-logo-1x1.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "KAYS INDUSTRIES PVT LTD",
+      "url": "https://www.kayesind.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "18-B, North Phase, SIDCO Industrial Estate, Ambattur",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "600 098",
+        "addressCountry": "India"
+      },
+      "telephone": "+91-9150025540",
+      "email": "sales@kayesind.com"
+    })} />
   </head>
   <body class="bg-white text-slate-900 min-h-screen flex flex-col font-sans antialiased">
-    <slot />
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-slate-900 text-white px-4 py-2 rounded">Skip to content</a>
+    <main id="main-content" class="flex flex-col flex-1">
+      <slot />
+    </main>
 
     {/* Performant Intersection Observer for Luxury Scroll Reveals */}
     <script is:inline>

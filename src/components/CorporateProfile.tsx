@@ -8,17 +8,19 @@ export const CorporateProfile: React.FC = () => {
     const text = encodeURIComponent(
       `Hello Mr. D. Kamal Nathan / KAYES INDUSTRIES, I am reaching out to discuss industrial tooling requirements for our manufacturing facility.`
     );
-    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
+    const waBase = COMPANY_INFO.contacts.whatsappLink?.split('?')[0] ?? `https://wa.me/${COMPANY_INFO.contacts.mobile.replace(/[^0-9]/g, "")}`;
+    const wa = `${waBase}?text=${text}`;
+    window.open(wa, "_blank", "noopener,noreferrer");
   };
 
   return (
     <section id="about" className="py-24 bg-white border-b border-slate-200 relative overflow-hidden">
-      
-      {/* Decorative luxury watermark */}
-      <div className="absolute top-1/2 -right-40 -translate-y-1/2 w-[550px] h-[550px] opacity-[0.03] pointer-events-none select-none">
+      <div className="absolute top-1/2 -right-40 -translate-y-1/2 w-[550px] h-[550px] opacity-[0.03] pointer-events-none select-none" aria-hidden="true">
         <img
           src="/images/brand/kays-logo-1x1.svg"
-          alt="Watermark"
+          alt=""
+          loading="lazy"
+          aria-hidden="true"
           className="w-full h-full object-contain"
         />
       </div>
@@ -109,6 +111,7 @@ export const CorporateProfile: React.FC = () => {
                 <LiquidButton
                   onClick={handleContactExecutive}
                   size="lg"
+                  aria-label="Contact executive via WhatsApp"
                   className="w-full text-slate-950 font-semibold cursor-pointer"
                 >
                   <span>Connect with Executive Desk</span>

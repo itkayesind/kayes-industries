@@ -83,7 +83,8 @@ export const AssistedSectionNav: React.FC = () => {
               key={sec.id}
               onClick={() => scrollToSection(sec.id)}
               className="group relative flex items-center justify-center p-1 focus:outline-none cursor-pointer"
-              aria-label={`Scroll to ${sec.label}`}
+              aria-label={`Go to ${sec.label}`}
+              aria-current={isActive ? "true" as const : undefined}
             >
               <span
                 className={`block rounded-full transition-all duration-300 ${

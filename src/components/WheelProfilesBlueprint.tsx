@@ -31,7 +31,7 @@ export const WheelProfilesBlueprint: React.FC = () => {
     const text = encodeURIComponent(
       `Hello KAYES INDUSTRIES PVT LTD, I need a technical quotation for ISO Wheel Type: ${profile.code} (${profile.name}) with custom dimensions.`
     );
-    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
+    window.open(`https://wa.me/919150025540?text=${text}`, "_blank", "noopener,noreferrer");
   };
 
   const handleOpenPage5 = () => {
@@ -83,6 +83,8 @@ export const WheelProfilesBlueprint: React.FC = () => {
 
             <LiquidButton
               onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-controls="wheel-grid"
               size="sm"
               className="text-slate-950 font-bold cursor-pointer"
             >
@@ -133,6 +135,8 @@ export const WheelProfilesBlueprint: React.FC = () => {
                   <LiquidButton
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
+                    aria-pressed={selectedCategory === cat.id}
+                    aria-label={`Filter ${cat.label}`}
                     size="sm"
                     className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                       selectedCategory === cat.id
@@ -150,6 +154,7 @@ export const WheelProfilesBlueprint: React.FC = () => {
                 <input
                   type="text"
                   placeholder="Search code (e.g. 1FF6Y, 11V9, 6A2)..."
+                  aria-label="Search wheel profiles"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-9 pr-4 py-2 rounded-xl text-xs bg-white border border-slate-200 focus:ring-2 focus:ring-slate-900 outline-none text-slate-900 placeholder:text-slate-400 transition-all shadow-2xs"
@@ -158,7 +163,7 @@ export const WheelProfilesBlueprint: React.FC = () => {
             </div>
 
             {/* Clean Profile Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="wheel-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProfiles.map((profile) => (
                 <div
                   key={profile.code}

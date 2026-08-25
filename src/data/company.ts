@@ -49,7 +49,7 @@ export const COMPANY_INFO: CompanyInfo = {
   name: "KAYS INDUSTRIES PVT LTD",
   entity: "KAYES INDUSTRIES PVT LTD (Formerly KAYES ENTERPRISES)",
   tagline: "Industrial Diamond Cutting & Grinding Tools",
-  certification: "ISO 9001:2000 Certified Manufacturer",
+  certification: "ISO 9001:2015 Certified Manufacturer",
   facilityHighlight: "Only Manufacturer in India with Fully Automatic Facility",
   motto: "Precision Superabrasives for Glass, Ceramics & Semiconductor Processing",
   website: "https://www.kayesind.com",
@@ -71,6 +71,7 @@ export const COMPANY_INFO: CompanyInfo = {
     phoneOffice3: "2625 0007",
     fax: "+91-44-2624 3302",
     emails: ["sales@kayesind.com", "kn@kayesind.com", "kayes98@gmail.com"],
+    // canonical sales WA is 9150025540
     whatsappLink: "https://wa.me/919150025540?text=Hello%20KAYES%20INDUSTRIES%20PVT%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%20diamond%20tooling%20solutions.",
     catalogPdf: "/docs/Kayes-Diamond-Tools-Catalogue.pdf"
   },

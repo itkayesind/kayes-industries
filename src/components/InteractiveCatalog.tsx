@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CATALOG_PRODUCTS, type ProductItem } from '../data/catalog';
 import { Search, Sparkles, MessageSquare, Download, Check, Eye, X } from 'lucide-react';
 import { LiquidButton } from './ui/liquid-glass-button';
@@ -33,8 +33,27 @@ export const InteractiveCatalog: React.FC = () => {
     const text = encodeURIComponent(
       `Hello KAYES INDUSTRIES PVT LTD, I would like to inquire about specifications and pricing for: ${product.name} (Category: ${product.categoryName}).`
     );
-    window.open(`https://wa.me/919150025540?text=${text}`, '_blank');
+    window.open(`https://wa.me/919150025540?text=${text}`, "_blank", "noopener,noreferrer");
   };
+
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveModalProduct(null);
+    };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, [activeModalProduct]);
+
+  useEffect(() => {
+    if (activeModalProduct) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeModalProduct]);
 
   return (
     <section id="catalog" className="py-24 bg-white border-b border-slate-200 relative overflow-hidden">
@@ -148,6 +167,8 @@ export const InteractiveCatalog: React.FC = () => {
                       <img
                         src={flagshipProduct.image}
                         alt={flagshipProduct.name}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
@@ -197,6 +218,8 @@ export const InteractiveCatalog: React.FC = () => {
                     <img
                       src={product.image}
                       alt={product.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3 flex items-center gap-1.5">
@@ -256,8 +279,17 @@ export const InteractiveCatalog: React.FC = () => {
 
       {/* Technical Spec Modal */}
       {activeModalProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-2xl w-full border border-slate-200 shadow-2xl overflow-hidden animate-scale-up max-h-[90vh] flex flex-col">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeModalProduct.name}
+          onClick={() => setActiveModalProduct(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl max-w-2xl w-full border border-slate-200 shadow-2xl overflow-hidden animate-scale-up max-h-[90vh] flex flex-col"
+          >
             
             <div className="p-6 border-b border-slate-100 flex items-center justify-between">
               <div>
@@ -270,6 +302,7 @@ export const InteractiveCatalog: React.FC = () => {
               </div>
               <button
                 onClick={() => setActiveModalProduct(null)}
+                aria-label="Close dialog"
                 className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
@@ -281,6 +314,8 @@ export const InteractiveCatalog: React.FC = () => {
                 <img
                   src={activeModalProduct.image}
                   alt={activeModalProduct.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
