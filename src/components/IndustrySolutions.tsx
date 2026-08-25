@@ -24,9 +24,9 @@ export const IndustrySolutions: React.FC = () => {
       challenge: "High edge chipping, slow feed rates, micro-cracks leading to furnace breakage during glass tempering.",
       kayesSolution: "Direct-sintered bronze-cobalt pencil edging wheels and thin-wall internal water-cooled core drills calibrated for feed speeds up to 12 m/min with chip-free edge retention.",
       keyProducts: [
-        "1FF6Y & 1EE6Y Pencil Edging Wheels",
-        "Sintered Core Drills with G 1/2\" Belgian Shank",
-        "1A1R Precision Glass Cut-off Wheels",
+        "Metal & Resin Cup Wheels (Flat & Arris)",
+        "Rubber & Cerium Oxide Polishing Wheels",
+        "Sintered Core Drills & CNC Milling Router Bits",
       ],
       targetMachines: "Bavelloni, Bovone, Bottero, Biesse, Schiatti, Lisec, Deeway, HanGlastech, Sunkon, Deeman, Lining, Hisung, Golive"
     },

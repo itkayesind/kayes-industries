@@ -1,10 +1,18 @@
+export interface GlassSectorToolImage {
+  title: string;
+  desc: string;
+  src: string;
+}
+
 export interface GlassSector {
   id: string;
   name: string;
   category: 'flat' | 'precision' | 'advanced' | 'industrial';
   desc: string;
   tooling: string;
+  toolList?: string[];
   image: string;
+  toolImages?: GlassSectorToolImage[];
   tag: string;
 }
 
@@ -90,8 +98,37 @@ export const COMPANY_INFO: CompanyInfo = {
       name: "Architectural Glass",
       category: "flat",
       desc: "Monolithic, laminated, and double-glazed façade glass edge processing, arrissing, and water-jet coring.",
-      tooling: "1FF6Y / 1EE6Y Pencil Edgers & Core Drills",
+      tooling: "Metal & Resin Cup Wheels, Rubber & Cerium Wheels, Drills, Milling Tools, and Polishing Tools",
+      toolList: [
+        "Metal & Resin cup wheel",
+        "Rubber and cerium wheels",
+        "Drills",
+        "Milling tools",
+        "Polishing tools"
+      ],
       image: "/images/industries/architectural-glass.jpg",
+      toolImages: [
+        {
+          title: "Metal & Resin Cup Wheels",
+          desc: "Diamond metal cup wheel & fine resin cup wheel for flat edging and arrissing",
+          src: "/images/products/architectural-glass-cup-wheels.jpg"
+        },
+        {
+          title: "Rubber & Cerium Wheels",
+          desc: "BD-8 rubber composite & cerium oxide wheels for brilliant high-gloss edge finish",
+          src: "/images/products/rubber-cerium-polishing-wheels.jpg"
+        },
+        {
+          title: "Drills & Milling Tools",
+          desc: "Sintered thin-wall core drills (1/2\" Gas) & CNC diamond router milling bits",
+          src: "/images/products/glass-drills-milling-tools.jpg"
+        },
+        {
+          title: "Tooling Showcase",
+          desc: "Complete architectural glass tooling suite with polished edge architectural glass",
+          src: "/images/products/architectural-glass-tooling-showcase.jpg"
+        }
+      ],
       tag: "Façade & Double Glazing"
     },
     {
