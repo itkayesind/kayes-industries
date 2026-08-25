@@ -4,6 +4,17 @@ import { COMPANY_INFO } from '../data/company';
 import { Download, Phone, Mail, Globe, MapPin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const info: unknown = COMPANY_INFO;
+  let gstinLabel = 'GSTIN: Available on request';
+  let cinLabel: string | undefined;
+  if (info && typeof info === 'object' && 'gstin' in info) {
+    const v = info.gstin;
+    if (typeof v === 'string' && v) gstinLabel = `GSTIN: ${v}`;
+  }
+  if (info && typeof info === 'object' && 'cin' in info) {
+    const v = info.cin;
+    if (typeof v === 'string' && v) cinLabel = `CIN: ${v}`;
+  }
   return (
     <footer className="bg-slate-900 text-slate-400 text-xs py-14 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,6 +69,11 @@ export const Footer: React.FC = () => {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
                 <span className="leading-relaxed">{COMPANY_INFO.address.full}</span>
+              </div>
+              <div className="flex flex-wrap gap-3 text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-800">
+                <span>{gstinLabel}</span>
+                {cinLabel && <span>{cinLabel}</span>}
+                <a href="https://maps.google.com/?q=SIDCO+Industrial+Estate+Ambattur+Chennai" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 underline">View on Maps →</a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-slate-500 flex-shrink-0" />

@@ -46,7 +46,7 @@ export const WheelProfilesBlueprint: React.FC = () => {
   };
 
   return (
-    <section id="wheel-types" className="py-20 bg-[#FAF9F6] text-slate-900 border-b border-slate-200 relative overflow-hidden">
+    <section id="wheel-types" className="py-16 sm:py-20 bg-[#FAF9F6] text-slate-900 border-b border-slate-200 relative overflow-hidden">
       
       {/* Subtle background texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
@@ -94,8 +94,8 @@ export const WheelProfilesBlueprint: React.FC = () => {
           </div>
         </div>
 
-        {/* Collapsed Teaser Preview Strip */}
-        {!isExpanded ? (
+        {/* Collapsed Teaser Preview Strip - shown when collapsed */}
+        {!isExpanded && (
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 reveal-on-scroll">
             <div className="space-y-2 text-center sm:text-left">
               <div className="flex items-center justify-center sm:justify-start gap-2">
@@ -118,6 +118,8 @@ export const WheelProfilesBlueprint: React.FC = () => {
 
             <LiquidButton
               onClick={() => setIsExpanded(true)}
+              aria-expanded={isExpanded}
+              aria-controls="wheel-grid"
               size="lg"
               className="text-slate-950 font-bold whitespace-nowrap cursor-pointer shadow-md"
             >
@@ -125,30 +127,29 @@ export const WheelProfilesBlueprint: React.FC = () => {
               <ChevronDown className="w-4 h-4 ml-1" />
             </LiquidButton>
           </div>
-        ) : (
-          /* Expanded Full Directory */
-          <div className="space-y-8 animate-fade-in">
-            {/* Toolbar: Category Pills & Search */}
+        )}
+
+        {/* Directory Toolbar + Grid - progressive */}
+        <div className="space-y-8 animate-fade-in mt-8">
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
               <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 scrollbar-none">
                 {categories.map((cat) => (
-                  <LiquidButton
+                  <button
                     key={cat.id}
+                    type="button"
                     onClick={() => setSelectedCategory(cat.id)}
                     aria-pressed={selectedCategory === cat.id}
                     aria-label={`Filter ${cat.label}`}
-                    size="sm"
-                    className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer border ${
                       selectedCategory === cat.id
-                        ? 'bg-slate-950 text-white shadow-xs'
-                        : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:text-slate-950'
+                        ? 'bg-corporate-900 text-white border-corporate-900 shadow-sm'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:text-slate-900'
                     }`}
                   >
                     <span>{cat.label}</span>
-                  </LiquidButton>
+                  </button>
                 ))}
               </div>
-
               <div className="relative w-full lg:w-72">
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
@@ -164,7 +165,7 @@ export const WheelProfilesBlueprint: React.FC = () => {
 
             {/* Clean Profile Cards Grid */}
             <div id="wheel-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProfiles.map((profile) => (
+              {(isExpanded ? filteredProfiles : filteredProfiles.slice(0,6)).map((profile) => (
                 <div
                   key={profile.code}
                   className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
@@ -246,20 +247,36 @@ export const WheelProfilesBlueprint: React.FC = () => {
               ))}
             </div>
 
-            {/* Bottom Collapse Button */}
+            {/* Progressive Toggle */}
             <div className="flex justify-center pt-4">
-              <LiquidButton
-                onClick={() => setIsExpanded(false)}
-                variant="outline"
-                size="sm"
-                className="text-slate-700 hover:text-slate-950 border-slate-300 cursor-pointer"
-              >
-                <span>Collapse Directory</span>
-                <ChevronUp className="w-4 h-4 ml-1" />
-              </LiquidButton>
+              {!isExpanded ? (
+                filteredProfiles.length>6 && (
+                  <LiquidButton
+                    onClick={() => setIsExpanded(true)}
+                    aria-expanded={isExpanded}
+                    aria-controls="wheel-grid"
+                    size="sm"
+                    className="text-slate-950 font-bold cursor-pointer"
+                  >
+                    <span>Show {filteredProfiles.length-6} more</span>
+                    <ChevronDown className="w-4 h-4 ml-1" />
+                  </LiquidButton>
+                )
+              ) : (
+                <LiquidButton
+                  onClick={() => setIsExpanded(false)}
+                  aria-expanded={isExpanded}
+                  aria-controls="wheel-grid"
+                  variant="outline"
+                  size="sm"
+                  className="text-slate-700 hover:text-slate-950 border-slate-300 cursor-pointer"
+                >
+                  <span>Collapse Directory</span>
+                  <ChevronUp className="w-4 h-4 ml-1" />
+                </LiquidButton>
+              )}
             </div>
-          </div>
-        )}
+        </div>
 
       </div>
     </section>

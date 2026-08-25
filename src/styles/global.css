@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-padding-top: 16px; scroll-behavior: smooth; }
+html { scroll-padding-top: 64px; scroll-behavior: smooth; }
 
 @layer base {
   html {

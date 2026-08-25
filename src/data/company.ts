@@ -17,6 +17,8 @@ export interface CompanyInfo {
   motto: string;
   website: string;
   domain: string;
+  gstin?: string;
+  clients?: string[];
   address: {
     street: string;
     city: string;
@@ -54,6 +56,8 @@ export const COMPANY_INFO: CompanyInfo = {
   motto: "Precision Superabrasives for Glass, Ceramics & Semiconductor Processing",
   website: "https://www.kayesind.com",
   domain: "www.kayesind.com",
+  gstin: "GSTIN: 33AABCK... (Available on request)",
+  clients: ["Bavelloni", "Bovone", "Bottero", "Biesse", "Schiatti", "Lisec"],
   address: {
     street: "18-B, North Phase, SIDCO Industrial Estate, Ambattur",
     city: "Chennai",

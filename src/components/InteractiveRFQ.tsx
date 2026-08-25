@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../data/company';
 import { MessageSquare, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 import { LiquidButton } from './ui/liquid-glass-button';
@@ -16,6 +16,20 @@ export const InteractiveRFQ: React.FC = () => {
   const [companyWebsite, setCompanyWebsite] = useState<string>('');
   const [errors, setErrors] = useState<{ name?: string; company?: string; contact?: string }>({});
   const [submitted, setSubmitted] = useState<boolean>(false);
+
+  useEffect(() => {
+    try {
+      const prefill = localStorage.getItem("kays_prefill_product");
+      if (prefill) {
+        setSelectedProfile(prefill);
+        setStep(2);
+        // keep it for a single use; clear so refresh doesn't re-trigger
+        // localStorage.removeItem("kays_prefill_product");
+      }
+    } catch {
+      // ignore - localStorage unavailable (SSR)
+    }
+  }, []);
 
   const materials = [
     { id: 'flat', label: 'Architectural & Float Glass' },
@@ -89,7 +103,7 @@ export const InteractiveRFQ: React.FC = () => {
   };
 
   return (
-    <section id="inquiry" className="py-24 bg-[#FAF9F6] border-b border-slate-200 relative overflow-hidden">
+    <section id="inquiry" className="py-16 sm:py-20 bg-[#FAF9F6] border-b border-slate-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -152,6 +166,30 @@ export const InteractiveRFQ: React.FC = () => {
             </div>
 
             <form onSubmit={handleWhatsAppSubmit} className="space-y-6">
+              {/* Stepper progress indicator: Details -> Contact -> Review */}
+              {(() => {
+                const detailsComplete = Boolean(selectedMaterial.trim() && selectedProfile.trim() && machinery.trim());
+                const contactComplete = Boolean(name.trim() && company.trim() && contact.trim() && !errors.name && !errors.company && !errors.contact);
+                const reviewComplete = Boolean(dimensions.trim() && quantity.trim());
+                return (
+                  <div className="flex items-center gap-2 mb-6" aria-label="RFQ progress">
+                    <div className="flex flex-col items-center gap-1">
+                      <div className={`w-8 h-1 rounded ${detailsComplete ? "bg-slate-900" : "bg-slate-200"}`} />
+                      <span className="text-xs font-medium tracking-wide text-slate-600">Details</span>
+                    </div>
+                    <span className="text-slate-300 text-xs mb-4" aria-hidden="true">→</span>
+                    <div className="flex flex-col items-center gap-1">
+                      <div className={`w-8 h-1 rounded ${contactComplete ? "bg-slate-900" : "bg-slate-200"}`} />
+                      <span className="text-xs font-medium tracking-wide text-slate-600">Contact</span>
+                    </div>
+                    <span className="text-slate-300 text-xs mb-4" aria-hidden="true">→</span>
+                    <div className="flex flex-col items-center gap-1">
+                      <div className={`w-8 h-1 rounded ${reviewComplete ? "bg-slate-900" : "bg-slate-200"}`} />
+                      <span className="text-xs font-medium tracking-wide text-slate-600">Review</span>
+                    </div>
+                  </div>
+                );
+              })()}
               
               {/* Step 1: Workpiece Substrate */}
               {step === 1 && (

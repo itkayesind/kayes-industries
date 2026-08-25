@@ -34,17 +34,17 @@ export const ValuePillars: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
+    <section className="py-16 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-brand-700 uppercase mb-2">
-              <span className="w-6 h-px bg-brand-600"></span>
+            <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-corporate-600 uppercase mb-2">
+              <span className="w-6 h-px bg-accent-500"></span>
               Engineering Superiority
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Why Global Manufacturers Choose <span className="font-serif italic font-normal text-brand-900">KAYES</span>
+              Why Global Manufacturers Choose <span className="font-serif italic font-normal text-corporate-800">KAYES</span>
             </h2>
           </div>
           <p className="text-sm text-slate-600 max-w-md mt-4 md:mt-0 leading-relaxed">
@@ -52,28 +52,27 @@ export const ValuePillars: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pillars.map((pillar) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal-on-scroll">
+          {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
-              <div 
+              <div
                 key={pillar.title}
-                className="blueprint-card rounded-xl p-6 flex flex-col justify-between group"
+                className={`blueprint-card rounded-xl p-6 flex flex-col justify-between group reveal-on-scroll reveal-delay-${index + 1} bg-white border border-slate-200`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-slate-900 text-white flex items-center justify-center shadow-sm group-hover:bg-brand-900 transition-colors">
-                      <Icon className="w-6 h-6 text-sky-400" />
+                    <div className="w-12 h-12 rounded-xl bg-surface-50 border border-surface-200 text-corporate-800 flex items-center justify-center shadow-sm group-hover:bg-corporate-900 group-hover:border-corporate-900 group-hover:text-white transition-colors">
+                      <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-brand-600 transition-colors">
+                    <span className="text-xs font-mono font-bold text-surface-400 group-hover:text-corporate-500 transition-colors">
                       {pillar.number}
                     </span>
                   </div>
 
-                  <span className="inline-block text-[11px] font-mono font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded mb-2">
+                  <span className="inline-block text-[11px] font-mono font-semibold text-accent-700 bg-accent-50 border border-accent-100 px-2 py-0.5 rounded mb-2">
                     {pillar.highlight}
                   </span>
-
                   <h3 className="text-base font-bold text-slate-900 tracking-tight mb-2">
                     {pillar.title}
                   </h3>
@@ -85,7 +84,7 @@ export const ValuePillars: React.FC = () => {
 
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium group-hover:text-slate-900 transition-colors">
                   <span>Factory Standard</span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-brand-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-corporate-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
             );

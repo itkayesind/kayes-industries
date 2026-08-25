@@ -77,7 +77,7 @@ export const GritParticleMatrix: React.FC = () => {
   ];
 
   return (
-    <section id="grit-matrix" className="py-24 bg-[#FAF9F6] border-b border-slate-200 relative overflow-hidden">
+    <section id="grit-matrix" className="py-16 sm:py-20 bg-[#FAF9F6] border-b border-slate-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -130,38 +130,41 @@ export const GritParticleMatrix: React.FC = () => {
           </div>
 
           {/* Stepper Buttons (Clean Light Theme) */}
-          <div role="tablist" className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
-            {gritStages.map((st, idx) => {
-              const isActive = selectedStage === idx;
-              return (
-                <button
-                  key={st.title}
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-label={`Stage ${idx + 1}: ${st.title}`}
-                  onClick={() => setSelectedStage(idx)}
-                  className={`p-4 rounded-2xl text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer ${
-                    isActive
-                      ? 'bg-white border-2 border-slate-900 text-slate-950 shadow-md ring-2 ring-slate-900/5'
-                      : 'bg-[#FAF9F6] border-slate-200 text-slate-700 hover:bg-white hover:border-slate-300'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className={`text-[11px] font-mono font-bold ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
-                      STAGE 0{idx + 1}
-                    </span>
-                    <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold truncate max-w-[45%] ${
-                      isActive ? 'bg-slate-900 text-white' : 'bg-slate-200/80 text-slate-700'
-                    }`}>
-                      {st.meshRange}
-                    </span>
-                  </div>
-                  <div className={`text-xs leading-snug line-clamp-2 ${isActive ? 'font-bold text-slate-950' : 'font-semibold text-slate-700'}`}>
-                    {st.title}
-                  </div>
-                </button>
-              );
-            })}
+          <div className="relative mb-8">
+            <div className="hidden sm:block absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -translate-y-1/2 rounded pointer-events-none" aria-hidden="true"></div>
+            <div role="tablist" className="relative grid grid-cols-2 sm:grid-cols-5 gap-3">
+              {gritStages.map((st, idx) => {
+                const isActive = selectedStage === idx;
+                return (
+                  <button
+                    key={st.title}
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-label={`Stage ${idx + 1}: ${st.title}`}
+                    onClick={() => setSelectedStage(idx)}
+                    className={`p-4 rounded-2xl text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer ${
+                      isActive
+                        ? 'bg-white border-2 border-slate-900 text-slate-950 shadow-md ring-2 ring-slate-900/5'
+                        : 'bg-[#FAF9F6] border-slate-200 text-slate-700 hover:bg-white hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`text-[11px] font-mono font-bold ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                        STAGE 0{idx + 1}
+                      </span>
+                      <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold truncate max-w-[45%] ${
+                        isActive ? 'bg-slate-900 text-white' : 'bg-slate-200/80 text-slate-700'
+                      }`}>
+                        {st.meshRange}
+                      </span>
+                    </div>
+                    <div className={`text-xs leading-snug line-clamp-2 ${isActive ? 'font-bold text-slate-950' : 'font-semibold text-slate-700'}`}>
+                      {st.title}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Active Stage Technical Details */}
@@ -201,6 +204,18 @@ export const GritParticleMatrix: React.FC = () => {
                 <div className="flex justify-between py-1">
                   <span className="text-slate-500">MRR Rate:</span>
                   <span className="font-bold text-cyan-900">{gritStages[selectedStage].materialRemovalRate}</span>
+                </div>
+              </div>
+              <div className="pt-2">
+                <div className="flex justify-between text-[10px] font-mono text-slate-500 mb-1">
+                  <span>Coarse</span>
+                  <span>Mirror</span>
+                </div>
+                <div className="relative w-full h-2 bg-gradient-to-r from-slate-300 via-amber-400 to-cyan-600 rounded">
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 bg-white border-2 border-slate-900 rounded-full shadow"
+                    style={{ left: `${10 + selectedStage * 20}%` }}
+                  ></div>
                 </div>
               </div>
             </div>

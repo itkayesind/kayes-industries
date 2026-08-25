@@ -9,20 +9,33 @@ import { CorporateProfile } from '../components/CorporateProfile';
 import { InteractiveRFQ } from '../components/InteractiveRFQ';
 import { Footer } from '../components/Footer';
 import { AssistedSectionNav } from '../components/AssistedSectionNav';
+import { SmartHeader } from '../components/SmartHeader';
+import { TrustStrip } from '../components/TrustStrip';
+import { ValuePillars } from '../components/ValuePillars';
+import { ClientMarquee } from '../components/ClientMarquee';
+import { MobileFAB } from '../components/MobileFAB';
 ---
 
 <Layout>
   <!-- Floating Assisted Section Navigator -->
   <AssistedSectionNav client:load />
 
+  <!-- Scroll-triggered Smart Header (transparent over hero, solid after) -->
+  <SmartHeader client:load />
+
   <!-- Main Content -->
   <main id="main-content" class="flex-grow">
     <!-- Brand Entrance Screen (Full Viewport Centered on Visit/Refresh) -->
     <Hero client:load />
 
+    <!-- Trust Strip directly under hero -->
+    <TrustStrip />
+    <!-- Why Kays - Value Pillars -->
+    <ValuePillars client:visible />
     <!-- Glass Sectors & Semiconductor/Ceramic R&D Overview (Split Showcase) -->
     <IndustriesOverview client:idle />
-
+    <!-- Machine Compatibility Marquee -->
+    <ClientMarquee client:visible />
     <!-- Technical Product Catalog Grid (Bento Grid) -->
     <InteractiveCatalog client:idle />
 
@@ -39,6 +52,10 @@ import { AssistedSectionNav } from '../components/AssistedSectionNav';
     <InteractiveRFQ client:idle />
   </main>
 
+  <!-- Mobile WhatsApp FAB (md:hidden) -->
+  <MobileFAB client:load />
+
   <!-- Corporate Footer -->
   <Footer client:idle />
 </Layout>
+

@@ -35,7 +35,7 @@ export const IndustriesOverview: React.FC = () => {
   };
 
   return (
-    <section id="industries-overview" className="py-24 bg-[#FAF9F6] border-b border-slate-200/80 relative overflow-hidden">
+    <section id="industries-overview" className="py-16 sm:py-20 bg-[#FAF9F6] border-b border-slate-200/80 relative overflow-hidden">
       
       {/* Ambient background soft glow */}
       <div className="absolute top-1/4 -right-32 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none" />
@@ -69,10 +69,12 @@ export const IndustriesOverview: React.FC = () => {
         </div>
 
         {/* Filter Category Pills */}
+        {/* Filter Category Pills - solid buttons (not LiquidButton) to avoid glass white-on-white */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-8 scrollbar-none reveal-on-scroll">
           {categories.map((cat) => (
-            <LiquidButton
+            <button
               key={cat.id}
+              type="button"
               onClick={() => {
                 setSelectedCategory(cat.id);
                 const firstMatch = COMPANY_INFO.glassSectors.find(
@@ -82,16 +84,15 @@ export const IndustriesOverview: React.FC = () => {
               }}
               aria-pressed={selectedCategory === cat.id}
               aria-label={`Filter ${cat.label}`}
-              size="sm"
-              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 cursor-pointer border ${
                 selectedCategory === cat.id
-                  ? 'bg-slate-950 text-white shadow-xs'
-                  : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:text-slate-950'
+                  ? 'bg-corporate-900 text-white border-corporate-900 shadow-sm'
+                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:text-slate-900'
               }`}
             >
               {cat.id === 'advanced' && <Sparkles className="w-3 h-3 text-amber-500 mr-1" />}
               <span>{cat.label}</span>
-            </LiquidButton>
+            </button>
           ))}
         </div>
 
@@ -118,15 +119,7 @@ export const IndustriesOverview: React.FC = () => {
                   className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0 border border-slate-200">
-                      <img
-                        src={sector.image}
-                        alt={sector.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <img src={sector.image} alt={sector.name} loading="lazy" decoding="async" className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl object-cover border border-slate-200 flex-shrink-0" />
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
