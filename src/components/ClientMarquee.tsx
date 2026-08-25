@@ -1,6 +1,6 @@
 import { COMPANY_INFO } from '../data/company';
 
-const fallbackClients = ["Bavelloni", "Bovone", "Bottero", "Biesse", "Schiatti", "Lisec"];
+const fallbackClients = ["Bavelloni", "Bovone", "Bottero", "Biesse", "Schiatti", "Lisec", "Deeway", "HanGlastech", "Sunkon", "Deeman", "Lining", "Hisung", "Golive"];
 
 export const ClientMarquee: React.FC = () => {
   const clients = COMPANY_INFO.clients ?? fallbackClients;
@@ -52,7 +52,7 @@ export const ClientMarquee: React.FC = () => {
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 22s linear infinite;
+          animation: marquee 30s linear infinite;
           width: max-content;
         }
         @media (prefers-reduced-motion: reduce) {

@@ -57,7 +57,7 @@ export const COMPANY_INFO: CompanyInfo = {
   website: "https://www.kayesind.com",
   domain: "www.kayesind.com",
   gstin: "GSTIN: 33AABCK... (Available on request)",
-  clients: ["Bavelloni", "Bovone", "Bottero", "Biesse", "Schiatti", "Lisec"],
+  clients: ["Bavelloni", "Bovone", "Bottero", "Biesse", "Schiatti", "Lisec", "Deeway", "HanGlastech", "Sunkon", "Deeman", "Lining", "Hisung", "Golive"],
   address: {
     street: "18-B, North Phase, SIDCO Industrial Estate, Ambattur",
     city: "Chennai",

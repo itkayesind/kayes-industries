@@ -27,9 +27,8 @@ export const IndustrySolutions: React.FC = () => {
         "1FF6Y & 1EE6Y Pencil Edging Wheels",
         "Sintered Core Drills with G 1/2\" Belgian Shank",
         "1A1R Precision Glass Cut-off Wheels",
-        "Continuous Rim Chamfer Discs"
       ],
-      targetMachines: "Bavelloni, Bovone, Bottero, Biesse, Schiatti, Lisec"
+      targetMachines: "Bavelloni, Bovone, Bottero, Biesse, Schiatti, Lisec, Deeway, HanGlastech, Sunkon, Deeman, Lining, Hisung, Golive"
     },
     {
       id: "automotive",
