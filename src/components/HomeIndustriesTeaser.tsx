@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../data/company';
+import { X } from 'lucide-react';
 
 const toolImageMap: Record<string, Record<string, string>> = {
   'architectural': {
@@ -44,6 +45,14 @@ const toolImageMap: Record<string, Record<string, string>> = {
 
 export const HomeIndustriesTeaser: React.FC = () => {
   const [activeTool, setActiveTool] = useState<Record<string, string>>({});
+  const [lightbox, setLightbox] = useState<{ src: string; title: string; desc: string } | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null); };
+    if (lightbox) { document.body.style.overflow = 'hidden'; window.addEventListener('keydown', onKey); }
+    else { document.body.style.overflow = ''; }
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+  }, [lightbox]);
 
   return (
     <section className="py-10 bg-white border-b border-slate-200">
@@ -70,36 +79,28 @@ export const HomeIndustriesTeaser: React.FC = () => {
                 <div className="p-4 flex-1 flex flex-col">
                   <h3 className="text-sm font-semibold text-slate-900">{s.name}</h3>
                   <p className="mt-1 text-xs text-slate-600 line-clamp-2">{s.desc}</p>
-                  
                   {s.applications && s.applications.length > 0 && (
                     <div className="mt-3">
                       <p className="text-[11px] font-semibold tracking-wide uppercase text-slate-500">Application Visuals</p>
                       <div className="mt-1.5 grid grid-cols-2 gap-2">
                         {s.applications.map((app) => (
-                          <div key={app.code} className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-                            <img src={app.src} alt={app.title} className="w-full h-20 object-cover" loading="lazy" />
+                          <button key={app.code} onClick={() => setLightbox({ src: app.src, title: app.title, desc: app.desc })} className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 text-left hover:border-slate-300 hover:shadow-sm transition-all group">
+                            <img src={app.src} alt={app.title} className="w-full h-20 object-cover group-hover:opacity-90" loading="lazy" />
                             <div className="p-1.5">
                               <p className="text-[11px] font-medium text-slate-800 leading-tight line-clamp-1">{app.title}</p>
                               <p className="text-[10px] text-slate-500 line-clamp-1">{app.code}</p>
                             </div>
-                          </div>
+                          </button>
                         ))}
                       </div>
                     </div>
                   )}
-
                   {toolList.length > 0 && (
                     <div className="mt-3">
                       <p className="text-[11px] font-semibold tracking-wide uppercase text-slate-500">Tooling — tap to view photo</p>
                       <div className="mt-1.5 flex flex-wrap gap-1.5">
                         {toolList.map((tool) => (
-                          <button
-                            key={tool}
-                            onClick={() => setActiveTool(prev => ({ ...prev, [s.id]: tool }))}
-                            className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${selectedTool === tool ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'}`}
-                          >
-                            {tool}
-                          </button>
+                          <button key={tool} onClick={() => setActiveTool(prev => ({ ...prev, [s.id]: tool }))} className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${selectedTool === tool ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'}`}>{tool}</button>
                         ))}
                       </div>
                       <div className="mt-3 border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
@@ -111,7 +112,6 @@ export const HomeIndustriesTeaser: React.FC = () => {
                       </div>
                     </div>
                   )}
-
                   <div className="mt-3 pt-3 border-t border-slate-100">
                     <p className="text-xs text-slate-500 line-clamp-1">{s.tooling}</p>
                     <a href={`/products#${s.id === 'architectural' ? 'architecture' : s.id === 'watch-glass' ? 'watch' : s.id === 'scientific' ? 'watch' : s.id === 'semiconductor' ? 'custom' : s.id === 'appliance' ? 'diamond-wheels' : s.id === 'bottles' ? 'custom' : s.id === 'solar' ? 'grinding' : s.id}`} className="mt-2 inline-flex text-xs font-semibold text-slate-900 hover:underline">View in Products →</a>
@@ -123,6 +123,15 @@ export const HomeIndustriesTeaser: React.FC = () => {
         </div>
         <a href="/products" className="sm:hidden mt-4 inline-flex text-sm font-semibold text-slate-700">View All Products →</a>
       </div>
+      {lightbox && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={() => setLightbox(null)}>
+          <button onClick={() => setLightbox(null)} aria-label="Close" className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-slate-100"><X className="w-5 h-5" /></button>
+          <div className="max-w-2xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <img src={lightbox.src} alt={lightbox.title} className="w-full max-h-[65vh] object-contain bg-slate-50" />
+            <div className="p-4 bg-white border-t border-slate-200"><div className="text-sm font-bold text-slate-900">{lightbox.title}</div><p className="text-xs text-slate-600 mt-1">{lightbox.desc}</p></div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

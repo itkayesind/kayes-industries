@@ -8,7 +8,7 @@ const PRODUCT_SUBS = [
   { label: 'Drills', href: '/products#drills' },
   { label: 'Grinding Wheels', href: '/products#grinding' },
   { label: 'Polishing Wheels', href: '/products#polishing' },
-  { label: 'Resin Wheels', href: '/products#resin' },
+  { label: 'Resin Wheels', href: '/products#resin-wheels' },
   { label: 'Custom Tools', href: '/products#custom' },
 ];
 
