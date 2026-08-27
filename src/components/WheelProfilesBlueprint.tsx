@@ -3,11 +3,34 @@ import { WHEEL_PROFILES, type WheelProfile } from '../data/wheelProfiles';
 import { Search, Compass, ArrowRight, MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
 import { LiquidButton } from './ui/liquid-glass-button';
 
+const ProfileDiagram: React.FC<{ code: string }> = ({ code }) => {
+  const c = code.toUpperCase();
+  let path = "M10 10 H70 V30 H10 Z";
+  let note = "D×H";
+  if (c.startsWith("6A2") || c.startsWith("6A9")) { path = "M15 8 H65 V18 H55 V32 H25 V18 H15 Z"; note = "D×W×H cup"; }
+  else if (c.startsWith("11A2") || c.startsWith("11V9") || c.startsWith("11B2")) { path = "M20 8 L60 8 L65 32 L15 32 Z"; note = "D×W×H flare"; }
+  else if (c.startsWith("12A2")) { path = "M18 12 L62 12 L60 28 L20 28 Z"; note = "D×W×H dish"; }
+  else if (c.startsWith("1A1") && !c.includes("F")) { path = "M10 14 H70 V26 H10 Z"; note = "D×T×H"; }
+  else if (c.includes("FF") || c.includes("EE")) { path = "M10 14 H60 C70 14 70 26 60 26 H10 Z"; note = "D×R×H"; }
+  else if (c.startsWith("3A2")) { path = "M25 10 H55 V30 H45 V15 H35 V30 H25 Z"; note = "OD×ID×H drill"; }
+  else if (c.startsWith("14A1") || c.startsWith("3A1")) { path = "M10 14 H70 V18 H60 V26 H20 V18 H10 Z"; note = "D×T×H hub"; }
+  else if (c.startsWith("9A3")) { path = "M15 8 H65 V14 H55 V26 H25 V14 H15 Z"; note = "D×W×H double"; }
+  else if (c.startsWith("W")) { path = "M30 5 L50 5 L50 35 L30 35 Z M35 35 L35 38 L45 38 L45 35 Z"; note = "d×L shank"; }
+  return (
+    <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 flex items-center justify-center gap-2">
+      <svg width="88" height="36" viewBox="0 0 80 40" className="text-slate-800">
+        <path d={path} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        <circle cx="40" cy="20" r="1.2" fill="currentColor" opacity="0.3" />
+      </svg>
+      <span className="text-[10px] font-mono text-slate-500">{note}</span>
+    </div>
+  );
+};
+
 export const WheelProfilesBlueprint: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-
   const categories = [
     { id: 'all', label: 'All Profiles' },
     { id: 'cup', label: 'Cup & Dish Wheels' },
@@ -186,6 +209,9 @@ export const WheelProfilesBlueprint: React.FC = () => {
                         {profile.typicalBond}
                       </span>
                     </div>
+
+                    {/* Engineering Profile Diagram - alongside dims, replicating PDF */}
+                    <ProfileDiagram code={profile.code} />
 
                     {/* Profile Name & Description */}
                     <div>

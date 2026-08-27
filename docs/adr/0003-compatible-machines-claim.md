@@ -1,0 +1,3 @@
+# Compatible Machines as Compatibility Claim, Not Client List
+
+`COMPANY_INFO.clients` was rendered as a marquee implying endorsement. We rename the concept to Compatible Machine and render as "Compatible with leading CNC platforms" (Bavelloni, Bottero, Biesse, Schiatti, Lisec, Deeway, HanGlastech, Sunkon, etc.) plus a generic "Indian Made Machines (standard 1/2\" Gas shank / 22mm bore)" text tile - no local brand logos. This is a marketing compatibility claim, not certification; wording must stay "compatible with" to avoid support liability for every local jig. Changing it later would require correcting public claims and support scripts.

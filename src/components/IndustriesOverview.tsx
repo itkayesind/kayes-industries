@@ -9,7 +9,8 @@ import {
   ChevronDown, 
   Sparkles, 
   Image as ImageIcon, 
-  Wrench 
+  Wrench,
+  Layers
 } from 'lucide-react';
 import { LiquidButton } from './ui/liquid-glass-button';
 
@@ -111,7 +112,10 @@ export const IndustriesOverview: React.FC = () => {
           {filteredSectors.map((sector) => {
             const isExpanded = expandedSectorId === sector.id;
             const isAdvanced = sector.category === 'advanced';
-            const currentMainImage = activeImageMap[sector.id] || sector.image;
+            const currentMainImage = activeImageMap[sector.id] || sector.applications?.[0]?.src || sector.image;
+
+            const activeApp = sector.applications?.find(a => a.src === currentMainImage);
+            const activeTool = sector.toolImages?.find(t => t.src === currentMainImage);
 
             return (
               <div
@@ -131,7 +135,7 @@ export const IndustriesOverview: React.FC = () => {
                 >
                   <div className="flex items-center gap-4">
                     <img
-                      src={sector.image}
+                      src={sector.applications?.[0]?.src || sector.image}
                       alt={sector.name}
                       loading="lazy"
                       decoding="async"
@@ -178,77 +182,87 @@ export const IndustriesOverview: React.FC = () => {
                             decoding="async"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                           <div className="absolute bottom-3 left-3 right-3 text-white">
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-[11px] font-semibold border border-white/20">
-                              {currentMainImage === sector.image ? (
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[11px] font-semibold border border-white/20">
+                              {activeApp ? (
                                 <>
-                                  <Building2 className="w-3 h-3 text-cyan-400" />
-                                  <span>{sector.name} Application</span>
+                                  <span className="font-mono text-cyan-300 font-bold">{activeApp.code}</span>
+                                  <span>&bull; {activeApp.title}</span>
+                                </>
+                              ) : activeTool ? (
+                                <>
+                                  <Wrench className="w-3 h-3 text-amber-400" />
+                                  <span>{activeTool.title}</span>
                                 </>
                               ) : (
                                 <>
-                                  <Wrench className="w-3 h-3 text-amber-400" />
-                                  <span>
-                                    {sector.toolImages?.find(t => t.src === currentMainImage)?.title || 'Tooling Showcase'}
-                                  </span>
+                                  <Building2 className="w-3 h-3 text-cyan-400" />
+                                  <span>{sector.name} Application</span>
                                 </>
                               )}
                             </span>
                           </div>
                         </div>
 
-                        {/* Interactive Gallery Thumbnails (Building + Tools) */}
-                        {sector.toolImages && sector.toolImages.length > 0 && (
-                          <div className="space-y-1.5">
-                            <div className="flex items-center justify-between text-[11px] text-slate-500 font-mono px-0.5">
-                              <span className="flex items-center gap-1 font-bold text-slate-700 uppercase tracking-wider">
-                                <ImageIcon className="w-3 h-3 text-cyan-700" /> Gallery View
-                              </span>
-                              <span>Click to preview</span>
-                            </div>
-                            <div className="grid grid-cols-5 gap-1.5">
-                              {/* Primary Sector / Building Thumbnail */}
+                        {/* Interactive Gallery Thumbnails (Applications + Tools) */}
+                        <div className="space-y-1.5">
+                          <div className="flex items-center justify-between text-[11px] text-slate-500 font-mono px-0.5">
+                            <span className="flex items-center gap-1 font-bold text-slate-700 uppercase tracking-wider">
+                              <ImageIcon className="w-3 h-3 text-cyan-700" /> Showcase Gallery
+                            </span>
+                            <span>Click to preview</span>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {/* Applications Thumbnails */}
+                            {sector.applications?.map((app) => (
                               <button
+                                key={app.code}
                                 type="button"
-                                onClick={() => setActiveImageMap(prev => ({ ...prev, [sector.id]: sector.image }))}
-                                className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
-                                  currentMainImage === sector.image
-                                    ? 'border-corporate-600 ring-2 ring-corporate-500/20 shadow-sm'
+                                onClick={() => setActiveImageMap(prev => ({ ...prev, [sector.id]: app.src }))}
+                                className={`relative w-14 h-14 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                                  currentMainImage === app.src
+                                    ? 'border-cyan-600 ring-2 ring-cyan-500/30 shadow-sm'
                                     : 'border-slate-200 opacity-70 hover:opacity-100'
                                 }`}
-                                title="Building & Application"
+                                title={`${app.code}: ${app.title}`}
                               >
                                 <img
-                                  src={sector.image}
-                                  alt={`${sector.name} Building`}
+                                  src={app.src}
+                                  alt={app.title}
                                   className="w-full h-full object-cover"
                                 />
+                                <span className="absolute bottom-0 inset-x-0 bg-black/70 text-[8px] font-mono font-bold text-white text-center py-0.5">
+                                  {app.code}
+                                </span>
                               </button>
+                            ))}
 
-                              {/* Tool Image Thumbnails */}
-                              {sector.toolImages.map((tool, idx) => (
-                                <button
-                                  key={idx}
-                                  type="button"
-                                  onClick={() => setActiveImageMap(prev => ({ ...prev, [sector.id]: tool.src }))}
-                                  className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
-                                    currentMainImage === tool.src
-                                      ? 'border-corporate-600 ring-2 ring-corporate-500/20 shadow-sm'
-                                      : 'border-slate-200 opacity-70 hover:opacity-100'
-                                  }`}
-                                  title={tool.title}
-                                >
-                                  <img
-                                    src={tool.src}
-                                    alt={tool.title}
-                                    className="w-full h-full object-cover"
-                                  />
-                                </button>
-                              ))}
-                            </div>
+                            {/* Tooling Thumbnails */}
+                            {sector.toolImages?.map((tool, idx) => (
+                              <button
+                                key={`tool-${idx}`}
+                                type="button"
+                                onClick={() => setActiveImageMap(prev => ({ ...prev, [sector.id]: tool.src }))}
+                                className={`relative w-14 h-14 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                                  currentMainImage === tool.src
+                                    ? 'border-amber-500 ring-2 ring-amber-500/30 shadow-sm'
+                                    : 'border-slate-200 opacity-70 hover:opacity-100'
+                                }`}
+                                title={`Tool: ${tool.title}`}
+                              >
+                                <img
+                                  src={tool.src}
+                                  alt={tool.title}
+                                  className="w-full h-full object-cover"
+                                />
+                                <span className="absolute bottom-0 inset-x-0 bg-amber-950/80 text-[8px] font-mono text-amber-200 text-center py-0.5">
+                                  TOOL
+                                </span>
+                              </button>
+                            ))}
                           </div>
-                        )}
+                        </div>
                       </div>
 
                       {/* Details & Tooling Specifications */}
@@ -294,34 +308,42 @@ export const IndustriesOverview: React.FC = () => {
                           )}
                         </div>
 
-                        {/* Tooling Showcase Cards if available */}
-                        {sector.toolImages && sector.toolImages.length > 0 && (
+                        {/* Application Showcase Cards */}
+                        {sector.applications && sector.applications.length > 0 && (
                           <div className="space-y-2">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-brand block">
-                              Tooling Portfolio
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-brand flex items-center gap-1">
+                              <Layers className="w-3 h-3 text-cyan-600" />
+                              Processed Products &amp; Applications
                             </span>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                              {sector.toolImages.map((tool, idx) => (
+                              {sector.applications.map((app) => (
                                 <div
-                                  key={idx}
-                                  onClick={() => setActiveImageMap(prev => ({ ...prev, [sector.id]: tool.src }))}
+                                  key={app.code}
+                                  onClick={() => setActiveImageMap(prev => ({ ...prev, [sector.id]: app.src }))}
                                   className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center gap-3 ${
-                                    currentMainImage === tool.src
+                                    currentMainImage === app.src
                                       ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
                                       : 'bg-white text-slate-800 border-slate-200 hover:border-slate-300'
                                   }`}
                                 >
                                   <img
-                                    src={tool.src}
-                                    alt={tool.title}
+                                    src={app.src}
+                                    alt={app.title}
                                     className="w-11 h-11 rounded-lg object-cover flex-shrink-0 border border-slate-200/50"
                                   />
                                   <div className="min-w-0 flex-1">
-                                    <div className={`text-xs font-bold font-brand truncate ${currentMainImage === tool.src ? 'text-white' : 'text-slate-900'}`}>
-                                      {tool.title}
+                                    <div className="flex items-center gap-1.5">
+                                      <span className={`text-[9px] font-mono px-1 py-0.2 rounded font-bold ${
+                                        currentMainImage === app.src ? 'bg-cyan-900/80 text-cyan-300' : 'bg-slate-100 text-slate-700'
+                                      }`}>
+                                        {app.code}
+                                      </span>
+                                      <span className={`text-xs font-bold font-brand truncate ${currentMainImage === app.src ? 'text-white' : 'text-slate-900'}`}>
+                                        {app.title}
+                                      </span>
                                     </div>
-                                    <div className={`text-[10px] truncate ${currentMainImage === tool.src ? 'text-slate-300' : 'text-slate-500'}`}>
-                                      {tool.desc}
+                                    <div className={`text-[10px] truncate mt-0.5 ${currentMainImage === app.src ? 'text-slate-300' : 'text-slate-500'}`}>
+                                      {app.desc}
                                     </div>
                                   </div>
                                 </div>
@@ -363,4 +385,3 @@ export const IndustriesOverview: React.FC = () => {
     </section>
   );
 };
-

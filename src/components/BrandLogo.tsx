@@ -13,10 +13,10 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 }) => {
   return (
     <div className={`flex items-center gap-2 sm:gap-3 select-none min-w-0 ${className}`}>
-      {/* Pure Diamond Icon Emblem (No Text) */}
-      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-200 p-1">
+      {/* K logo webp straight from Leslin - no custom SVG */}
+      <div className={`w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center flex-shrink-0 rounded-xl overflow-hidden ${theme === 'dark' ? 'bg-black' : 'bg-black'}`}>
         <img
-          src="/images/brand/kayes-logo-1x1.svg"
+          src="/images/brand/kayes-cropped-logo.webp"
           alt="KAYES Diamond Tools"
           className="w-full h-full object-contain"
         />

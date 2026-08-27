@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BusinessHeader } from '../components/BusinessHeader';
+import { Footer } from '../components/Footer';
+import { COMPANY_INFO } from '../data/company';
+---
+
+<Layout title="Contact Us | KAYES INDUSTRIES PVT LTD" description="Contact KAYES INDUSTRIES PVT LTD, Chennai - phone, email, GST on request, and map.">
+  <BusinessHeader client:load />
+  <main class="flex-grow bg-white">
+    <section class="border-b border-slate-200 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <p class="text-xs font-semibold tracking-widest uppercase text-slate-500">Contact Us</p>
+        <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 font-brand">Get in Touch</h1>
+        <p class="mt-2 text-sm text-slate-600">Plant & Sales Office addresses to be finalized - showing current placeholders. Map will embed once coordinates are shared.</p>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-7">
+          <form class="border border-slate-200 rounded-2xl p-5 bg-white space-y-4" onsubmit="return false">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="text-xs font-medium text-slate-700">Name<input class="mt-1 w-full border border-slate-200 rounded-xl h-10 px-3 text-sm" placeholder="Your name" /></label>
+              <label class="text-xs font-medium text-slate-700">Company<input class="mt-1 w-full border border-slate-200 rounded-xl h-10 px-3 text-sm" placeholder="Company" /></label>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="text-xs font-medium text-slate-700">Phone<input class="mt-1 w-full border border-slate-200 rounded-xl h-10 px-3 text-sm" placeholder="+91 ..." /></label>
+              <label class="text-xs font-medium text-slate-700">Email<input class="mt-1 w-full border border-slate-200 rounded-xl h-10 px-3 text-sm" placeholder="you@company.com" /></label>
+            </div>
+            <label class="text-xs font-medium text-slate-700">Requirement<textarea class="mt-1 w-full border border-slate-200 rounded-xl px-3 py-2 text-sm h-28" placeholder="Tell us your machine, glass type, and tool requirement"></textarea></label>
+            <div class="flex gap-3">
+              <button class="bg-slate-900 text-white text-sm font-semibold rounded-xl px-6 h-10">Send Inquiry</button>
+              <a href={`https://wa.me/${COMPANY_INFO.contacts.mobile.replace(/[^0-9]/g,'')}`} target="_blank" class="inline-flex items-center justify-center border border-slate-200 rounded-xl px-5 h-10 text-sm font-semibold">WhatsApp</a>
+            </div>
+            <p class="text-xs text-slate-500">GST Available on Request • We reply within one business day.</p>
+          </form>
+          <div class="mt-6 border border-slate-200 rounded-2xl p-5 bg-slate-50">
+            <h3 class="text-sm font-semibold text-slate-900">Location</h3>
+            <p class="mt-2 text-sm text-slate-600">{COMPANY_INFO.address.full}</p>
+            <div class="mt-4 bg-white border border-slate-200 rounded-xl h-56 flex items-center justify-center text-xs text-slate-400">Google Maps embed placeholder - will embed once coordinates shared</div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 space-y-4">
+          <div class="border border-slate-200 rounded-2xl p-5 bg-white">
+            <h3 class="text-sm font-semibold text-slate-900">Sales Desk</h3>
+            <p class="mt-2 text-sm text-slate-600">{COMPANY_INFO.contacts.mobile} • {COMPANY_INFO.contacts.emails[0]}</p>
+            <p class="mt-1 text-xs text-slate-500">Secondary: {COMPANY_INFO.contacts.secondaryMobile} • {COMPANY_INFO.contacts.phoneOffice1} / {COMPANY_INFO.contacts.phoneOffice2}</p>
+            <p class="mt-2 text-xs text-slate-500">GST: {COMPANY_INFO.gstin}</p>
+          </div>
+          <div class="border border-slate-200 rounded-2xl p-5 bg-white">
+            <h3 class="text-sm font-semibold text-slate-900">Compatible Machines</h3>
+            <p class="mt-2 text-xs text-slate-600">Compatible with leading CNC platforms: {COMPANY_INFO.clients?.join(', ')} and Indian Made Machines (standard 1/2" Gas shank / 22mm bore).</p>
+          </div>
+          <a href={COMPANY_INFO.contacts.catalogPdf} download class="inline-flex items-center justify-center w-full bg-white border border-slate-200 rounded-xl h-11 text-sm font-semibold hover:border-slate-300">Download Catalogue PDF</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer client:idle />
+</Layout>

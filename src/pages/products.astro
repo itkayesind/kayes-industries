@@ -1,0 +1,459 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BusinessHeader } from '../components/BusinessHeader';
+import { Footer } from '../components/Footer';
+import { LightboxGallery } from '../components/LightboxGallery';
+import { COMPANY_INFO, APPLICATION_IMAGES } from '../data/company';
+import { CATALOG_PRODUCTS } from '../data/catalog';
+import { WHEEL_PROFILES } from '../data/wheelProfiles';
+
+const families = [
+  { id: 'diamond-wheels', label: 'Diamond Wheels', desc: 'Cup, flare and dish wheels for edging & bevelling of flat glass. Metal and resin bonds for chip-free arrissing on high-speed lines.', longDesc: 'Metal & resin cup wheels (6A2, 9A3, 11A2, 12A2, 11V9) for straight-line and CNC edgers. Bore 22/50mm, thickness to suit glass 3-19mm. Compatible with Bavelloni, Bottero straight-line machines.', profiles: ['6A2','9A3','11A2','12A2','11V9','6A9'], appCodes: ['ARCH-INT-01','ARCH-INT-02','AUTO-01','AUTO-02'] },
+  { id: 'drills', label: 'Drills', desc: 'Sintered thin-wall core drills & CNC milling bits for clean, chip-free drilling.', longDesc: '3A2 thin-wall core drills with 1/2" Gas (G½) Belgian shank and internal coolant. OD 4-150mm, wall 0.8-1.2mm for architectural, automotive and laboratory glass.', profiles: ['3A2'], appCodes: ['ARCH-INT-01','LAB-01','APPL-02'] },
+  { id: 'grinding', label: 'Grinding Wheels', desc: 'Peripheral and cup grinding wheels for stock removal and shaping.', longDesc: 'Peripheral wheels 1A1, 3A1, 14A1 and slitting 1A1R (100-350mm). For seaming, slitting and edge grinding of solar and appliance glass.', profiles: ['1A1','3A1','14A1','1A1R'], appCodes: ['SOLAR-01','SOLAR-02','APPL-01','CERAM-02'] },
+  { id: 'polishing', label: 'Polishing Wheels', desc: 'Rubber, cerium and resin polish systems for brilliant high-gloss edge finish.', longDesc: 'BD-8 rubber, cerium oxide and resin polish wheels. 150x22x15 and 200x76.2mm, 8 grits from #50 to #3000 for final polish after cup wheels.', profiles: ['1FF1','1EE1'], appCodes: ['AUTO-01','ARCH-INT-01','BOTTLE-02'] },
+  { id: 'resin-wheels', label: 'Resin Wheels', desc: 'Fine resin cup wheels for arrissing & fine finish.', longDesc: 'Resin bond fine resin cup wheels for arrissing and pencil-edge fine finishing. Low chipping on tempered and low-E glass.', profiles: ['1A1'], appCodes: ['APPL-01','AUTO-02','SOLAR-02'] },
+  { id: 'custom', label: 'Custom Tools', desc: 'Mounted points, stones, dressing tools & profiles made to drawing.', longDesc: 'W mounted points with shaft, HH1/H honing stones, dressers and bespoke profile wheels (4B2, 1E6Q, 1EE6Y) to customer drawing.', profiles: ['W','HH1','14A1','3A1'], appCodes: ['SEMI-01','SEMI-02','CERAM-01','CERAM-02'] },
+];
+
+const archCaptions = [
+  "White Cerium Polishing Wheel 1309SO X3000 - MADE IN ITALY GOMMA SINT. G.MAX 1700",
+  "Black Segmented Cup Wheels 4-pc S280716A #600 - Aluminium 3-Hole Hub, Dark Segmented Rim",
+  "Dark Green Resin Cup Wheels 150-161214 - Continuous Green Bond on Aluminium Bore",
+  "Stub Mushroom Bits C2604A D10 FA - Sintered Grey, 1/2 Gas Thread, Flat Button Head",
+  "CNC Finger Bits 4-pc - Slotted Sintered Tip, 1/2 Gas Thread in Clear Boxes",
+  "Button/Mushroom Drills 5-pc - Sintered, KAYS Stamped, 1/2 Gas Shank Varying Diameters",
+  "Resin Cup POS6 & Metal Cup POS1 Pair S170718J - Dark Green Resin vs Silver Metal Bond",
+  "Diamond Bowl/Cup Drills Large - Dark Grey Sintered Bowl, 1/2 Gas Thread with Flats",
+  "Periphery Grinding Wheels 200x10x76.2 - Grey Continuous Rim, Silver Bore Code 91103/44",
+  "BD-8 Cerium Polishing Wheels 150x22x15 - Salmon Pink Continuous Bond",
+  "Diamond Finger/Router Bit D19 - Slotted Sintered Tip, 1/2 Gas Thread",
+  "Periphery Wheel 200x12x76.2 - Aluminium 3-Hole Bore, Thicker 12mm Rim",
+  "Segmented Diamond Cup Wheel POS1 S070820U - Gold-Speckled, Wide Radial Slots",
+  "Double V-Groove Periphery Wheel - Grey Resin Double-Notch, Silver Bore",
+  "Olive-Green Segmented Wheels x2 - Slotted Segments on Aluminium 3-Hole",
+  "Cerium Wheels 130x35x60 10S40 180 N8P - Salmon Continuous Bond",
+  "Spectrum Segmented Cup POS1 L230720U - Gold-Brown Segments, Wide Slots",
+  "Spectrum Continuous Cup POS2 L080719G - Gold-Brown Solid Bond, No Slots",
+  "Core Drills B20/B21 D20 - Grey Straight Barrel, 1/2 Gas Thread",
+  "PDT Slotted Periphery L241220U POS5 - Olive-Tan Segmented Rim",
+  "PDT Periphery Wheels L190320G - Dark Grey Continuous Rim, PDT Stamped",
+  "PDT Rim Wheel L030321U POS2 - Beige-Tan Continuous Rim, 4-Hole Bore",
+  "Slotted Finger Bits S221026 D20 - Pink-Brown Sintered Tip, 6 Slots, 1/2 Gas",
+  "Chrome Adapters KAYS - 1/2 Gas Male/Female, Hex Flats, Laser Etched",
+  "Core Drills D16 11021 - Grey Diamond Barrel, 1/2 Gas Thread",
+  "Cerium Wheels 10S40 150mm - Salmon Continuous Bond on Granite",
+  "PDT Wheels L1006 POS2 - Beige-Tan Continuous Rim, Aluminium 3-Hole",
+  "Cup/CounterSink Drills D22 - Grey Sintered Cup, 1/2 Gas Female Thread",
+  "Bowl Drills ~100mm Dark Grey - Inverted & Upright 1/2 Gas Shank",
+  "Periphery Wheels on Granite - Left Slotted Segmented, Right Aluminium Back",
+  "Finger Bits KIGD L75-12.6AA - Slotted Grey Tip, 1/2 Gas Barrel",
+  "Cerium Wheels 10S60 - Salmon Continuous Bond, Silver Bore",
+  "Core Drills L75 D39.8AA - Large-Bore Grey Barrel, 1/2 Gas Shank",
+  "Micro Core Drills M22 Size 8 - Small 8mm Sintered Tip, Threaded Barrel",
+  "Periphery Grinding Wheel 200x12x76.2 KAYS 022504 - Dark Grey Continuous Rim",
+];
+
+const autoCaptions = [
+  "KIGD Core Drill D12×75 — Bulk Tray ~60 Small Hollow Drills, Brown Crown Stamped D12-2.4-01TT0818",
+  "KIGD/KAYS Core Drill Assortment — 6 Drills Box Etched C030922T D20-F/A-12 etc.",
+  "KIGD Core Drill D12-2.4×75 — Factory Metal Tray ~60, Grey-Brown Slotted Crown",
+  "Conical Diamond Dresser Pair — 60° Pointed, Slotted Grey Crown, Gold Laser-Etch",
+  "Diamond Router Bit Φ4.5 — Trio Straight-Shank Grey Steel, Copper-Brown Tip",
+  "KIGD Core Drill D23.2×110 — Bulk Array ~15 Large Hollow Drills, Wide Slotted Brown Crown D23.2-4-1109",
+  "KIGD Core Drill Φ9.2×75 — 5 Fine Hollows Stamped KIGD 09.2 300323, 2-Slot Brown Crown",
+  "KIGD Core Drill D20.5 — Pair Hollow Interior vs 1/2 Gas Threaded Base, KIGD Etch",
+  "KIGD Automotive Drill D20.5×L75 — 2 Drills Stamped D20.5 230521-1-5, White Label AUTOMOTIVE DRILLS",
+  "KIGD Core Drill Φ16.8 — 6 Hollows Stamped 16.8 300323, Slotted Brown Crown, Hex Base",
+  "KIGD Core Drill D20.5 TH0711 — 4 Drills TH0711-1.8 on Lace, 3-Slot Brown Crown",
+  "Position 1/2 Segmented Diamond Wheel — Double-Groove Brown Periphery, Marking KIGD D150 B1G",
+  "Automotive Pencil Edging Set — KIGD D150 X H63.5 T16 R2.0×2 BT61 Segmented Wheel + 8 D20.5 Drills",
+  "Metal Bond Pencil Edging Wheel KAYS 3.2mm #140 L220723U — Thin Brown Diamond Rim, Single Groove",
+  "KIGD Core Drill D14.52×110 — Trio Long-Shank Hollows Stamped D14.52-4-TH, 3-Slot Brown Crown",
+  "Position 1/2 Double-Groove Wheel — Hand-Held Edge Detail, Two V-Grooves, Coolant Holes",
+  "KIGD Core Drill D20.5×L75 — 4 Hex-Base Hollows TF0124-1-2-L75 Crown-Up on Glass",
+  "KIGD Core Drill D20.5×L75 Alternate — 4 Drills Stamped TF0124-1-8-L75 Mirror to 17",
+  "KAYS Pencil Edging Wheel 6mm — 4 Gold-Brass Wheels Brown U-Groove, Stamped 6MM",
+  "KIGD Core Drill Family — 4 Mid-Size Hollows on Blue Cloth, 2 Inverted Showing Bore",
+  "KIGD Core Drill Ø16.5×75 — 6 Drills Stamped A240624P Ø16.5-75, Hollow Interior Show",
+  "KIGD Core Drill D39.8AA×L75 — Pair Wide 39.8mm Serrated Brown Crown, Box Labelled L75 D39.8AA",
+  "D1A1 Slitting Disc 3.2mm — 2 Large Flat Discs Etched KAYS 3.2mm A081124P",
+  "Position 1/2 Multi-Groove Wheel — Hand-Held 4×V-Groove Segmented, Grey-Black Periphery",
+  "WINTER Saint-Gobain Pencil Wheel — Stack of 5 Silver Wheels Top Etched WINTER 69260261143",
+  "KAYS Pencil Wheel 3mm×3 #140 — 4 Gold-Brown Triple-Groove Wheels Etched 270525",
+  "KIGD Conical Dresser L75-20.5 — Pair Polished Steel Calibration Cones 60° Point, 1/2 Gas Thread",
+  "Position 1/2 Pencil Wheel — Single Double-Groove Metal-Bond on Bubble Wrap, Rotation Arrow",
+  "KIGD Core Drill Trio L95 Series — L95-7mm, 1/2 Gas Body, L95-24AA C0323 Wide Crown",
+  "KIGD Core Drill D11.3-24 — Set of 10 Small Tapered Hollows, 5 Crown-Up 2-Slot Brown Tip",
+];
+
+const watchCaptions = [
+  "Diamond Slitting Disc 150D×2.0×1.0T 120/140 — Brown Rim Stack of 3 on Silver Hub",
+  "Diamond Flat-Face Lapping Wheel — Dark Grey Wide Rim Silver Body for Bevel Finish",
+  "Diamond Slitting Disc 150D×1.0T — Brown Rim Ultra-Thin Kerf Edge View in Fingers",
+  "Diamond Slitting Disc 80D×1.5T D91 — Brown Rim Silver Hub with Kays Mark",
+  "Diamond Stepped Profile Burr Trio — Gold-Green Ogee/Wave Steel Shank",
+  "Diamond Concave U-Groove Pill Roller Ø60 — Gold Electroplated Wide Channel Silver Sides",
+  "Diamond Peripheral Wheel Ø150 Silver Hub 4-Hole — Thick Dark Rim Boxed",
+  "Diamond Slitting Disc Ø100×8mm — Silver Hub Thick Diamond Periphery",
+  "Electroplated Core Drill ID14.5 0820 — Bronze Tip Threaded Shank Pair",
+  "Diamond Generator Cup OD120×ID110×D20 Kays 190820 — Bronze Rim with ID14.5 Drills Behind",
+  "Diamond Generator Cup Pair OD120×ID110×D20 and Ø46 — Bronze Rim Conical",
+  "Diamond Conical Cup Ø100 Truncated Cone — Full Outside Brown Electroplate for Sapphire Doming",
+  "Diamond Torus Bevel Wheel 12mm — Brown Rim 10-Hole Grey Hub Trio Engraved 12MM",
+  "Diamond Hand File Set 6-Piece — Mixed Flat/Round Taper Needle on Notebook",
+  "Diamond Generator Cup Ø38 Concave — Bronze Resin Hemispherical Bowl Small Vent",
+  "Diamond Slitting Disc 150D×1.0T Brown Rim — Polished Aluminum 3-Hole Boss",
+  "Diamond Slitting Disc Stack Fanned ~Ø90 — Thin Silver Grey 1.0T 5-Disc Set",
+  "Diamond Conical Dresser Pair Ø65 and Ø80 — Bronze Bond 2-Slot Apex M14 Thread",
+  "Diamond Cut-Off Wheel D1A1 300×12×127 D126 Blue Hub — 3-Pack with Dressing Sticks",
+  "Diamond Peripheral Wheel Ø180×12mm — Bronze Rim Silver Hub 3-Hole",
+  "Diamond Peripheral Roller Ø25×20 — Grey-Green Resin Bushing Pair Small Drum",
+  "Diamond Cut-Off Wheel D14A1R 350×14×25.4 — Olive Pair D181/D252 Thin Rim",
+  "Diamond Slitting Disc Ø150×15mm — Brown Rim 15mm Wide 8-Hole Silver Hub",
+  "Diamond Grinding Wheel D1A1 50×20×16 D126 G6/6 — Small Blue Hub Olive Periphery",
+  "Diamond Grooved Pill Wheel 164D×12T×30H 400# — Silver Steel U-Groove Pair",
+  "Diamond U-Groove Pill Roller 6mm and 8mm — Blue Hub Brown Rim 4-Pack Concave",
+  "Diamond Ventilated Cup 8000-000-468-D91 — Tan Resin 12-Hole Steel Body Ø110",
+  "Diamond Contour Drum 120×120×45 D252 — Tall Silver Flanged 4-Screw Cylindrical",
+  "Diamond Double-Groove Bead Wheel DIA34×22.5×8A5 — Brown Resin Twin-Step Pair",
+  "Diamond Cylindrical Drum Ø120×125 — Tall Electroplated Segmented Plain Coat Flanged",
+  "Diamond Generator Cup Set 9043-002-017-D15 / 010-017-064 — Gold Rim Ø15 to Ø64 4-Piece",
+  "Diamond Profile Wheel 9019-400-066 D15 — Silver Stepped Groove Etched",
+  "Diamond Double-Step Profile — Dark Grey Dual-Diameter Resin Rim Fine Seam",
+  "Diamond Generator Cup Group 9043-002-018-D15 / 010-018-064 — Gold Rim 4-Cup Front View",
+  "Diamond Triple-Groove Roller Ø65×40 — Brown Resin Triple U-Channel Grey Hub",
+  "Diamond V-Groove Lapping Wheel Ø150 — Thin Central V-Channel Matte Electroplate",
+  "Diamond Peripheral Drum Ø100×50 — Matte Grey Wide Face Double-Lip",
+  "Diamond Barrel Router Pair 10mm and 12mm — Waisted Electroplated Shank-Mounted",
+];
+
+const newCaptions = [
+  "Resin Polishing Drum X3000 1309SO GOMMA SINTET CE 02 — White Buff Wheel Made in Italy, Floral Fabric Backdrop",
+  "Diamond Ball-Nose Milling/Stubbing Bit Pair C260414 D10 FH10 — Conical Ball-Tip M14 Thread, Grey Diamond on Granite",
+  "Diamond Profile Stubbing Set 5-pc Mushroom/Disc-Top Milling Cutters KAYS M14 Thread on Wood",
+  "CNC Finger Bits 4-pc — Slotted Cylindrical Milling Cutters Threaded Shank, Dark Grey Fluted Tips on Granite",
+  "Diamond Finger Milling Bits 4-pc — Cylindrical Slotted Fluted Cutters M22 Thread on Wood",
+  "Resin Bond Cup Wheels 4-pc Set #600 S280716A KAYS — Black Rubber Slotted Rims on Aluminium Hub",
+  "Grinding/Polishing Wheel Pair Green Resin P03 + Grey Diamond P031 S170718J — Stacked on Granite",
+  "Sintered Thin-Wall Core Drill 2-pc Set — Large Grey Steel Cups M16 Threaded Stud on Granite",
+  "Grinding/Polishing Pair Duplicate Angle — Green Resin P03 + Grey Diamond P031 Alternate Framing",
+  "Core Drill 2-pc Set Duplicate Angle — Large Grey Cups Threaded Shank Alternate Framing",
+  "Resin Polishing Wheel BD-8 150x22x15 P05 S170718J — Pink/Dark Grey Segmented Rim Two Discs",
+  "Metal Bond Flat Wheel 200x12x76.2 — Grey Continuous Disc Centre Bore on White Paper",
+  "Metal Bond Flat Wheel 200x12x76.2 Duplicate — Grey Disc Slightly Shifted Angle",
+  "Diamond Stubbing/Profile Mill 616/C16 — Tapered Conical Diamond Tip Threaded Shank",
+  "Metal Bond Flat Wheel 200x10x76.2 — Grey Thin Disc Hand-Held Edge View",
+  "Segmented Calibration Wheel POS1 S070820U Spectrum — Grey Speckled Rim on Hand, Foam Box",
+  "Resin Bond Cup 130x35x60 180N8P 10S40 TERRACOTTA Made in China — Orange Bevel Resin Body",
+  "Metal Bond Double-Groove Profile Wheel — Grey Steel Body Dual V-Grooves Diamond Edge on Wood",
+  "Segmented Calibration Wheel POS1 L230720U Spectrum — Grey Speckled Rim Hand-Held Alternate Label",
+  "Continuous Rim Grinding Wheel POS2 L080719G Spectrum — Gold/Brown Continuous Diamond Rim on Hand",
+  "Resin Rim PDT Cup Wheels 3-pc L190320G — Olive/Dark Grey Rubber-Segmented Rims 4-Bolt Hubs on Wood",
+  "Turbo Segmented Cup Wheels 2-pc — Dark Olive Segmented Rims Aluminium Body 2+2 Holes",
+  "Single PDT Rim Wheel L030321U — Dark Olive Slotted Rubber Rim on Aluminium Hub",
+  "Threaded Steel Adapters 2-pc KAYS — Polished Stainless Male/Female Collars on Granite",
+  "Sintered Incremental Core Drills 4-pc 20 SS1 — Dark Grey Stepped-Length Thin-Wall Cups Copper Band M20",
+  "PDT Resin Rim Wheel + Spacer L1006 POS.2 L024170 — Light Beige Segmented Rim Top on Bare Hub Bottom",
+  "Tapered Diamond Finger Cutter 3221026 Size 20 — Conical Slotted Diamond Tip M22 Thread Isolated on White",
+  "PDT Slotted Rim Wheel L241220U 2-pc — Olive Green Segmented Rim Front vs Bare Back",
+  "Resin Cup Wheels Orange 10S40 Terracotta 2-pc — Bevelled Orange Resin Cups Front vs Recess",
+  "Slotted Rim Cup Wheel Dark Grey — Segmented Slotted Rubber Rim 3-Hole Hub Front vs Back",
+  "Sintered Core Drill Set 3-pc D16 1021 — Short Grey Steel Cups Copper Edge M14 Thread on Wood",
+  "Large Thin-Wall Sintered Core Drill 2-pc ~85mm — Grey Steel Cup Threaded Stud on Foam Box",
+  "Sintered Needle Core Drills M22 Size 8 2-pc — Extra-Long Grey Bodies Narrow Copper Tip Slotted Crown",
+];
+---
+
+<Layout title="Products | KAYES INDUSTRIES PVT LTD" description="Diamond wheels, drills, polishing and resin wheels by KAYES INDUSTRIES PVT LTD. ISO profiles 6A2, 11A2, 1FF1 etc. with machine compatibility.">
+  <BusinessHeader client:load />
+  <main class="flex-grow bg-white">
+    <section class="border-b border-slate-200 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <p class="text-xs font-semibold tracking-widest uppercase text-slate-500">Products</p>
+        <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 font-brand">Tool Catalogue</h1>
+        <p class="mt-2 text-sm text-slate-600 max-w-2xl">Browse by ToolFamily — select a category on the left. Each profile links to ISO drawing + dimensions. Download the full PDF for the complete matrix.</p>
+        <div class="mt-4 flex gap-2">
+          <a href={COMPANY_INFO.contacts.catalogPdf} download class="inline-flex items-center text-sm font-semibold bg-slate-900 text-white rounded-xl px-5 h-10">Download Catalogue PDF</a>
+          <a href="/contact" class="inline-flex items-center text-sm font-semibold border border-slate-200 rounded-xl px-5 h-10">Request Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <aside class="lg:col-span-3">
+          <div class="sticky top-[88px] border border-slate-200 rounded-2xl bg-white overflow-hidden">
+            <div class="bg-slate-900 text-white px-4 py-3">
+              <h2 class="text-sm font-semibold">Product Categories</h2>
+              <p class="text-[11px] text-slate-300">Select to view details</p>
+            </div>
+            <nav class="p-2 space-y-1">
+              {families.map((f) => (
+                <a href={`#${f.id}`} class="block rounded-xl px-3 py-2.5 hover:bg-slate-50 border border-transparent hover:border-slate-200">
+                  <div class="text-sm font-semibold text-slate-900">{f.label}</div>
+                  <div class="text-xs text-slate-500 line-clamp-2">{f.desc}</div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    {f.profiles.slice(0,3).map((p) => <span class="text-[10px] font-mono bg-slate-100 border border-slate-200 rounded-full px-1.5 py-0.5">{p}</span>)}
+                    {f.profiles.length > 3 && <span class="text-[10px] text-slate-400">+{f.profiles.length-3}</span>}
+                  </div>
+                </a>
+              ))}
+              <div class="pt-2 border-t border-slate-100 space-y-1">
+                <a href="#applications" class="block rounded-xl px-3 py-2 text-xs font-semibold text-cyan-900 bg-cyan-50/70 hover:bg-cyan-100/70 border border-cyan-200/60">
+                  ✦ Application Showcase (16)
+                </a>
+                <a href="#whatsapp-stock" class="block rounded-xl px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50">
+                  WhatsApp Stock (37)
+                </a>
+                <a href="#architecture" class="block rounded-xl px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50">
+                  Architecture Glass (35)
+                </a>
+                <a href="#automotive" class="block rounded-xl px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50">
+                  Automotive Glass (30)
+                </a>
+                <a href="#watch" class="block rounded-xl px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50">
+                  Watch & Scientific (38)
+                </a>
+                <a href="#special" class="block rounded-xl px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50">
+                  Special Tools (28)
+                </a>
+              </div>
+            </nav>
+            <div class="border-t border-slate-200 p-3 bg-slate-50">
+              <p class="text-xs text-slate-600">Need help? <a href="/contact" class="font-semibold text-slate-900">Contact Sales</a></p>
+            </div>
+          </div>
+        </aside>
+
+        <div class="lg:col-span-9 space-y-8">
+          {families.map((f) => (
+            <section id={f.id} class="scroll-mt-28 border border-slate-200 rounded-2xl bg-white overflow-hidden">
+              <div class="px-5 py-4 border-b border-slate-200 bg-slate-50">
+                <h2 class="text-lg font-bold text-slate-900">{f.label}</h2>
+                <p class="mt-1 text-sm text-slate-600">{f.longDesc}</p>
+              </div>
+              <div class="p-5 space-y-5">
+                <div>
+                  <h3 class="text-xs font-semibold tracking-widest uppercase text-slate-500">ISO Profiles & Stock</h3>
+                  <div class="mt-2 flex flex-wrap gap-1.5">
+                    {f.profiles.map((p) => {
+                      const wp = WHEEL_PROFILES.find((w) => w.code === p);
+                      return <span class="text-xs font-mono bg-white border border-slate-200 rounded-full px-2.5 py-1">{p}{wp ? ` · ${wp.name}` : ''}</span>
+                    })}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 class="text-xs font-semibold tracking-widest uppercase text-slate-500">Tooling Catalogue Showcase</h3>
+                  <div class="mt-2.5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {CATALOG_PRODUCTS.filter((prod) => {
+                      const map = {
+                        'diamond-wheels': ['glass-edging-wheels','glass-core-drills-milling'],
+                        'drills': ['glass-core-drills-milling'],
+                        'grinding': ['glass-edging-wheels'],
+                        'polishing': ['glass-edging-wheels'],
+                        'resin-wheels': ['glass-edging-wheels'],
+                        'custom': ['glass-core-drills-milling']
+                      };
+                      return (map[f.id] || []).includes(prod.id);
+                    }).slice(0,2).map((p) => (
+                      <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50">
+                        <img src={p.image} alt={p.name} class="w-full h-36 object-cover border-b border-slate-200" />
+                        <div class="p-3">
+                          <div class="text-[11px] font-semibold uppercase text-slate-500">{p.categoryName}</div>
+                          <div class="text-sm font-semibold text-slate-900 line-clamp-2">{p.name}</div>
+                          <p class="mt-1 text-xs text-slate-600 line-clamp-2">{p.summary}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {f.appCodes && f.appCodes.length > 0 && (
+                  <div class="pt-3 border-t border-slate-100">
+                    <div class="flex items-center justify-between mb-2">
+                      <h3 class="text-xs font-semibold tracking-widest uppercase text-cyan-900 flex items-center gap-1.5 font-mono">
+                        <span class="w-2 h-2 rounded-full bg-cyan-600"></span>
+                        Key Application Showcase
+                      </h3>
+                      <a href="#applications" class="text-[11px] font-medium text-cyan-700 hover:text-cyan-900">View all 16 applications &rarr;</a>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                      {f.appCodes.map((code) => {
+                        const app = APPLICATION_IMAGES.find((a) => a.code === code);
+                        if (!app) return null;
+                        return (
+                          <div class="group border border-slate-200 rounded-xl overflow-hidden bg-white hover:border-slate-300">
+                            <div class="relative aspect-[4/3] bg-slate-900 overflow-hidden">
+                              <img src={app.src} alt={app.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                              <span class="absolute bottom-1 left-1 bg-black/80 text-[9px] font-mono font-bold text-cyan-300 px-1.5 py-0.5 rounded">
+                                {app.code}
+                              </span>
+                            </div>
+                            <div class="p-2">
+                              <div class="text-[11px] font-bold text-slate-900 truncate font-brand">{app.title}</div>
+                              <div class="text-[10px] text-slate-500 truncate">{app.sectorName}</div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+          ))}
+
+          <section class="border border-slate-200 rounded-2xl p-5 bg-slate-50">
+            <h3 class="text-sm font-semibold text-slate-900">ISO Wheel Profiles Directory</h3>
+            <p class="mt-1 text-xs text-slate-600">Engineering profile drawings with dimensional table (D, H, W, X, T, R) - e.g., 6A2, 9A3, 11A2, 1EE1, 1FF1. Dimensions from ISO 6104 and stock tables (not just PDF prose).</p>
+            <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">
+              {WHEEL_PROFILES.slice(0,18).map((w) => (
+                <div class="bg-white border border-slate-200 rounded-xl px-3 py-2">
+                  <div class="text-xs font-mono font-semibold text-slate-900">{w.code}</div>
+                  <div class="text-[11px] text-slate-500">{w.name}</div>
+                  <div class="text-[10px] text-slate-400 truncate">{w.keyDimensions.slice(0,2).join(' · ')}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="applications" class="scroll-mt-28 border border-slate-200 rounded-2xl p-6 bg-white shadow-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-mono font-bold bg-cyan-100 text-cyan-900 px-2.5 py-0.5 rounded-md">16 PRODUCT APPLICATIONS</span>
+                  <span class="text-[10px] font-mono text-slate-500">ISO 9001:2015 PRECISION</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mt-1.5 font-brand">Application Showcase — Finished Products</h3>
+                <p class="mt-1 text-xs text-slate-600 max-w-3xl leading-relaxed">
+                  Photorealistic showcase of components, architectural glazing, automotive lites, solar panels, semiconductors, and technical ceramics processed by KAYES diamond tools.
+                </p>
+              </div>
+              <a href="/contact" class="inline-flex items-center justify-center text-xs font-semibold bg-slate-900 text-white rounded-xl px-4 py-2 hover:bg-slate-800 self-start sm:self-auto">
+                Request Tooling Match
+              </a>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {APPLICATION_IMAGES.map((app) => (
+                <div class="group border border-slate-200 rounded-2xl overflow-hidden bg-white hover:border-slate-300 hover:shadow-md transition-all flex flex-col">
+                  <div class="relative aspect-[4/3] bg-slate-900 overflow-hidden">
+                    <img src={app.src} alt={app.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    <div class="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-xs text-cyan-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-md border border-white/10 shadow-xs">
+                      {app.code}
+                    </div>
+                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <a href={app.src} target="_blank" rel="noopener noreferrer" class="bg-white/90 text-slate-900 text-[10px] font-semibold px-2 py-1 rounded-md shadow-sm">
+                        View Full &nearr;
+                      </a>
+                    </div>
+                  </div>
+                  <div class="p-3.5 flex flex-col flex-grow justify-between">
+                    <div>
+                      <div class="text-[10px] font-bold uppercase tracking-wider text-cyan-700 font-mono">{app.sectorName}</div>
+                      <div class="text-sm font-bold text-slate-900 font-brand mt-0.5 line-clamp-1">{app.title}</div>
+                      <p class="text-xs text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">{app.desc}</p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                      <span class="font-mono text-[10px] text-slate-400">Application Item</span>
+                      <a href={`#${app.sectorId === 'architectural' ? 'diamond-wheels' : app.sectorId === 'automotive' ? 'diamond-wheels' : app.sectorId === 'solar' ? 'grinding' : app.sectorId === 'scientific' ? 'drills' : app.sectorId === 'semiconductor' ? 'custom' : 'resin-wheels'}`} class="text-cyan-800 font-semibold hover:underline">
+                        Tooling &rarr;
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="whatsapp-stock" class="border border-slate-200 rounded-2xl p-5 bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">New Arrivals — WhatsApp Stock (37)</h3>
+            <p class="mt-1 text-xs text-slate-600">Proper per-image captions — sight-verified from markings, colors, dimensions.</p>
+            <div class="mt-4">
+              <LightboxGallery client:load images={newCaptions.map((c, i) => ({ src: `/images/products/new-gallery/kayes-new-${String(i+1).padStart(2,'0')}.jpeg`, alt: `New ${i+1}`, caption: c }))} />
+            </div>
+          </section>
+
+          <section id="architecture" class="scroll-mt-28 border border-slate-200 rounded-2xl p-5 bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">Architecture Glass Products — 35 tools</h3>
+            <p class="mt-1 text-xs text-slate-600">Proper per-image captions — sight-verified.</p>
+            <div class="mt-4">
+              <LightboxGallery client:load images={archCaptions.map((c, i) => ({ src: `/images/products/architecture-glass-products/kayes-arch-${String(i+1).padStart(2,'0')}.jpeg`, alt: `Arch ${i+1}`, caption: c }))} />
+            </div>
+          </section>
+
+          <section id="automotive" class="scroll-mt-28 border border-slate-200 rounded-2xl p-5 bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">Automotive Glass Products — 30 tools</h3>
+            <p class="mt-1 text-xs text-slate-600">Proper per-image captions — sight-verified.</p>
+            <div class="mt-4">
+              <LightboxGallery client:load images={autoCaptions.map((c, i) => ({ src: `/images/products/automotive-glass-products-pictures/kayes-auto-${String(i+1).padStart(2,'0')}.jpeg`, alt: `Auto ${i+1}`, caption: c }))} />
+            </div>
+          </section>
+
+          <section id="watch" class="scroll-mt-28 border border-slate-200 rounded-2xl p-5 bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">Watch & Scientific Glass — 38 micro-tools</h3>
+            <p class="mt-1 text-xs text-slate-600">Proper per-image captions — sight-verified.</p>
+            <div class="mt-4">
+              <LightboxGallery client:load images={watchCaptions.map((c, i) => ({ src: `/images/products/watch-and-scientific-glass-product-images/kayes-watch-${String(i+1).padStart(2,'0')}.jpeg`, alt: `Watch ${i+1}`, caption: c }))} />
+            </div>
+          </section>
+          <section id="special" class="scroll-mt-28 border border-slate-200 rounded-2xl p-5 bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">Special Tools — 28 Mixed (Metal/Resin Cup, Pencil Edge, Seamer & More)</h3>
+            <p class="mt-1 text-xs text-slate-600">New batch from assets/special — DX: kayes-special-01 .. kayes-special-28. Mixed GreatDia + KAYES side text below.</p>
+            <div class="mt-4">
+              <LightboxGallery client:load images={[
+                ...Array.from({ length: 28 }, (_, i) => {
+                  const caps = [
+                    "Milling Router BT40 Taper with Diamond Tip — CNC spindle mount, brown bond",
+                    "Profile Routers C2604K D10-FM — 1/2 Gas Thread, Counter-sunk Brown-Green Tip",
+                    "Straight-Shank Profile Routers Ø6 — Double Groove Pencil/Ogee Diamond Heads",
+                    "Peripheral Rim Macro — Light Green-Yellow Metal Bond, Coarse Diamond Exposure",
+                    "Resin Cup + Pencil Edge Mixed 4-pc — Brown Resin Continuous Rims, Electroplated Centres",
+                    "Pencil Edge Wheel 6A2SPL 250-20-5-80 SD54R25B4 — Copper-Brown Continuous Resin 250mm",
+                    "Counter-Sunk Cup Set — Hollow Diamond Cup Ring with 1/2 Thread Collar, Central Water Channel",
+                    "Metal Cup Pair — Threaded-Adaptor vs Plain-Bore, Continuous Brown Rim, Silver Steel",
+                    "Arrising/Seamer Wheel — Steel Disc Small Bore, Continuous Grey Metal Bond, Hand-Held",
+                    "Profile Finger Routers 3-pc — Silver Shanks, Dark Sintered Slotted Multi-Groove Heads",
+                    "Metal Cup (Segmented) + Resin Cup — Segmented Blocks Inner+Outer vs Continuous Flanged Cup",
+                    "Stubbing/Finger Bits 8-pc — Bronze Crown 5 Slits + Water Holes, Threaded 1/2 Hex Base, 711/852",
+                    "Seamer Double-Groove Segmented — Grey Steel Disc, Two Concave Grooves, Wavy Slits, Bore 22mm",
+                    "Counter-Sunk Bowl Router — Mushroom Dome Brown-Grey Metal Bond, Keyed Shank, Foam Box",
+                    "PCD Inserts Rhombic 2-pc — Dark-Grey Rhombic Inserts, Central Countersunk Hole",
+                    "Router Ø4mm Straight-Shank — Silver Shank Stamped Kays Ø4, Cylindrical Dark-Brown Tip",
+                    "Core Drill Hollow B10 — Hand-Held Silver Hollow Cylinder, Bronze Segmented Rim, KAYS B10",
+                    "Finger/Stubbing Bits 4-pc Slotted — Silver Shanks Bronze Crowns 5 Slits, Stamped 711/852",
+                    "Flat Grinding Wheel Peripheral — Thin Steel Disc Large Bore ~90mm + Key, Copper-Brown Rim",
+                    "Cup Pair Granite — Thread-Adaptor Cup Continuous Rim vs Wide Flat-Face Cup Large Bore",
+                    "Core Drill + Adaptor D10/7.85 — Silver Stepped Adapter Hex Flats, Small Slotted Hollow Tip",
+                    "Core Drills ID14.5 2-pc — Silver Adapters Hex Flats, Hollow Brown Crown Single Slit",
+                    "Rough Pencil-Edge Bowls 3-pc ROUGH 8MM — Large Steel Bowl Sloping Brown Periphery, Flange Hub",
+                    "Price List Document — GLASS MACHINE WHEEL RETAIL, 18% GST EXTRA, Pricing",
+                    "Cup + Grinding Wheel Keyed Arbour — Silver Steel Grey Continuous Cup Rim, Hollow Interior Keyway",
+                    "D10 Core Drills 8-pc — Grey Straight Shanks Brown-Green Tips Stamped D10",
+                    "CBN Peripheral Wheels 50D×8H×12T×4 MB — Silver Cores Light-Grey Continuous Rim, 50mm Dia",
+                    "Seamer Double-Groove Pencil Wheel — Heavy Grey Steel 150mm, Beige-Grey Belt Two U-Grooves",
+                  ];
+                  return { src: `/images/products/special/kayes-special-${String(i+1).padStart(2,'0')}.jpeg`, alt: `Special ${i+1}`, caption: caps[i] || `Special tool #${i+1}` };
+                })
+              ]} />
+            </div>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Metal Bonded Cup Tools</h4><p class="mt-1 text-slate-600">Super-hard metal bond with no elasticity and excellent heat resistance for heavy stock removal on straight-line and CNC edgers (profiles 6A2/11A2/9A3). GreatDia-style segmented or continuous rims hold form at high feed; KAYES Chennai high-temp sintering and CNC balancing delivers micron concentricity and long high-speed life with low chipping.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Resin Bonded Cup Tools</h4><p class="mt-1 text-slate-600">Elastic resin bond, self-sharpening and non-clogging for fine arrissing and finish after metal cups. Ideal for tempered and low-E glass where light touch prevents micro-chips. KAYES fully-automatic mixing and curing in Chennai — using UK/German-sourced diamonds — ensures consistent density, mirror-like finish and durability run after run.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Grinding Wheels</h4><p class="mt-1 text-slate-600">Peripheral and cup grinding wheels (1A1, 3A1, 14A1, 1A1R, D150) for stock removal, shaping and slitting across solar, appliance and automotive glass. GreatDia highlights high grinding efficiency — diamond metal cut exceeds other abrasives on hard-brittle materials; KAYES adds CNC-balanced bodies and strict QC for vibration-free, high-speed durability and exact size holding.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Drills</h4><p class="mt-1 text-slate-600">Sintered thin-wall core drills and integrated drill-ream bits (OD 4–150 mm, G½ Belgian shank, internal coolant) for clean, chip-free holes in architectural, automotive and lab glass. Force-balanced design gives strong guidance with minimal radial vibration, plus dynamic flow channels for fast chip evacuation and low friction; KAYES Chennai holds micron tolerances on wall 0.8–1.2 mm for consistent breakout-free drilling.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Milling Tools / Routers</h4><p class="mt-1 text-slate-600">Diamond finger and router bits with slotted sintered tips for notches, cut-outs and internal shaping on Bavelloni/Bottero CNC centres. Different patented diamond layouts give strong attack and wear resistance while optimised hydraulics clear chips. KAYES supplies M14/M22 and ½ Gas variants, CNC-balanced in Chennai for high-speed stability and long life on every pass.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Seamer</h4><p class="mt-1 text-slate-600">Light peripheral seaming wheels for quick de-burring of cut edges before tempering and handling. Removes the razor edge without taking full edge — fast, low-chipping, perfect for high-volume lines. KAYES seaming wheels are high-efficiency resin/metal hybrids, Chennai-made to run cool and hold dimension at line speed.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Counter Sunk Tools</h4><p class="mt-1 text-slate-600">Countersink/cone drills that drill and chamfer in one stroke for shower, furniture and structural glass. Integrated 60°+ cone gives uniform countersink depth with low friction and long life. KAYES holds the included angle and diameter to microns in Chennai, so fittings seat flush with no secondary grinding.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Pencil Edge Wheels</h4><p class="mt-1 text-slate-600">Profile pencil-rounding wheels (single and double-groove, R2–R3.5, D150 class) that form the classic soft “pencil” radius on auto and architectural glass. Metal-bond diamond shapes the edge while maintaining brilliant geometry; KAYES high-temp bond and balanced steel bodies ensure the radius repeats to micron tolerance at high-speed feed.</p></div>
+              <div class="border border-slate-200 rounded-xl p-4 bg-slate-50"><h4 class="font-semibold text-slate-900">Arrising Wheels</h4><p class="mt-1 text-slate-600">Fine resin arris wheels that put the tiny 45° chamfer on top/bottom edges after cutting — the final safety against edge chips in tempering and handling. Self-sharpening resin, fine grits (#180–#600+) prevent cracks spreading from the cut line. KAYES Chennai-moulded resin, polished on fully automatic lines, delivers consistent chamfer width and high-speed durability on low-E and clear glass alike.</p></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer client:idle />
+</Layout>
