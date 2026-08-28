@@ -1,0 +1,190 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { BusinessHeader } from "../../components/BusinessHeader";
+import { Footer } from "../../components/Footer";
+import { FamilySearch } from "../../components/products/FamilySearch";
+import { COMPANY_INFO, APPLICATION_IMAGES } from "../../data/company";
+import { WHEEL_PROFILES } from "../../data/wheelProfiles";
+import { INDUSTRY_GALLERIES, STOCK_GALLERY } from "../../data/productFamilies";
+---
+
+<Layout title="Products | KAYES INDUSTRIES PVT LTD" description="Diamond wheels, drills, polishing and resin wheels by KAYES. ISO profiles 6A2, 11A2, 1FF1 with machine compatibility.">
+  <BusinessHeader client:load />
+  <main class="flex-grow bg-white">
+    <!-- Hero -->
+    <section class="border-b border-slate-200 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <p class="text-xs font-semibold tracking-widest uppercase text-slate-500">Products</p>
+        <h1 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 font-brand">Tool Catalogue</h1>
+        <p class="mt-2 text-sm text-slate-600 max-w-2xl">Start with what you make — pick a finished product below to see the matching ToolFamily. Then browse the full catalogue by tool.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <a href={COMPANY_INFO.contacts.catalogPdf} download class="inline-flex items-center text-sm font-semibold bg-slate-900 text-white rounded-xl px-5 h-10 hover:bg-slate-800">Download Catalogue PDF</a>
+          <a href="/contact" class="inline-flex items-center text-sm font-semibold border border-slate-200 rounded-xl px-5 h-10 hover:bg-slate-50">Request Quote</a>
+          <a href="#key-applications" class="inline-flex items-center text-sm font-semibold bg-white border border-slate-200 text-slate-900 rounded-xl px-5 h-10 hover:border-slate-300">Key Applications ↓</a>
+          <a href="#catalogue" class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-slate-900 px-3 h-10">Catalogue ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Applications — BEFORE catalogue -->
+    <section id="key-applications" class="scroll-mt-28 border-b border-slate-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div class="flex flex-wrap items-baseline justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2">
+              <span class="text-[11px] font-bold tracking-widest uppercase bg-slate-900 text-white rounded-full px-2.5 py-1">Key Applications</span>
+              <span class="text-xs text-slate-500">16 finished products — what our tools make</span>
+            </div>
+            <h2 class="mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 font-brand">Where KAYES tools go</h2>
+            <p class="mt-1 text-sm text-slate-600 max-w-2xl">Pick an application first — shower glass, windshields, solar panels, cooktops, silicon wafers. This is organized by what you make, catalogue below is organized by tool.</p>
+          </div>
+          <a href="#catalogue" class="hidden sm:inline-flex text-xs font-semibold border border-slate-200 rounded-xl px-4 h-9 items-center hover:bg-slate-50">Browse catalogue ↓</a>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {APPLICATION_IMAGES.map((app) => (
+            <a href={app.sectorId === 'architectural' ? '/products/industry/architecture' : app.sectorId === 'automotive' ? '/products/industry/automotive' : app.sectorId === 'solar' ? '/products/family/grinding' : app.sectorId === 'scientific' ? '/products/industry/watch' : app.sectorId === 'semiconductor' ? '/products/family/custom' : app.sectorId === 'appliance' ? '/products/family/diamond-wheels' : app.sectorId === 'bottles' ? '/products/family/custom' : '/products'} class="group border border-slate-200 rounded-2xl overflow-hidden bg-white hover:border-slate-300 hover:shadow-sm transition-all flex flex-col">
+              <div class="relative h-40 overflow-hidden bg-slate-50">
+                <img src={app.src} alt={app.title} class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" loading="lazy" />
+                <span class="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur text-slate-700 text-[10px] font-mono font-bold px-2 py-0.5 rounded-md border border-slate-200 shadow-sm">{app.code}</span>
+                <span class="absolute bottom-2.5 left-2.5 bg-slate-900 text-white text-[10px] font-semibold px-2 py-1 rounded-full">{app.sectorName}</span>
+              </div>
+              <div class="p-3.5 flex flex-col flex-grow">
+                <div class="text-sm font-bold text-slate-900 line-clamp-1">{app.title}</div>
+                <p class="text-xs text-slate-600 line-clamp-2 mt-1 leading-relaxed">{app.desc}</p>
+                <span class="mt-3 text-xs font-semibold text-slate-900 group-hover:underline">View tooling &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <p class="mt-4 text-xs text-slate-500">Appliance highlight (<a href="#appliance-highlight" class="font-semibold text-slate-900 underline">APPL-01 · APPL-02 · APPL-03</a>) is pinned next — then catalogue.</p>
+      </div>
+    </section>
+
+    <!-- Key Appliances — deep dive highlight -->
+    <section id="appliance-highlight" class="scroll-mt-28 bg-slate-900 text-white border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase">
+              <span class="bg-white text-slate-900 rounded-full px-2.5 py-1">★ Highlight</span>
+              <span class="text-amber-300">Key Appliances</span>
+              <span class="text-slate-400">Ceramic-Glass Cooktops · Oven Doors · Refrigerator Shelving</span>
+            </div>
+            <h2 class="mt-3 text-2xl sm:text-3xl font-bold tracking-tight font-brand">Appliance Glass — where KAYES tools shine</h2>
+            <p class="mt-2 text-sm text-slate-300 max-w-3xl leading-relaxed">Induction cooktop ceramic-glass, oven doors and refrigerator shelving need clean arrissing, beveling and drilling — no chips, no micro-cracks. Continuous rim CNC profile wheels, arrissing diamonds and thin-wall core drills from Chennai, built for high-speed tempering lines.</p>
+          </div>
+          <a href="/products/family/diamond-wheels" class="shrink-0 inline-flex items-center text-xs font-semibold bg-white text-slate-900 rounded-xl px-4 h-9 hover:bg-slate-100">View appliance tooling &rarr;</a>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { app: APPLICATION_IMAGES[10], familyHref: "/products/family/grinding", tool: "Continuous Rim CNC Profile Wheels" },
+            { app: APPLICATION_IMAGES[11], familyHref: "/products/family/drills", tool: "Thin-Wall Core Drills (1/2” Gas)" },
+            { app: APPLICATION_IMAGES[12], familyHref: "/products/family/polishing", tool: "Resin Chamfer & Polish" },
+          ].map(({ app, familyHref, tool }) => (
+            <a href={familyHref} class="group rounded-2xl overflow-hidden bg-white text-slate-900 border border-white/10 hover:border-white/20 transition-all flex flex-col">
+              <div class="relative h-48 overflow-hidden bg-slate-800">
+                <img src={app.src} alt={app.title} class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" loading="eager" />
+                <span class="absolute top-3 left-3 bg-slate-900/90 backdrop-blur text-white text-[10px] font-mono font-bold px-2 py-1 rounded-md border border-white/10">{app.code} · {tool}</span>
+              </div>
+              <div class="p-4 flex flex-col flex-grow">
+                <div class="text-sm font-bold leading-tight">{app.title}</div>
+                <p class="mt-1 text-xs text-slate-600 line-clamp-2 leading-relaxed">{app.desc}</p>
+                <span class="mt-3 text-xs font-semibold text-slate-900 group-hover:underline">View tooling &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="rounded-xl bg-white/5 border border-white/10 px-4 py-3">
+            <div class="font-semibold text-white">Continuous Rim Profile Wheels</div>
+            <div class="text-slate-400 mt-1">Clean arrissing on tempered ceramic-glass — no chip-out at tempering speed.</div>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 px-4 py-3">
+            <div class="font-semibold text-white">Water-Jet Core Drills</div>
+            <div class="text-slate-400 mt-1">Thin-wall sintered drills for burner cut-outs and hinge holes, G½ shank.</div>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 px-4 py-3">
+            <div class="font-semibold text-white">Resin & BD-8 Polish</div>
+            <div class="text-slate-400 mt-1">High-gloss edge finish after cup wheels — for visible cooktop perimeters.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search + families — CATALOGUE after key applications -->
+    <section id="catalogue" class="scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="text-lg font-bold text-slate-900">Browse by ToolFamily — Catalogue</h2>
+        <a href="/products/profiles" class="text-xs font-semibold text-slate-600 hover:text-slate-900">All ISO profiles &rarr;</a>
+      </div>
+      <p class="mt-1 text-xs text-slate-500">Tip: try 6A2, 11A2, polishing, drills — or <span class="font-mono">appliance</span>, <span class="font-mono">APPL-01</span></p>
+      <div class="mt-4">
+        <FamilySearch client:load />
+      </div>
+    </section>
+
+    <!-- Industry galleries teaser -->
+    <section class="border-t border-slate-200 bg-slate-50/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-lg font-bold text-slate-900">Browse by Industry — Factory Photos</h2>
+          <a href="/products/stock" class="text-xs font-semibold text-slate-600 hover:text-slate-900">New stock (37) &rarr;</a>
+        </div>
+        <p class="mt-1 text-xs text-slate-600">Real factory photos — sight-verified captions. Open a gallery to see the full set with lightbox.</p>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {INDUSTRY_GALLERIES.map((g) => (
+            <a href={`/products/industry/${g.slug}`} class="group border border-slate-200 rounded-2xl overflow-hidden bg-white hover:border-slate-300 hover:shadow-sm transition-all flex flex-col">
+              <div class="grid grid-cols-4 gap-px bg-slate-200">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <img src={`${g.path}/${g.prefix}-${String(i + 1).padStart(2, "0")}.jpeg`} alt={`${g.label} ${i + 1}`} class="h-24 w-full object-cover bg-white" loading="lazy" />
+                ))}
+              </div>
+              <div class="p-4 flex items-center justify-between gap-4">
+                <div>
+                  <div class="text-sm font-bold text-slate-900 group-hover:text-slate-700">{g.label}</div>
+                  <div class="text-xs text-slate-600">{g.count} tools — {g.description}</div>
+                </div>
+                <span class="shrink-0 text-xs font-semibold bg-slate-900 text-white rounded-full px-3 py-1.5">View {g.count} &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <a href="/products/stock" class="mt-4 group flex items-center gap-3 border border-slate-200 rounded-2xl bg-white p-3 hover:border-slate-300">
+          <div class="flex -space-x-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <img src={`${STOCK_GALLERY.path}/${STOCK_GALLERY.prefix}-${String(i + 1).padStart(2, "0")}.jpeg`} alt={`Stock ${i + 1}`} class="w-14 h-14 rounded-xl object-cover border-2 border-white" loading="lazy" />
+            ))}
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-sm font-bold text-slate-900">{STOCK_GALLERY.label} — {STOCK_GALLERY.count}</div>
+            <div class="text-xs text-slate-600 truncate">{STOCK_GALLERY.description}</div>
+          </div>
+          <span class="text-xs font-semibold text-slate-900 group-hover:underline shrink-0">Open gallery &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ISO teaser -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex items-baseline justify-between">
+        <h2 class="text-sm font-bold tracking-widest uppercase text-slate-900">ISO Wheel Profiles</h2>
+        <a href="/products/profiles" class="text-xs font-semibold text-slate-600 hover:text-slate-900">Full directory &rarr;</a>
+      </div>
+      <p class="mt-1 text-xs text-slate-600">Engineering drawings with dimensional table (D, H, W, X, T, R) — e.g. 6A2, 9A3, 11A2, 1FF1.</p>
+      <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+        {WHEEL_PROFILES.slice(0, 12).map((w) => (
+          <div class="bg-white border border-slate-200 rounded-xl px-3 py-2">
+            <div class="text-xs font-mono font-semibold text-slate-900">{w.code}</div>
+            <div class="text-[11px] text-slate-500 truncate">{w.name}</div>
+            <div class="text-[10px] text-slate-400 truncate">{w.keyDimensions.slice(0, 2).join(" · ")}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer client:idle />
+</Layout>

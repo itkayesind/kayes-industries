@@ -114,7 +114,7 @@ export const HomeIndustriesTeaser: React.FC = () => {
                   )}
                   <div className="mt-3 pt-3 border-t border-slate-100">
                     <p className="text-xs text-slate-500 line-clamp-1">{s.tooling}</p>
-                    <a href={`/products#${s.id === 'architectural' ? 'architecture' : s.id === 'watch-glass' ? 'watch' : s.id === 'scientific' ? 'watch' : s.id === 'semiconductor' ? 'custom' : s.id === 'appliance' ? 'diamond-wheels' : s.id === 'bottles' ? 'custom' : s.id === 'solar' ? 'grinding' : s.id}`} className="mt-2 inline-flex text-xs font-semibold text-slate-900 hover:underline">View in Products →</a>
+                    <a href={s.id === 'architectural' ? '/products/industry/architecture' : s.id === 'automotive' ? '/products/industry/automotive' : s.id === 'watch-glass' ? '/products/industry/watch' : s.id === 'scientific' ? '/products/industry/watch' : s.id === 'semiconductor' ? '/products/family/custom' : s.id === 'solar' ? '/products/family/grinding' : s.id === 'appliance' ? '/products/family/diamond-wheels' : s.id === 'bottles' ? '/products/family/custom' : '/products'} className="mt-2 inline-flex text-xs font-semibold text-slate-900 hover:underline">View in Products →</a>
                   </div>
                 </div>
               </div>
