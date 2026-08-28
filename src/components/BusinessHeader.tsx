@@ -4,12 +4,22 @@ import { COMPANY_INFO } from '../data/company';
 import { Menu, X, Phone, Download, ChevronDown } from 'lucide-react';
 
 const PRODUCT_SUBS = [
-  { label: 'Diamond Wheels', href: '/products#diamond-wheels' },
-  { label: 'Drills', href: '/products#drills' },
-  { label: 'Grinding Wheels', href: '/products#grinding' },
-  { label: 'Polishing Wheels', href: '/products#polishing' },
-  { label: 'Resin Wheels', href: '/products#resin-wheels' },
-  { label: 'Custom Tools', href: '/products#custom' },
+  { label: "All Products", href: "/products" },
+  { label: "Diamond Wheels", href: "/products/family/diamond-wheels" },
+  { label: "Drills", href: "/products/family/drills" },
+  { label: "Grinding Wheels", href: "/products/family/grinding" },
+  { label: "Polishing Wheels", href: "/products/family/polishing" },
+  { label: "Resin Wheels", href: "/products/family/resin-wheels" },
+  { label: "Custom Tools", href: "/products/family/custom" },
+];
+
+const INDUSTRY_SUBS = [
+  { label: "★ Appliance Glass — Highlight", href: "/products#appliance-highlight" },
+  { label: "Architecture Glass (35)", href: "/products/industry/architecture" },
+  { label: "Automotive Glass (30)", href: "/products/industry/automotive" },
+  { label: "Watch & Scientific (38)", href: "/products/industry/watch" },
+  { label: "Special Tools (28)", href: "/products/industry/special" },
+  { label: "New Stock (37)", href: "/products/stock" },
 ];
 
 export const BusinessHeader: React.FC<{ isHomePage?: boolean }> = ({ isHomePage = false }) => {
@@ -68,10 +78,16 @@ export const BusinessHeader: React.FC<{ isHomePage?: boolean }> = ({ isHomePage 
             </a>
             {productsOpen && (
               <div className="absolute left-0 top-full pt-2">
-                <div className="w-56 bg-white border border-slate-200 rounded-2xl shadow-lg p-1.5">
+                <div className="w-64 bg-white border border-slate-200 rounded-2xl shadow-lg p-1.5 max-h-[70vh] overflow-auto">
+                  <div className="px-3 py-1 text-[10px] font-semibold tracking-widest uppercase text-slate-400">ToolFamilies</div>
                   {PRODUCT_SUBS.map((s) => (
-                    <a key={s.label} href={s.href} className="block px-3 py-2 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl">{s.label}</a>
+                    <a key={s.label} href={s.href} className="block px-3 py-1.5 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl">{s.label}</a>
                   ))}
+                  <div className="mt-2 pt-2 border-t border-slate-100 px-3 py-1 text-[10px] font-semibold tracking-widest uppercase text-slate-400">By Industry</div>
+                  {INDUSTRY_SUBS.map((s) => (
+                    <a key={s.label} href={s.href} className="block px-3 py-1.5 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl">{s.label}</a>
+                  ))}
+                  <a href="/products/profiles" className="mt-2 flex items-center justify-center text-xs font-semibold border border-slate-200 rounded-xl h-8 hover:bg-slate-50">ISO Profiles →</a>
                 </div>
               </div>
             )}
@@ -96,14 +112,20 @@ export const BusinessHeader: React.FC<{ isHomePage?: boolean }> = ({ isHomePage 
           <nav className="px-4 py-3 flex flex-col gap-1">
             <a href="/" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Home</a>
             <a href="/about" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl">About Us</a>
-            <div className="px-3 py-2">
-              <div className="text-xs font-semibold tracking-widest uppercase text-slate-500">Products</div>
-              <div className="mt-1 grid grid-cols-2 gap-1">
+              <div className="px-3 py-2">
+              <div className="text-xs font-semibold tracking-widest uppercase text-slate-500">ToolFamilies</div>
+              <div className="mt-1 grid grid-cols-1 gap-1">
                 {PRODUCT_SUBS.map((s) => (
                   <a key={s.label} href={s.href} onClick={() => setOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-1">{s.label}</a>
                 ))}
               </div>
-              <a href="/products" onClick={() => setOpen(false)} className="mt-2 inline-flex text-xs font-semibold text-slate-900">View All →</a>
+              <div className="mt-3 text-xs font-semibold tracking-widest uppercase text-slate-500">By Industry</div>
+              <div className="mt-1 grid grid-cols-1 gap-1">
+                {INDUSTRY_SUBS.map((s) => (
+                  <a key={s.label} href={s.href} onClick={() => setOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-1">{s.label}</a>
+                ))}
+              </div>
+              <a href="/products/profiles" onClick={() => setOpen(false)} className="mt-3 inline-flex text-xs font-semibold text-slate-900 border border-slate-200 rounded-xl px-3 py-1.5">ISO Profiles →</a>
             </div>
             <a href="/contact" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Contact Us</a>
             <div className="pt-3 mt-2 border-t border-slate-100 flex gap-2">

@@ -39,8 +39,7 @@ export const ApplicationsShowcase: React.FC = () => {
                 <p className="text-xs text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">{app.desc}</p>
               </div>
               <div className="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span className="font-mono text-[10px] text-slate-400">Application Item</span>
-                <a href={`#${app.sectorId === 'architectural' ? 'architecture' : app.sectorId === 'automotive' ? 'automotive' : app.sectorId === 'solar' ? 'grinding' : app.sectorId === 'scientific' ? 'watch' : app.sectorId === 'semiconductor' ? 'custom' : 'resin-wheels'}`} className="text-slate-700 font-semibold hover:underline">
+                <a href={app.sectorId === 'architectural' ? '/products/industry/architecture' : app.sectorId === 'automotive' ? '/products/industry/automotive' : app.sectorId === 'solar' ? '/products/family/grinding' : app.sectorId === 'scientific' ? '/products/industry/watch' : app.sectorId === 'semiconductor' ? '/products/family/custom' : app.sectorId === 'appliance' ? '/products/family/diamond-wheels' : app.sectorId === 'bottles' ? '/products/family/custom' : '/products/family/diamond-wheels'} className="text-slate-700 font-semibold hover:underline">
                   Tooling &rarr;
                 </a>
               </div>
