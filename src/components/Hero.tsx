@@ -12,13 +12,6 @@ export const Hero: React.FC = () => {
     }
   };
 
-  const handleScrollToCatalog = () => {
-    const catalogSection = document.getElementById('catalog');
-    if (catalogSection) {
-      catalogSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="brand-hero" className="w-full relative">
       <ElegantPatternBg theme="light" className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -62,7 +55,7 @@ export const Hero: React.FC = () => {
 
           <div className="animate-button-reveal">
             <LiquidButton
-              onClick={handleScrollToCatalog}
+              onClick={() => { window.location.href = '/products'; }}
               size="xl"
               aria-label="View product catalogue"
               className="text-slate-950 font-semibold tracking-wide cursor-pointer"
