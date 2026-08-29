@@ -1,6 +1,18 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/company';
 
+const SECTOR_FAMILY_MAP: Record<string, string> = {
+  architectural: 'diamond-wheels',
+  automotive: 'diamond-wheels',
+  'watch-glass': 'custom',
+  solar: 'grinding',
+  semiconductor: 'custom',
+  appliance: 'grinding',
+  bottles: 'custom',
+  scientific: 'custom',
+};
+
+
 export const HomeIndustriesTeaser: React.FC = () => {
   return (
     <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
@@ -20,7 +32,7 @@ export const HomeIndustriesTeaser: React.FC = () => {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold text-slate-900 font-brand">{s.name}</h3>
                 <p className="mt-2 text-sm text-slate-600 leading-relaxed line-clamp-2">{s.desc}</p>
-                <a href={`/products#${s.id === 'architectural' ? 'architecture' : s.id === 'watch-glass' ? 'watch' : s.id === 'scientific' ? 'watch' : s.id === 'semiconductor' ? 'custom' : s.id === 'appliance' ? 'diamond-wheels' : s.id === 'bottles' ? 'custom' : s.id === 'solar' ? 'grinding' : s.id}`} className="mt-4 inline-flex items-center text-sm font-semibold text-slate-900 hover:underline">View tools →</a>
+                <a href={`/products/family/${SECTOR_FAMILY_MAP[s.id] || 'diamond-wheels'}`} className="mt-4 inline-flex items-center text-sm font-semibold text-slate-900 hover:underline">View tools →</a>
               </div>
             </div>
           ))}
@@ -37,7 +49,7 @@ export const HomeIndustriesTeaser: React.FC = () => {
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="text-xl font-bold text-slate-900 font-brand">{s.name}</h3>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed line-clamp-2">{s.desc}</p>
-                  <a href={`/products/family/${s.id === 'architectural' ? 'diamond-wheels' : s.id === 'watch-glass' ? 'custom' : s.id === 'scientific' ? 'custom' : s.id === 'semiconductor' ? 'custom' : s.id === 'appliance' ? 'diamond-wheels' : s.id === 'bottles' ? 'custom' : s.id === 'solar' ? 'grinding' : 'diamond-wheels'}`} className="mt-4 inline-flex text-sm font-semibold text-slate-900">View tools →</a>
+                  <a href={`/products/family/${SECTOR_FAMILY_MAP[s.id] || 'diamond-wheels'}`} className="mt-4 inline-flex text-sm font-semibold text-slate-900 hover:underline">View tools →</a>
                 </div>
               </div>
             ))}

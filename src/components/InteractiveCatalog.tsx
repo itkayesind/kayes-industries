@@ -8,6 +8,48 @@ export const InteractiveCatalog: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeModalProduct, setActiveModalProduct] = useState<ProductItem | null>(null);
 
+  // Sync from URL: ?category=glass | ?family=diamond-wheels | ?q= | hash
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('category');
+    const fam = params.get('family');
+    const q = params.get('q') || params.get('search') || params.get('query');
+    const validCats = ['all', 'glass', 'semiconductor', 'toolroom', 'abrasives'];
+    if (cat && validCats.includes(cat)) {
+      setSelectedCategory(cat);
+    } else if (fam) {
+      const familyToCategory: Record<string, string> = {
+        'diamond-wheels': 'glass',
+        drills: 'glass',
+        grinding: 'glass',
+        polishing: 'glass',
+        'resin-wheels': 'toolroom',
+        custom: 'semiconductor',
+      };
+      const mapped = familyToCategory[fam];
+      if (mapped) setSelectedCategory(mapped);
+    }
+    if (q) setSearchQuery(q);
+    // legacy hash support: #glass, #diamond-wheels, etc.
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash && validCats.includes(hash)) setSelectedCategory(hash);
+    else if (hash) {
+      const familyToCategory2: Record<string, string> = {
+        'diamond-wheels': 'glass',
+        drills: 'glass',
+        grinding: 'glass',
+        polishing: 'glass',
+        'resin-wheels': 'toolroom',
+        custom: 'semiconductor',
+        architecture: 'glass',
+        automotive: 'glass',
+        watch: 'semiconductor',
+      };
+      const mapped2 = familyToCategory2[hash];
+      if (mapped2) setSelectedCategory(mapped2);
+    }
+  }, []);
+
   const categories = [
     { id: 'all', name: 'All Tooling' },
     { id: 'glass', name: 'Glass Industry' },

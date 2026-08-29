@@ -1,15 +1,51 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Search } from "lucide-react";
 import { TOOL_FAMILIES } from "../../data/productFamilies";
 import { WHEEL_PROFILES } from "../../data/wheelProfiles";
 
 export const FamilySearch: React.FC = () => {
   const [q, setQ] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const fam = params.get('family');
+    const query = params.get('q') || params.get('search') || params.get('query');
+    const hash = window.location.hash.replace('#','').toLowerCase();
+    // family param takes precedence: prefill search so filtered shows relevant family
+    if (fam && TOOL_FAMILIES.some(f => f.id === fam)) {
+      setQ(fam);
+      // scroll catalogue into view if hash indicates catalogue
+      if (window.location.hash.includes('catalogue')) {
+        setTimeout(() => document.getElementById('catalogue')?.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    } else if (query) {
+      setQ(query);
+    } else if (hash) {
+      // legacy hash like #grinding or #diamond-wheels
+      const legacyMap: Record<string, string> = {
+        architecture: 'diamond-wheels',
+        automotive: 'diamond-wheels',
+        watch: 'custom',
+        'watch-glass': 'custom',
+        custom: 'custom',
+        'diamond-wheels': 'diamond-wheels',
+        grinding: 'grinding',
+        drills: 'drills',
+        polishing: 'polishing',
+        'resin-wheels': 'resin-wheels',
+      };
+      const mapped = legacyMap[hash] || hash;
+      if (TOOL_FAMILIES.some(f => f.id === mapped)) setQ(mapped);
+      else if (hash) setQ(hash);
+    }
+  }, []);
+
   const filtered = useMemo(() => {
     if (!q.trim()) return TOOL_FAMILIES;
     const s = q.toLowerCase();
     return TOOL_FAMILIES.filter(
       (f) =>
+        f.id.toLowerCase().includes(s) ||
         f.label.toLowerCase().includes(s) ||
         f.shortDesc.toLowerCase().includes(s) ||
         f.longDesc.toLowerCase().includes(s) ||

@@ -14,6 +14,14 @@ import {
 export const IndustrySolutions: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
 
+  const SECTOR_FAMILY_MAP: Record<string, string> = {
+    glass: 'diamond-wheels',
+    automotive: 'diamond-wheels',
+    stone: 'grinding',
+    toolroom: 'resin-wheels',
+    optics: 'custom',
+  };
+
   const sectors = [
     {
       id: "glass",
@@ -193,8 +201,8 @@ export const IndustrySolutions: React.FC = () => {
               {/* Machine Compatibility */}
               <div className="text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-200 flex items-center justify-between">
                 <span>Machine Compatibility: <strong className="text-slate-800">{sectors[activeTab].targetMachines}</strong></span>
-                <a href="#catalog" className="text-brand-700 font-bold hover:underline inline-flex items-center gap-1">
-                  <span>Browse Catalog</span>
+                <a href={`/products/family/${SECTOR_FAMILY_MAP[sectors[activeTab].id] || 'diamond-wheels'}`} className="text-brand-700 font-bold hover:underline inline-flex items-center gap-1">
+                  <span>View relevant tools</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </a>
               </div>

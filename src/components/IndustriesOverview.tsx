@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO, type GlassSector } from '../data/company';
-import { 
-  Building2, 
-  MessageSquare, 
-  ArrowRight, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ChevronDown, 
-  Sparkles, 
-  Image as ImageIcon, 
+import {
+  Building2,
+  MessageSquare,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  ChevronDown,
+  Sparkles,
+  Image as ImageIcon,
   Wrench,
   Layers
 } from 'lucide-react';
 import { LiquidButton } from './ui/liquid-glass-button';
+
+const SECTOR_FAMILY_MAP: Record<string, string> = {
+  architectural: 'diamond-wheels',
+  automotive: 'diamond-wheels',
+  'watch-glass': 'custom',
+  solar: 'grinding',
+  semiconductor: 'custom',
+  appliance: 'grinding',
+  bottles: 'custom',
+  scientific: 'custom',
+};
+
 
 export const IndustriesOverview: React.FC = () => {
   const [expandedSectorId, setExpandedSectorId] = useState<string | null>(COMPANY_INFO.glassSectors[0].id);
@@ -363,6 +375,15 @@ export const IndustriesOverview: React.FC = () => {
                             <ArrowRight className="w-3.5 h-3.5 ml-1" />
                           </LiquidButton>
 
+                          <a
+                            href={`/products/family/${SECTOR_FAMILY_MAP[sector.id] || 'diamond-wheels'}`}
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-slate-300 text-xs font-bold text-slate-900 hover:bg-slate-50 hover:border-slate-400 transition-colors"
+                          >
+                            <Wrench className="w-3.5 h-3.5 text-slate-700" />
+                            <span>View relevant tools</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </a>
+
                           <LiquidButton
                             onClick={handleScrollToInquiry}
                             variant="outline"
@@ -372,7 +393,6 @@ export const IndustriesOverview: React.FC = () => {
                             <span>Custom Requisition</span>
                           </LiquidButton>
                         </div>
-                      </div>
                     </div>
                   </div>
                 )}

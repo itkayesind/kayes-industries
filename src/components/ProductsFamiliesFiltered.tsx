@@ -15,13 +15,28 @@ export const ProductsFamiliesFiltered: React.FC = () => {
   const [selected, setSelected] = useState<string>('diamond-wheels');
 
   useEffect(() => {
-    const hash = window.location.hash.replace('#','');
-    if (hash && families.some(f => f.id === hash)) {
+    const params = new URLSearchParams(window.location.search);
+    const famParam = params.get('family') || params.get('category') || params.get('familyId');
+    const hashRaw = window.location.hash.replace('#','').toLowerCase();
+    const legacyHashMap: Record<string, string> = {
+      architecture: 'diamond-wheels',
+      automotive: 'diamond-wheels',
+      watch: 'custom',
+      'watch-glass': 'custom',
+      custom: 'custom',
+      'diamond-wheels': 'diamond-wheels',
+      grinding: 'grinding',
+      drills: 'drills',
+      polishing: 'polishing',
+      'resin-wheels': 'resin-wheels',
+    };
+    const hash = legacyHashMap[hashRaw] || hashRaw;
+    // query param takes precedence over hash, so hash can be fallback for legacy links
+    if (famParam && families.some(f => f.id === famParam)) {
+      setSelected(famParam);
+    } else if (hash && families.some(f => f.id === hash)) {
       setSelected(hash);
     }
-    const params = new URLSearchParams(window.location.search);
-    const fam = params.get('family');
-    if (fam && families.some(f => f.id === fam)) setSelected(fam);
   }, []);
 
   const family = families.find(f => f.id === selected) || families[0];

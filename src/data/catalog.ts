@@ -39,8 +39,7 @@ export const CATALOG_PRODUCTS: ProductItem[] = [
     name: "Sintered Diamond Glass Core Drills & CNC Milling Bits",
     pageRef: "Catalogue Page 3",
     category: "glass",
-    categoryName: "Glass Industry",
-    image: "/images/products/glass-core-drills-studio.jpg",
+    image: "/images/products/drills/kayes-drills-09.jpeg",
     summary: "High-precision thin-wall diamond core drills with 1/2\" standard Belgian threaded shanks and internal water coolant flush for fast, clean, and chip-free glass drilling.",
     features: [
       "Thin-wall sintered diamond crown minimizes cutting resistance",
