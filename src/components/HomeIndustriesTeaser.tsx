@@ -15,7 +15,7 @@ const SECTOR_FAMILY_MAP: Record<string, string> = {
 
 export const HomeIndustriesTeaser: React.FC = () => {
   return (
-    <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+    <section id="industries-overview" className="py-14 sm:py-16 bg-white border-b border-slate-200 scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-slate-500">Industries We Serve</p>

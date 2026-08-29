@@ -62,24 +62,25 @@ function isRelevant(caption: string, familyId: string): boolean {
     return hasWheel;
   }
   if (familyId === "grinding") {
-    const kws = ["grind","periphery","peripheral","slit","d1a1","1a1","pdt","cut-off","slitting","disc","pdt","lapping"];
-    // Exclude obvious drill-only without grinding term? Already filtered via kws
+    const kws = ["grind","periphery","peripheral","slit","d1a1","1a1","pdt","cut-off","slitting","disc","lapping","solar"];
     return includesAny(l, kws);
   }
   if (familyId === "polishing") {
-    // Polishing: cerium/BD/GOMMA/X3000/terracotta/resin/salmon/10S/1309 family. Resin generic allowed to keep green resin cups as polish-adjacent; tool pollution gated.
-    const polishCore = ["polish","cerium","bd-8","bd","gomma","x3000","terracotta","resin","salmon","10s","1309","ceria","rubber"];
+    // Polishing: orange Terracotta + pink BD-8 / Cerium / Salmon (distinct from green resin)
+    const polishCore = ["polish","cerium","bd-8","bd","gomma","x3000","terracotta","salmon","10s","1309","ceria","pink","orange"];
     const hasPolish = includesAny(l, polishCore);
-    // Exclude drills/dressers/adapters/fingers without polish signal (e.g. Pink-Brown finger bit)
     const isToolPollution = includesAny(l, ["drill","dresser","adapter","finger","mushroom","stub","conical"]);
     if (isToolPollution && !hasPolish) return false;
-    // Resin check already via polishCore (resin); no extra gate needed
-    // Pink alone without core polish is not polishing
     if (l.includes("pink") && !hasPolish) return false;
     return hasPolish;
   }
   if (familyId === "resin-wheels") {
-    const kws = ["resin","terracotta","bd","seamer","arriss","pencil","rubber","polish","cerium","gomma","salmon","pink","10s"];
+    // Resin: green resin cups, arrissing/seamer, pencil edge — exclude terracotta/orange and pink polish
+    const kws = ["resin","seamer","arriss","arrising","pencil","rubber","green","pos6","cup"];
+    // Exclude orange terracotta and salmon/cerium polish which belong to polishing family
+    if (includesAny(l, ["terracotta","salmon","cerium","ceria","bd-8","x3000","gomma","1309"])) return false;
+    // For "cup" generic, require resin/green/seamer/pencil context to avoid pulling diamond cup wheels
+    if (l.includes("cup") && !includesAny(l, ["resin","green","seamer","arriss","pos6","pencil"])) return false;
     return includesAny(l, kws);
   }
   if (familyId === "custom") {

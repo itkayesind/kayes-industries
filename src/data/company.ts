@@ -225,23 +225,23 @@ export const COMPANY_INFO: CompanyInfo = {
   gstin: "GSTIN: 33AABCK... (Available on request)",
   clients: ["Bavelloni", "Bovone", "Bottero", "Biesse", "Schiatti", "Lisec", "Deeway", "HanGlastech", "Sunkon", "Deeman", "Lining", "Hisung", "Golive"],
   address: {
-    street: "18-B, North Phase, SIDCO Industrial Estate, Ambattur",
+    street: "No.7, Raja Street, T. Nagar",
     city: "Chennai",
     state: "Tamil Nadu",
     country: "India",
-    pincode: "600 098",
-    full: "18-B, North Phase, SIDCO Industrial Estate, Ambattur, Chennai - 600 098, India"
+    pincode: "600 017",
+    full: "No.7, Raja Street, T. Nagar, Chennai - 600 017, India"
   },
   contacts: {
-    mobile: "+91-9150025540",
-    salesMobile: "+91-9150025540",
-    secondaryMobile: "+91 98412 79658",
-    phoneOffice1: "2625 0005",
-    phoneOffice2: "2625 0006",
-    phoneOffice3: "2625 0007",
-    fax: "+91-44-2624 3302",
-    emails: ["sales@kayesind.com", "kn@kayesind.com", "kayes98@gmail.com"],
-    whatsappLink: "https://wa.me/919150025540?text=Hello%20KAYES%20INDUSTRIES%20PVT%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%20diamond%20tooling%20solutions.",
+    mobile: "+91 9841279658",
+    salesMobile: "+91 9841279658",
+    secondaryMobile: "+91 9841279658",
+    phoneOffice1: "+91 44 24332415",
+    phoneOffice2: "",
+    phoneOffice3: "",
+    fax: "",
+    emails: ["kn@kayesind.com", "kayesind@gmail.com"],
+    whatsappLink: "https://wa.me/919841279658?text=Hello%20KAYES%20INDUSTRIES%20PVT%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%20diamond%20tooling%20solutions.",
     catalogPdf: "/docs/Kayes-Diamond-Tools-Catalogue.pdf"
   },
   executive: {

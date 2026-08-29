@@ -99,7 +99,7 @@ export const InteractiveRFQ: React.FC = () => {
       `Contact Phone: ${contact}\n\n` +
       `Regards,\n${name || 'Procurement Team'}`
     );
-    window.location.href = `mailto:sales@kayesind.com?cc=kn@kayesind.com&subject=${subject}&body=${body}`;
+    window.location.href = `mailto:kn@kayesind.com?cc=kayesind@gmail.com&subject=${subject}&body=${body}`;
   };
 
   return (

@@ -73,11 +73,11 @@ export const CorporateProfile: React.FC = () => {
 
               {/* Facility Thumbnail Strip */}
               <div className="grid grid-cols-3 gap-2">
-                <img src="/images/products/metal-bonded-edging-wheels.jpg" alt="Metal bonded edging wheels - SIDCO Ambattur plant production" loading="lazy" decoding="async" className="h-16 w-full rounded-lg object-cover border border-slate-200" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+                <img src="/images/products/metal-bonded-edging-wheels.jpg" alt="Metal bonded edging wheels - plant production" loading="lazy" decoding="async" className="h-16 w-full rounded-lg object-cover border border-slate-200" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
                 <img src="/images/industries/architectural-glass.jpg" alt="Architectural glass processing facility" loading="lazy" decoding="async" className="h-16 w-full rounded-lg object-cover border border-slate-200" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
-                <img src="/images/products/glass-edging-wheels-studio.jpg" alt="SIDCO Ambattur Plant - Fully Automatic Sintering" loading="lazy" decoding="async" className="h-16 w-full rounded-lg object-cover border border-slate-200" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+                <img src="/images/products/glass-edging-wheels-studio.jpg" alt="Fully Automatic Sintering Facility" loading="lazy" decoding="async" className="h-16 w-full rounded-lg object-cover border border-slate-200" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
               </div>
-              <p className="text-xs text-slate-500 text-center font-sans tracking-wide">SIDCO Ambattur Plant - Fully Automatic Sintering</p>
+              <p className="text-xs text-slate-500 text-center font-sans tracking-wide">Fully Automatic Sintering Facility</p>
 
               {/* Quality & Certification Stamp */}
               <div className="p-4 rounded-2xl bg-white border border-slate-200/90 flex items-center gap-3.5 shadow-2xs">

@@ -26,6 +26,9 @@ export const Footer: React.FC = () => {
             <div className="inline-block">
               <BrandLogo variant="full" theme="dark" />
             </div>
+            <p className="text-white text-xs font-bold tracking-[0.12em] font-brand uppercase">
+              KAYES INDUSTRIES PVT LTD
+            </p>
             <p className="text-slate-400 text-xs max-w-sm leading-relaxed font-sans">
               {COMPANY_INFO.motto}
             </p>
@@ -40,12 +43,12 @@ export const Footer: React.FC = () => {
               Navigation
             </h4>
             <ul className="space-y-2 text-xs text-slate-400 font-sans">
-              <li><a href="#industries-overview" className="hover:text-white transition-colors">Industries &amp; R&amp;D</a></li>
-              <li><a href="#catalog" className="hover:text-white transition-colors">Product Catalogue</a></li>
-              <li><a href="#wheel-types" className="hover:text-white transition-colors">ISO Wheel Types (Page 5)</a></li>
-              <li><a href="#grit-matrix" className="hover:text-white transition-colors">Grit &amp; Micron Matrix</a></li>
-              <li><a href="#about" className="hover:text-white transition-colors">Corporate Heritage</a></li>
-              <li><a href="#inquiry" className="hover:text-white transition-colors">Request a Quote</a></li>
+              <li><a href="/#industries-overview" className="hover:text-white transition-colors">Industries &amp; R&amp;D</a></li>
+              <li><a href="/products#catalogue" className="hover:text-white transition-colors">Product Catalogue</a></li>
+              <li><a href="/products/profiles#wheel-types" className="hover:text-white transition-colors">ISO Wheel Types (Page 5)</a></li>
+              <li><a href="/#grit-matrix" className="hover:text-white transition-colors">Grit &amp; Micron Matrix</a></li>
+              <li><a href="/about" className="hover:text-white transition-colors">Corporate Heritage</a></li>
+              <li><a href="/contact#inquiry" className="hover:text-white transition-colors">Request a Quote</a></li>
               <li>
                 <a
                   href={COMPANY_INFO.contacts.catalogPdf}
@@ -73,7 +76,7 @@ export const Footer: React.FC = () => {
               <div className="flex flex-wrap gap-3 text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-800">
                 <span>{gstinLabel}</span>
                 {cinLabel && <span>{cinLabel}</span>}
-                <a href="https://maps.google.com/?q=SIDCO+Industrial+Estate+Ambattur+Chennai" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 underline">View on Maps →</a>
+                <a href="https://www.google.com/maps?q=13.03969955444336,80.23731231689453&z=17&hl=en" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 underline">View on Maps →</a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-slate-500 flex-shrink-0" />

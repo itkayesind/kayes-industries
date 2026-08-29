@@ -34,7 +34,7 @@ export const TOOL_FAMILIES: ToolFamily[] = [
     longDesc: "Peripheral wheels 1A1, 3A1, 14A1 and slitting 1A1R (100-350mm). For seaming, slitting and edge grinding of solar and appliance glass.",
     profiles: ["1A1", "3A1", "14A1", "1A1R"],
     appCodes: ["SOLAR-01", "SOLAR-02", "APPL-01", "CERAM-02"],
-    heroImage: "/images/products/solar-architectural-slitters.jpg",
+    heroImage: "/images/products/metal-bonded-edging-wheels.jpg",
   },
   {
     id: "polishing",
@@ -133,7 +133,7 @@ export const INDUSTRY_GALLERIES: IndustryGallery[] = [
   {
     slug: "automotive",
     label: "Automotive Glass",
-    count: 30,
+    count: 29,
     path: "/images/products/automotive-glass-products-pictures",
     prefix: "kayes-auto",
     description: "Pencil edging and drilling for windshields, sidelites and backlites on high-speed automotive lines.",
@@ -162,7 +162,6 @@ export const INDUSTRY_GALLERIES: IndustryGallery[] = [
       "KIGD Core Drill D39.8AAxL75 - Pair Wide 39.8mm Serrated Brown Crown, Box Labelled L75 D39.8AA",
       "D1A1 Slitting Disc 3.2mm - 2 Large Flat Discs Etched KAYS 3.2mm A081124P",
       "Position 1/2 Multi-Groove Wheel - Hand-Held 4xV-Groove Segmented, Grey-Black Periphery",
-      "WINTER Saint-Gobain Pencil Wheel - Stack of 5 Silver Wheels Top Etched WINTER 69260261143",
       "KAYS Pencil Wheel 3mmx3 #140 - 4 Gold-Brown Triple-Groove Wheels Etched 270525",
       "KIGD Conical Dresser L75-20.5 - Pair Polished Steel Calibration Cones 60 deg Point, 1/2 Gas Thread",
       "Position 1/2 Pencil Wheel - Single Double-Groove Metal-Bond on Bubble Wrap, Rotation Arrow",
